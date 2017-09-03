@@ -1,0 +1,1594 @@
+#!/bin/bash
+
+# sparky-desktop script lets you install your favorite
+# desktop on the top of SparkyLinux installation
+# Copyright pavroo <pavroo@onet.eu> 2016/02/16
+# Under the GNU GPL2 License
+# Last update 2017/08/21
+
+# checking to make sure the script is running with root privileges
+testroot="`whoami`"
+if [ "$testroot" != "root" ]
+then
+	echo " Must be run as root - exiting"
+	exit 1
+fi
+
+# set options depending on mode - text or gui
+DIALOG="`which dialog`"
+HEIGHT="17"
+WIDTH="75"
+MENUHEIGHT="12"
+TITLE="--title "
+TEXT=""
+ENTRY="--inputbox "
+MENU="--menu"
+YESNO="--yesno "
+MSGBOX="--msgbox "
+TITLETEXT="Sparky (Advanced) Installer"
+
+if [ -f /opt/sparky/sparky-xterm ]; then
+. /opt/sparky/sparky-xterm
+else
+SPARKYXTERM="x-terminal-emulator"
+fi
+
+SPARKYVERCHECK5="`cat /etc/issue | grep 5`"
+SPARKYVERCHECK4="`cat /etc/issue | grep 4`"
+DEBIANVERCHECK10="`cat /etc/issue | grep buster`"
+DEBIANVERCHECK9="`cat /etc/issue | grep stretch`"
+if [ "$SPARKYVERCHECK5" != "" ] || [ "$DEBIANVERCHECK10" != "" ]
+then
+	TDEREPO="buster"
+elif [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]
+then
+	TDEREPO="stretch"
+else
+	TDEREPO="sid"
+fi
+
+if [ "$1" = "gui" -o "$2" = "gui" ]
+then
+	GUI="$DISPLAY"
+fi
+
+if [ "$GUI" != "" ]
+then
+
+	testyad=`which yad`
+
+	if [ "$testyad" != "" ]
+	then
+		DIALOGMENU="`which yad` --window-icon=/usr/share/icons/sparky/sparkybackupsys/sparky48.png --width=600 --height=400 --fixed --center"
+		DIALOG1="`which yad` --window-icon=/usr/share/icons/sparky/sparkybackupsys/sparky48.png --fixed --center"
+		TITLE="--always-print-result --dialog-sep --image=/usr/share/icons/sparky/sparkybackupsys/sparky48.png --title="
+		TEXT="--text="
+		ENTRY="--entry "
+		ENTRYTEXT="--entry-text "
+		MENU="--list --column=Pick --column=Info"
+		YESNO=" --button=Yes:0 --button=No:1 "
+		MSGBOX=" --button=Ok:0 "
+		TITLETEXT="Sparky (Advanced) Installer"
+	fi
+
+fi
+
+# checking connection
+PINGTEST=$(ping -c 1 debian.org | grep [0-9])
+
+if [ "$PINGTEST" = "" ]
+then
+	if [ "$GUI" = "" ]
+	then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Internet connection test failed!\nAn additional desktop on-line installation can NOT be done!\n\nExiting now..."
+	else
+		$DIALOG1 $TITLE"$TITLETEXT" $MSGBOX $TEXT"Internet connection test failed!\nAn additional desktop on-line installation can NOT be done!\n\nExiting now..."
+	fi
+exit 1
+
+fi
+
+# choose your favorite desktop
+if [ "$GUI" = "" ]
+then
+	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"Please select a desktop you would like to install." $HEIGHT $WIDTH $MENUHEIGHT awesome "Dynamic Window Manager" bspwm "Tiling Window Manager" Budgie "Budgie Desktop" CDE "Common Desktop Environment" Cinnamon "GTK+ based Desktop Environment" DDE "Deepin desktop an elegant desktop environment" Enlightenment "Compositing and stacking Window Manager" Fluxbox "Stacking Window Manager" GNOME-FL "Flashback session of the GNOME Desktop Environment" GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" i3 "Dynamic tiling Window Manager" IceWM "Stacking Window Manager" JWM "Stacking Window Manager" KDE "KDE Plasma 5 Desktop Environment" Lumina "Lightweight system interface for any Unix-like OS" LXDE "Lightweight X11 Desktop Environment" LXQt "Lightweight Qt Desktop Environment" MATE "MATE Desktop Environment" Openbox "Stacking Window Manager" PekWM "Lightweight and very configurable window manager" TDE "Trinity Desktop Environment" WMaker "Window Manager for the X Window System" Xfce "Lightweight Desktop Environment" Exit "Quit the desktop installer" 2>/tmp/choice.$$
+
+	if [ "$?" = "0" ]
+	then
+		GETDESKTOP=`cat /tmp/choice.$$`
+	else
+		GETDESKTOP="Exit"
+	fi
+
+	rm /tmp/choice.$$
+
+	if [ "$GETDESKTOP" = "Exit" ]
+	then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Quitting the desktop installer now." $HEIGHT $WIDTH
+		exit 1
+	fi
+
+else
+
+GETDESKTOP=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"Please select a desktop you would like to install" \
+awesome "Dynamic Window Manager" \
+bspwm "Tiling Window Manager" \
+Budgie "Budgie Desktop" \
+CDE "Common Desktop Environment" \
+Cinnamon "GTK+ based Desktop Environment" \
+DDE "Deepin desktop an elegant desktop environment" \
+Enlightenment "Compositing and stacking Window Manager" \
+Fluxbox "Stacking Window Manager" \
+GNOME-FL "Flashback session of the GNOME Desktop Environment" \
+GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" \
+i3 "Dynamic tiling Window Manager" \
+IceWM "Stacking Window Manager" \
+JWM "Stacking Window Manager" \
+KDE "KDE Plasma 5 Desktop Environment" \
+Lumina "Lightweight system interface for any Unix-like OS" \
+LXDE "Lightweight X11 Desktop Environment" \
+LXQt "Lightweight Qt Desktop Environment" \
+MATE "MATE Desktop Environment" \
+Openbox "Stacking Window Manager" \
+PekWM "Lightweight and very configurable window manager" \
+TDE "Trinity Desktop Environment" \
+WMaker "Window Manager for the X Window System" \
+Xfce "Lightweight Desktop Environment" \
+Exit "Quit the desktop installer"`
+
+# Pantheon "Modular Desktop Environment written in Vala and GTK+" \
+
+	if [ "$?" = "0" ]
+	then
+		GETDESKTOP=`echo $GETDESKTOP | cut -d "|" -f 1`
+	fi
+
+	if [ "$GETDESKTOP" = "Exit" ]
+	then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Quitting the desktop installer now."
+		exit 1
+	fi
+
+fi
+
+
+# choose your favorite web browser
+if [ "$GETDESKTOP" != "Exit" ]
+then
+
+	if [ "$GUI" = "" ]
+	then
+		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"The live system provides Midori (MinimalGUI) and ELinks (MinimalCLI) web browser as default.\n\nIf you would like to install different web browser, simply choose a one from the list." $HEIGHT $WIDTH $MENUHEIGHT Chromium "Google open-source Chromium web browser" Dillo "Small and fast web browser" Dooble "Secure and open source web browser" Epiphany "GNOME web browser" Firefox-ESR "Web browser from Mozilla" IceCat "The GNU version of the Firefox web browser" Konqueror "Web browser and file manager for KDE" Midori "Fast and lightweight graphical web browser" NetSurf "Small and fast multi-platform web browser" Otter "Free and open-source web browser" Palemoon "Firefox-based, efficient and easy to use web browser" QupZilla "Lightweight web browser based on libqtwebkit" SeaMonkey "Free and open-source internet suite" SlimJet "Free web browser based on Chromium project" TOR_Browser "TOR Anonymity Network app and a web browser" Vivaldi "Freeware web browser developed by Vivaldi Technologies" Exit "Do NOT change web browser" 2>/tmp/choice.$$
+
+		if [ "$?" = "0" ]
+		then
+			GETWEBBROWSER=`cat /tmp/choice.$$`
+		else
+			GETWEBBROWSER="Exit"
+		fi
+
+		rm /tmp/choice.$$
+
+		if [ "$GETWEBBROWSER" = "Exit" ]
+		then
+			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"A web browser will be NOT changed." $HEIGHT $WIDTH
+		fi
+
+	else
+	
+GETWEBBROWSER=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"The live system provides Midori (MinimalGUI) and ELinks (MinimalCLI) web browser as default.\n\nIf you would like to install different web browser, simply choose a one from the list." \
+Chromium "Google open-source Chromium web browser" \
+Dillo "Small and fast web browser" \
+Dooble "Secure and open source web browser" \
+Epiphany "GNOME web browser" \
+Firefox-ESR "Web browser from Mozilla" \
+IceCat "The GNU version of the Firefox web browser" \
+Konqueror "Web browser and file manager for KDE" \
+Midori "Fast and lightweight graphical web browser" \
+NetSurf "Small and fast multi-platform web browser" \
+Otter "Free and open-source web browser" \
+Palemoon "Firefox-based, efficient and easy to use web browser" \
+QupZilla "Lightweight web browser based on libqtwebkit" \
+SeaMonkey "Free and open-source internet suite" \
+SlimJet "Free web browser based on Chromium project" \
+TOR_Browser "TOR Anonymity Network app and a web browser" \
+Vivaldi "Freeware web browser developed by Vivaldi Technologies" \
+Exit "Do NOT change web browser"`
+
+		if [ "$?" = "0" ]
+		then
+			GETWEBBROWSER=`echo $GETWEBBROWSER | cut -d "|" -f 1`
+		fi
+
+		if [ "$GETWEBBROWSER" = "Exit" ]
+		then
+			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"A web browser will be NOT changed."
+		fi
+
+	fi
+fi
+
+if [ "$GETWEBBROWSER" = "Dillo" ]
+then
+	INSTALLWEBBROWSER="dillo"
+
+elif [ "$GETWEBBROWSER" = "Dooble" ]
+then
+	INSTALLWEBBROWSER="dooble"
+
+elif [ "$GETWEBBROWSER" = "Chromium" ]
+then
+	INSTALLWEBBROWSER="chromium"
+
+elif [ "$GETWEBBROWSER" = "Epiphany" ]
+then
+	INSTALLWEBBROWSER="epiphany-browser"
+
+elif [ "$GETWEBBROWSER" = "Firefox-ESR" ]
+then
+	INSTALLWEBBROWSER="firefox-esr"
+
+#elif [ "$GETWEBBROWSER" = "Firefox-Latest" ]
+#then
+#	INSTALLWEBBROWSER="firefox"
+
+elif [ "$GETWEBBROWSER" = "IceCat" ]
+then
+	INSTALLWEBBROWSER="icecat"
+
+elif [ "$GETWEBBROWSER" = "Konqueror" ]
+then
+	INSTALLWEBBROWSER="konqueror"
+
+elif [ "$GETWEBBROWSER" = "Midori" ]
+then
+	INSTALLWEBBROWSER="midori"
+
+elif [ "$GETWEBBROWSER" = "NetSurf" ]
+then
+	INSTALLWEBBROWSER="netsurf"
+
+elif [ "$GETWEBBROWSER" = "Otter" ]
+then
+	INSTALLWEBBROWSER="otter-browser"
+
+elif [ "$GETWEBBROWSER" = "Palemoon" ]
+then
+	INSTALLWEBBROWSER="palemoon"
+
+elif [ "$GETWEBBROWSER" = "QupZilla" ]
+then
+	INSTALLWEBBROWSER="qupzilla"
+
+elif [ "$GETWEBBROWSER" = "SeaMonkey" ]
+then
+	INSTALLWEBBROWSER="seamonkey"
+
+elif [ "$GETWEBBROWSER" = "SlimJet" ]
+then
+	INSTALLWEBBROWSER="slimjet"
+
+elif [ "$GETWEBBROWSER" = "TOR_Browser" ]
+then
+	INSTALLWEBBROWSER="tor-browser"
+
+elif [ "$GETWEBBROWSER" = "Vivaldi" ]
+then
+	INSTALLWEBBROWSER="vivaldi-stable"
+
+elif [ "$GETWEBBROWSER" = "Exit" ]
+then
+	INSTALLWEBBROWSER=""
+
+else
+	INSTALLWEBBROWSER=""
+
+fi
+
+# install your desktop
+if [ "$GETDESKTOP" = "awesome" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-awesome $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-awesome
+fi
+apt-get install -f
+if [ -f /usr/bin/awesome ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "Budgie" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-budgie $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-budgie
+fi
+apt-get install -f
+if [ -f /usr/bin/budgie-desktop ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes pasystray
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "bspwm" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-bspwm $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-bspwm
+fi
+apt-get install -f
+if [ -f /usr/bin/bspwm ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes sparky-gexec
+	apt-get purge --yes --force-yes gexec
+	apt-get purge --yes --force-yes sparky-aptus-upgrade
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "CDE" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-cde $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-cde
+fi
+apt-get install -f
+if [ -f /usr/dt/bin/dtsession ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes gexec
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes sparky-gufw
+	apt-get purge --yes --force-yes system-config-printer
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "Cinnamon" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-cinnamon $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-cinnamon
+fi
+apt-get install -f
+if [ -f /usr/bin/cinnamon ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes pavucontrol
+	apt-get purge --yes --force-yes xscreensaver
+	apt-get purge --yes --force-yes nautilus
+	apt-get purge --yes --force-yes gexec
+	apt-get purge --yes --force-yes xarchiver
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes sparky-theme-root
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "DDE" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+if [ -f /etc/apt/sources.list.d/sparky-dde.list ]
+then
+	rm -f /etc/apt/sources.list.d/sparky-dde.list
+fi
+echo "deb https://sparkylinux.org/repo/ dde main" > /etc/apt/sources.list.d/sparky-dde.list
+echo "deb-src https://sparkylinux.org/repo/ dde main" >> /etc/apt/sources.list.d/sparky-dde.list
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-deepin $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-deepin
+fi
+apt-get install -f
+if [ -f /usr/bin/startdde ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "Enlightenment" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-enlightenment $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-enlightenment
+fi
+apt-get install -f
+if [ -f /usr/bin/enlightenment ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes network-manager-gnome
+	apt-get purge --yes --force-yes network-manager
+	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes xscreensaver-data
+	apt-get purge --yes --force-yes xscreensaver
+	apt-get purge --yes --force-yes pavucontrol
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "Fluxbox" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-fluxbox $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-fluxbox
+fi
+apt-get install -f
+if [ -f /usr/bin/startfluxbox ] && [ -f /opt/sparky/sparky-fluxbox ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "GNOME-FL" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-gnome-flashback $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-gnome-flashback
+fi
+apt-get install -f
+if [ -f /usr/bin/gnome-flashback ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes --force-yes xscreensaver
+	apt-get purge --yes --force-yes xscreensaver-data
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "GNOME-SH" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-gnome-shell $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-gnome-shell
+fi
+apt-get install -f
+if [ -f /usr/share/xsessions/gnome.desktop ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes --force-yes xscreensaver
+	apt-get purge --yes --force-yes xscreensaver-data
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+	systemctl -f enable gdm.service
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "i3" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-i3 $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-i3
+fi
+apt-get install -f
+if [ -f /usr/bin/i3 ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes sparky-gexec
+	apt-get purge --yes --force-yes gexec
+	apt-get purge --yes --force-yes sparky-aptus-upgrade
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "IceWM" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-icewm $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-icewm
+fi
+apt-get install -f
+if [ -f /usr/bin/icewm ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+	
+elif [ "$GETDESKTOP" = "JWM" ]
+then
+	
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-jwm $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-jwm
+fi
+apt-get install -f
+if [ -f /usr/bin/jwm ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "KDE" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install --no-install-recommends sparky-desktop-kde $INSTALLWEBBROWSER
+else
+	apt-get install --no-install-recommends sparky-desktop-kde
+fi
+apt-get install -f
+if [ -f /usr/bin/startkde ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes epdfview
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes network-manager-gnome
+	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes xscreensaver
+	apt-get purge --yes --force-yes xscreensaver-data
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes lightdm
+	apt-get purge --yes --force-yes gdebi
+	apt-get purge --yes --force-yes system-config-printer
+	apt-get purge --yes --force-yes gksu
+	apt-get purge --yes --force-yes xarchiver
+	apt-get purge --yes --force-yes gexec
+	apt-get purge --yes --force-yes muon-common
+	apt-get purge --yes --force-yes muon-discover
+	apt-get purge --yes --force-yes muon-notifier
+	apt-get purge --yes --force-yes muon-updater
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "Lumina" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+if [ -f /etc/apt/sources.list.d/lumina.list ] || [ -f /etc/apt/sources.list.d/lumina-testing.list ]
+then
+	rm -f /etc/apt/sources.list.d/lumina*
+fi
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install --no-install-recommends sparky-desktop-lumina $INSTALLWEBBROWSER
+else
+	apt-get install --no-install-recommends sparky-desktop-lumina
+fi
+apt-get install -f
+if [ -f /usr/bin/lumina-desktop ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes galculator
+	apt-get purge --yes --force-yes xarchiver
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "LXDE" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-lxde $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-lxde	
+fi
+apt-get install -f
+if [ -f /usr/bin/startlxde ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes sparky-theme-root
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes pasystray
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "LXQt" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-lxqt $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-lxqt
+fi
+apt-get install -f
+if [ -f /usr/bin/startlxqt ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes wm-logout 
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes lxappearance
+	apt-get purge --yes --force-yes lxde-common
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes epdfview
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes pasystray
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "MATE" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-mate $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-mate
+fi
+apt-get install -f
+if [ -f /usr/bin/mate-session ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes epdfview
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes pavucontrol
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes sparky-theme-root
+	apt-get purge --yes --force-yes xarchiver
+	apt-get purge --yes --force-yes xscreensaver
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "Openbox" ]
+then
+
+#	if [ -f /TARGET/usr/bin/openbox ]
+#	then
+#		if [ "$GUI" = "" ]
+#		then
+#			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Openbox is already installed!\n\nExiting now..."
+#		else
+#			$DIALOG1 $TITLE"$TITLETEXT" $MSGBOX $TEXT"Openbox is already installed!\n\nExiting now..."
+#		fi
+#		exit 1
+#	else
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-openbox $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-openbox
+fi
+apt-get install -f
+if [ -f /usr/bin/openbox ]
+then
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes tint2
+	apt-get autoremove --yes
+fi
+FOO
+#	fi
+
+elif [ "$GETDESKTOP" = "Pantheon" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+if [ -f /etc/apt/sources.list.d/pantheon-debian.list ]
+then
+	rm -f /etc/apt/sources.list.d/pantheon-debian.list
+fi
+echo "deb http://gandalfn.ovh/debian stretch-loki main contrib" > /etc/apt/sources.list.d/pantheon-debian.list
+wget http://gandalfn.ovh/debian/pantheon-debian.gpg.key -O- | apt-key add -
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-pantheon $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-pantheon
+fi
+apt-get install -f
+if [ -f /usr/bin/pantheon-session ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes nautilus
+	apt-get purge --yes --force-yes brltty
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "PekWM" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-pekwm $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-pekwm
+fi
+apt-get install -f
+if [ -f /usr/bin/pekwm ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "TDE" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+if [ -f /etc/apt/sources.list.d/trinity.list ]
+then
+	rm -f /etc/apt/sources.list.d/trinity.list
+fi
+touch /etc/apt/sources.list.d/trinity.list
+echo "deb http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
+echo "deb-src http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
+apt-key adv --keyserver keys.gnupg.net --recv-key A04BE668
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-trinity $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-trinity
+fi
+apt-get install -f
+if [ -d /usr/share/doc/tde-core-trinity ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes gpicview
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes sparky-gexec
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes network-manager-gnome
+	apt-get purge --yes --force-yes gexec
+	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes --force-yes xscreensaver
+	apt-get purge --yes --force-yes xscreensaver-data
+	apt-get purge --yes --force-yes xarchiver
+	apt-get purge --yes --force-yes evince
+	apt-get purge --yes --force-yes evince-common
+	apt-get purge --yes --force-yes pavucontrol
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "WMaker" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-wmaker $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-wmaker
+fi
+apt-get install -f
+if [ -f /usr/bin/wmaker ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes htop
+	apt-get autoremove --yes
+fi
+FOO
+
+elif [ "$GETDESKTOP" = "Xfce" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-xfce $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-xfce
+fi
+apt-get install -f
+if [ -f /usr/bin/startxfce4 ]
+then
+	apt-get purge --yes --force-yes sparky-desktop-openbox
+	apt-get purge --yes --force-yes elinks
+	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes lxinput
+	apt-get purge --yes --force-yes lxrandr
+	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes --force-yes lxtask
+	apt-get purge --yes --force-yes lxterminal
+	apt-get purge --yes --force-yes nitrogen
+	apt-get purge --yes --force-yes mc
+	apt-get purge --yes --force-yes obmenu-generator
+	apt-get purge --yes --force-yes wm-logout
+	apt-get purge --yes --force-yes tint2
+	apt-get purge --yes --force-yes fbpanel
+	apt-get purge --yes --force-yes obconf
+	apt-get purge --yes --force-yes openbox
+	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes pcmanfm
+	apt-get purge --yes --force-yes sparky-theme-root
+	apt-get autoremove --yes
+fi
+FOO
+
+fi
+
+chmod +x /TARGET/tmp/desktop-install
+
+if [ "$GUI" = "" ]
+then
+	chroot /TARGET /tmp/desktop-install
+	sleep 1
+else
+	$SPARKYXTERM -e "chroot /TARGET /tmp/desktop-install"
+	sleep 1
+fi
+
+rm -f /TARGET/tmp/desktop-install
+
+# remove web browser if different than installed in the live system
+#if [ "$GETDESKTOP" = "Pantheon" ]
+#then
+#	echo "Midori web browser can not be removed from Pantheon desktop"
+#else
+	
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	if [ "$INSTALLWEBBROWSER" != "midori" ]
+	then
+
+cat > /TARGET/tmp/remove-webbrowser << FOO
+#!/bin/bash
+apt-get purge --yes --force-yes midori
+apt-get autoremove --yes
+FOO
+
+	chmod +x /TARGET/tmp/remove-webbrowser
+
+	if [ "$GUI" = "" ]
+	then
+		echo "Removing Midori...Please wait..."
+		chroot /TARGET /tmp/remove-webbrowser
+		sleep 1
+	else
+		$SPARKYXTERM -e "chroot /TARGET /tmp/remove-webbrowser"
+		sleep 1
+	fi
+
+	rm -f /TARGET/tmp/remove-webbrowser
+
+	fi
+fi
+#fi
+
+### copy home settings for the new user ###
+
+# awesome
+if [ -f /TARGET/usr/bin/awesome ] && [ -d /usr/share/sparky-desktop-data/awesome/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/awesome/skel /TARGET/etc/
+fi
+
+# bspwm
+if [ -f /TARGET/usr/bin/bspwm ] && [ -d /usr/share/sparky-desktop-data/bspwm/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/bspwm/skel /TARGET/etc/
+fi
+
+# budgie
+if [ -f /TARGET/usr/bin/budgie-desktop ] && [ -d /usr/share/sparky-desktop-data/budgie/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/budgie/skel /TARGET/etc/
+fi
+
+# cinnamon
+if [ -f /TARGET/usr/bin/cinnamon ] && [ -d /usr/share/sparky-desktop-data/cinnamon/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/cinnamon/skel /TARGET/etc/
+fi
+
+# deepin
+if [ -f /TARGET/usr/bin/startdde ] && [ -d /usr/share/sparky-desktop-data/deepin/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/deepin/skel /TARGET/etc/
+
+#cat > /TARGET/tmp/desktop-install-dde << FOO
+##!/bin/bash
+
+#sed -i -e 's/lightdm/slim/g' /etc/X11/default-display-manager
+#sed -i -e 's/sbin/bin/g' /etc/X11/default-display-manager
+#rm -f /etc/systemd/system/display-manager.service
+#ln -s /lib/systemd/system/slim.service /etc/systemd/system/display-manager.service
+#FOO
+#	chmod +x /TARGET/tmp/desktop-install-dde
+#	chroot /TARGET /tmp/desktop-install-dde
+#	rm -f /TARGET/tmp/desktop-install-dde
+fi
+
+# enlightenment
+if [ -f /TARGET/usr/bin/enlightenment ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/enlightenment/skel /TARGET/etc/
+	rsync -a /usr/share/sparky-desktop-data/enlightenment/applications /TARGET/usr/share/
+fi
+
+# fluxbox
+if [ -f /TARGET/usr/bin/startfluxbox ] && [ -d /usr/share/sparky-desktop-data/fluxbox/skel ] && [ -f /TARGET/opt/sparky/sparky-fluxbox ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/fluxbox/skel /TARGET/etc/
+fi
+
+# gnome-flashback
+if [ -f /TARGET/usr/bin/gnome-flashback ] && [ -d /usr/share/sparky-desktop-data/gnome-fl/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/gnome-fl/skel /TARGET/etc/
+fi
+
+# gnome-shell
+if [ -f /TARGET/usr/share/xsessions/gnome.desktop ] && [ -d /usr/share/sparky-desktop-data/gnome-sh/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel /TARGET/etc/
+
+cat > /TARGET/tmp/desktop-install-gnome << FOO
+#!/bin/bash
+
+#CHECKDM=`cat /etc/X11/default-display-manager | grep gdm`
+#if [ "$CHECKDM" != "" ]
+#then
+sed -i -e 's/gdm3/lightdm/g' /etc/X11/default-display-manager
+#if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]
+#then
+rm -f /etc/systemd/system/display-manager.service
+ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+#fi
+#fi
+FOO
+	chmod +x /TARGET/tmp/desktop-install-gnome
+	chroot /TARGET /tmp/desktop-install-gnome
+	rm -f /TARGET/tmp/desktop-install-gnome
+fi
+
+# i3
+if [ -f /TARGET/usr/bin/i3 ] && [ -d /usr/share/sparky-desktop-data/i3/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/i3/skel /TARGET/etc/
+fi
+
+# icewm
+if [ -f /TARGET/usr/bin/icewm ] && [ -d /usr/share/sparky-desktop-data/icewm/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/icewm/skel /TARGET/etc/
+fi
+
+
+# jwm
+if [ -f /TARGET/usr/bin/jwm ] && [ -d /usr/share/sparky-desktop-data/jwm/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/jwm/skel /TARGET/etc/
+fi
+
+# kde
+if [ -f /TARGET/usr/bin/startkde ] && [ -d /usr/share/sparky-desktop-data/kde/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/kde/skel /TARGET/etc/
+	cp /usr/share/sparky-desktop-data/kde/etc/sddm.conf /TARGET/etc/sddm.conf
+
+cat > /TARGET/tmp/desktop-install-kde << FOO
+#!/bin/bash
+
+sed -i -e 's/lightdm/sddm/g' /etc/X11/default-display-manager
+sed -i -e 's/sbin/bin/g' /etc/X11/default-display-manager
+rm -f /etc/systemd/system/display-manager.service
+ln -s /lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service
+FOO
+	chmod +x /TARGET/tmp/desktop-install-kde
+	chroot /TARGET /tmp/desktop-install-kde
+	rm -f /TARGET/tmp/desktop-install-kde
+fi
+
+# lumina
+if [ -f /TARGET/usr/bin/lumina-desktop ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/lumina/skel /TARGET/etc/
+fi
+
+# lxde
+if [ -f /TARGET/usr/bin/startlxde ] && [ -d /usr/share/sparky-desktop-data/lxde/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/lxde/skel /TARGET/etc/
+fi
+
+# lxqt
+if [ -f /TARGET/usr/bin/startlxqt ] && [ -d /usr/share/sparky-desktop-data/lxqt/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/lxqt/skel /TARGET/etc/
+fi
+
+# mate
+if [ -f /TARGET/usr/bin/mate-session ] && [ -d /usr/share/sparky-desktop-data/mate/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/mate/skel /TARGET/etc/
+fi
+
+# openbox
+if [ -f /TARGET/usr/bin/obmenu-generator ] && [ -d /usr/share/sparky-desktop-data/openbox/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/openbox/skel /TARGET/etc/
+fi
+
+# pantheon
+if [ -f /TARGET/usr/bin/pantheon-session ] && [ -d /usr/share/sparky-desktop-data/pantheon/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/pantheon/skel /TARGET/etc/
+fi
+
+# pekwm
+if [ -f /TARGET/usr/bin/pekwm ] && [ -d /usr/share/sparky-desktop-data/pekwm/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/pekwm/skel /TARGET/etc/
+fi
+
+# trinity
+if [ -f /TARGET/usr/share/doc/tde-core-trinity/copyright ] && [ -d /usr/share/sparky-desktop-data/trinity/skel ]
+then
+	if [ ! -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop ]
+	then
+		if [ ! -d /TARGET/etc/skel/.trinity/Autostart ]
+		then
+			mkdir -p /TARGET/etc/skel/.trinity/Autostart
+		fi
+		cp /usr/share/sparky-desktop-data/trinity/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop
+	fi
+
+	if [ -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1-jessie.desktop ]
+	then
+		rm -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1-jessie.desktop
+	fi
+
+cat > /TARGET/tmp/desktop-install-trinity << FOO
+#!/bin/bash
+sed -i -e 's:/opt/trinity/bin/tdm:/usr/sbin/lightdm:g' /etc/X11/default-display-manager
+if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]
+then
+	rm -f /etc/systemd/system/display-manager.service
+	ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+fi
+FOO
+	
+chmod +x /TARGET/tmp/desktop-install-trinity
+chroot /TARGET /tmp/desktop-install-trinity
+rm -f /TARGET/tmp/desktop-install-trinity
+
+fi
+
+# wmaker
+if [ -f /TARGET/usr/bin/wmaker ] && [ -d /usr/share/sparky-desktop-data/wmaker/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/wmaker/skel /TARGET/etc/
+fi
+
+# xfce
+if [ -f /TARGET/usr/bin/startxfce4 ] && [ -d /usr/share/sparky-desktop-data/xfce/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/xfce/skel /TARGET/etc/
+fi
+
+### additional desktop log section ###
+echo "Desktop Installer additional log section" >> /TARGET/var/log/sparkylinux-installer.log
+echo "==============================================================" >> /TARGET/var/log/sparkylinux-installer.log
+
+if [ "$PINGTEST" = "" ]
+then
+	echo "PING TEST=Internet connection not active" >> /TARGET/var/log/sparkylinux-installer.log
+else
+	echo "PING TEST=Internet connection OK" >> /TARGET/var/log/sparkylinux-installer.log
+fi
+
+echo "NEW DESKTOP=$GETDESKTOP" >> /TARGET/var/log/sparkylinux-installer.log
+echo "NEW WEB BROWSER=$GETWEBBROWSER" >> /TARGET/var/log/sparkylinux-installer.log
+
+if [ "$GETDESKTOP" = "Pantheon" ]
+then
+	if [ -f /TARGET/etc/apt/sources.list.d/pantheon-debian.list ]
+	then
+		echo "PANTHEON REPO=pantheon repo added ok" >> /TARGET/var/log/sparkylinux-installer.log
+	else
+		echo "PANTHEON REPO=pantheon repo added failed" >> /TARGET/var/log/sparkylinux-installer.log
+	fi
+fi
+
+if [ "$GETDESKTOP" = "TDE" ]
+then
+	if [ -f /TARGET/etc/apt/sources.list.d/trinity.list ]
+	then
+		echo "TRINITY REPO=trinity repo added ok" >> /TARGET/var/log/sparkylinux-installer.log
+	else
+		echo "TRINITY REPO=trinity repo added failed" >> /TARGET/var/log/sparkylinux-installer.log
+	fi
+fi
+
+if [ -f /TARGET/usr/bin/awesome ]
+then
+	echo "NEWDESKOP=awesome installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/bspwm ]
+then
+	echo "NEWDESKTOP=bspwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/budgie-deskop ]
+then
+	echo "NEWDESKTOP=budgie installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/dt/bin/dtsession ]
+then
+	echo "NEWDESKTOP=cde installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/cinnamon ]
+then
+	echo "NEWDESKTOP=cinnamon installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/startdde ]
+then
+	echo "NEWDESKTOP=deepin installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/enlightenment ]
+then
+	echo "NEWDESKTOP=enlightenment installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/startfluxbox ] && [ -f /TARGET/opt/sparky/sparky-fluxbox ]
+then
+	echo "NEWDESKTOP=fluxbox installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/gnome-flashback ]
+then
+	echo "NEWDESKTOP=gnome flashback installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/share/xsessions/gnome.desktop ]
+then
+	echo "NEWDESKTOP=gnome shell installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/i3 ]
+then
+	echo "NEWDESKOP=i3 installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/icewm ]
+then
+	echo "NEWDESKOP=icewm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/jwm ]
+then
+	echo "NEWDESKOP=jwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/startkde ]
+then
+	echo "NEWDESKOP=kde installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/lumina-desktop ]
+then
+	echo "NEWDESKOP=lumina installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/startlxde ]
+then
+	echo "NEWDESKOP=lxde installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/startlxqt ]
+then
+	echo "NEWDESKOP=lxqt installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/mate-session ]
+then
+	echo "NEWDESKOP=mate installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/openbox ]
+then
+	echo "NEWDESKOP=openbox installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/pantheon-session ]
+then
+	echo "NEWDESKOP=pantheon installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/pekwm ]
+then
+	echo "NEWDESKOP=pekwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -d /usr/share/doc/tde-core-trinity ]
+then
+	echo "NEWDESKOP=trinity installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/wmaker ]
+then
+	echo "NEWDESKOP=wmaker installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/bin/startxfce4 ]
+then
+	echo "NEWDESKOP=xfce installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+else
+	echo "NEWDESKTOP=no new desktop installed" >> /TARGET/var/log/sparkylinux-installer.log
+fi
+
+echo "==============================================================" >> /TARGET/var/log/sparkylinux-installer.log
+### desktop log end ###
