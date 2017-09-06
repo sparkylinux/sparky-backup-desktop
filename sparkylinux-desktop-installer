@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2017/08/21
+# Last update 2017/09/06
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -91,7 +91,7 @@ fi
 # choose your favorite desktop
 if [ "$GUI" = "" ]
 then
-	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"Please select a desktop you would like to install." $HEIGHT $WIDTH $MENUHEIGHT awesome "Dynamic Window Manager" bspwm "Tiling Window Manager" Budgie "Budgie Desktop" CDE "Common Desktop Environment" Cinnamon "GTK+ based Desktop Environment" DDE "Deepin desktop an elegant desktop environment" Enlightenment "Compositing and stacking Window Manager" Fluxbox "Stacking Window Manager" GNOME-FL "Flashback session of the GNOME Desktop Environment" GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" i3 "Dynamic tiling Window Manager" IceWM "Stacking Window Manager" JWM "Stacking Window Manager" KDE "KDE Plasma 5 Desktop Environment" Lumina "Lightweight system interface for any Unix-like OS" LXDE "Lightweight X11 Desktop Environment" LXQt "Lightweight Qt Desktop Environment" MATE "MATE Desktop Environment" Openbox "Stacking Window Manager" PekWM "Lightweight and very configurable window manager" TDE "Trinity Desktop Environment" WMaker "Window Manager for the X Window System" Xfce "Lightweight Desktop Environment" Exit "Quit the desktop installer" 2>/tmp/choice.$$
+	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"Please select a desktop you would like to install." $HEIGHT $WIDTH $MENUHEIGHT awesome "Dynamic Window Manager" bspwm "Tiling Window Manager" Budgie "Budgie Desktop" CDE "Common Desktop Environment" Cinnamon "GTK+ based Desktop Environment" Enlightenment "Compositing and stacking Window Manager" Fluxbox "Stacking Window Manager" GNOME-FL "Flashback session of the GNOME Desktop Environment" GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" i3 "Dynamic tiling Window Manager" IceWM "Stacking Window Manager" JWM "Stacking Window Manager" KDE "KDE Plasma 5 Desktop Environment" Lumina "Lightweight system interface for any Unix-like OS" LXDE "Lightweight X11 Desktop Environment" LXQt "Lightweight Qt Desktop Environment" MATE "MATE Desktop Environment" Openbox "Stacking Window Manager" PekWM "Lightweight and very configurable window manager" TDE "Trinity Desktop Environment" WMaker "Window Manager for the X Window System" Xfce "Lightweight Desktop Environment" Exit "Quit the desktop installer" 2>/tmp/choice.$$
 
 	if [ "$?" = "0" ]
 	then
@@ -116,7 +116,6 @@ bspwm "Tiling Window Manager" \
 Budgie "Budgie Desktop" \
 CDE "Common Desktop Environment" \
 Cinnamon "GTK+ based Desktop Environment" \
-DDE "Deepin desktop an elegant desktop environment" \
 Enlightenment "Compositing and stacking Window Manager" \
 Fluxbox "Stacking Window Manager" \
 GNOME-FL "Flashback session of the GNOME Desktop Environment" \
@@ -136,6 +135,7 @@ WMaker "Window Manager for the X Window System" \
 Xfce "Lightweight Desktop Environment" \
 Exit "Quit the desktop installer"`
 
+# DDE "Deepin desktop an elegant desktop environment" \
 # Pantheon "Modular Desktop Environment written in Vala and GTK+" \
 
 	if [ "$?" = "0" ]
@@ -455,45 +455,45 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "DDE" ]
-then
+#elif [ "$GETDESKTOP" = "DDE" ]
+#then
 
-cat > /TARGET/tmp/desktop-install << FOO
-#!/bin/bash
-if [ -f /etc/apt/sources.list.d/sparky-dde.list ]
-then
-	rm -f /etc/apt/sources.list.d/sparky-dde.list
-fi
-echo "deb https://sparkylinux.org/repo/ dde main" > /etc/apt/sources.list.d/sparky-dde.list
-echo "deb-src https://sparkylinux.org/repo/ dde main" >> /etc/apt/sources.list.d/sparky-dde.list
-apt-get update
-if [ "$INSTALLWEBBROWSER" != "" ]
-then
-	apt-get install sparky-desktop-deepin $INSTALLWEBBROWSER
-else
-	apt-get install sparky-desktop-deepin
-fi
-apt-get install -f
-if [ -f /usr/bin/startdde ]
-then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes mc
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes htop
-	apt-get autoremove --yes
-fi
-FOO
+#cat > /TARGET/tmp/desktop-install << FOO
+##!/bin/bash
+#if [ -f /etc/apt/sources.list.d/sparky-dde.list ]
+#then
+#	rm -f /etc/apt/sources.list.d/sparky-dde.list
+#fi
+#echo "deb https://sparkylinux.org/repo/ dde main" > /etc/apt/sources.list.d/sparky-dde.list
+#echo "deb-src https://sparkylinux.org/repo/ dde main" >> /etc/apt/sources.list.d/sparky-dde.list
+#apt-get update
+#if [ "$INSTALLWEBBROWSER" != "" ]
+#then
+#	apt-get install sparky-desktop-deepin $INSTALLWEBBROWSER
+#else
+#	apt-get install sparky-desktop-deepin
+#fi
+#apt-get install -f
+#if [ -f /usr/bin/startdde ]
+#then
+#	apt-get purge --yes --force-yes sparky-desktop-openbox
+#	apt-get purge --yes --force-yes elinks
+#	apt-get purge --yes --force-yes obmenu-generator
+#	apt-get purge --yes --force-yes obconf
+#	apt-get purge --yes --force-yes wm-logout
+#	apt-get purge --yes --force-yes pcmanfm
+#	apt-get purge --yes --force-yes openbox
+#	apt-get purge --yes --force-yes lxterminal
+#	apt-get purge --yes --force-yes lxrandr
+#	apt-get purge --yes --force-yes mc
+#	apt-get purge --yes --force-yes fbpanel
+#	apt-get purge --yes --force-yes gscreenshot
+#	apt-get purge --yes --force-yes nitrogen
+#	apt-get purge --yes --force-yes pasystray
+#	apt-get purge --yes --force-yes htop
+#	apt-get autoremove --yes
+#fi
+#FOO
 
 elif [ "$GETDESKTOP" = "Enlightenment" ]
 then
@@ -978,49 +978,49 @@ fi
 FOO
 #	fi
 
-elif [ "$GETDESKTOP" = "Pantheon" ]
-then
+#elif [ "$GETDESKTOP" = "Pantheon" ]
+#then
 
-cat > /TARGET/tmp/desktop-install << FOO
-#!/bin/bash
-if [ -f /etc/apt/sources.list.d/pantheon-debian.list ]
-then
-	rm -f /etc/apt/sources.list.d/pantheon-debian.list
-fi
-echo "deb http://gandalfn.ovh/debian stretch-loki main contrib" > /etc/apt/sources.list.d/pantheon-debian.list
-wget http://gandalfn.ovh/debian/pantheon-debian.gpg.key -O- | apt-key add -
-apt-get update
-if [ "$INSTALLWEBBROWSER" != "" ]
-then
-	apt-get install sparky-desktop-pantheon $INSTALLWEBBROWSER
-else
-	apt-get install sparky-desktop-pantheon
-fi
-apt-get install -f
-if [ -f /usr/bin/pantheon-session ]
-then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes mc
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes nautilus
-	apt-get purge --yes --force-yes brltty
-	apt-get autoremove --yes
-fi
-FOO
+#cat > /TARGET/tmp/desktop-install << FOO
+##!/bin/bash
+#if [ -f /etc/apt/sources.list.d/pantheon-debian.list ]
+#then
+#	rm -f /etc/apt/sources.list.d/pantheon-debian.list
+#fi
+#echo "deb http://gandalfn.ovh/debian stretch-loki main contrib" > /etc/apt/sources.list.d/pantheon-debian.list
+#wget http://gandalfn.ovh/debian/pantheon-debian.gpg.key -O- | apt-key add -
+#apt-get update
+#if [ "$INSTALLWEBBROWSER" != "" ]
+#then
+#	apt-get install sparky-desktop-pantheon $INSTALLWEBBROWSER
+#else
+#	apt-get install sparky-desktop-pantheon
+#fi
+#apt-get install -f
+#if [ -f /usr/bin/pantheon-session ]
+#then
+#	apt-get purge --yes --force-yes sparky-desktop-openbox
+#	apt-get purge --yes --force-yes elinks
+#	apt-get purge --yes --force-yes gpicview
+#	apt-get purge --yes --force-yes htop
+#	apt-get purge --yes --force-yes lxinput
+#	apt-get purge --yes --force-yes lxrandr
+#	apt-get purge --yes --force-yes lxterminal
+#	apt-get purge --yes --force-yes nitrogen
+#	apt-get purge --yes --force-yes mc
+#	apt-get purge --yes --force-yes obmenu-generator
+#	apt-get purge --yes --force-yes wm-logout
+#	apt-get purge --yes --force-yes tint2
+#	apt-get purge --yes --force-yes fbpanel
+#	apt-get purge --yes --force-yes obconf
+#	apt-get purge --yes --force-yes openbox
+#	apt-get purge --yes --force-yes pasystray
+#	apt-get purge --yes --force-yes pcmanfm
+#	apt-get purge --yes --force-yes nautilus
+#	apt-get purge --yes --force-yes brltty
+#	apt-get autoremove --yes
+#fi
+#FOO
 
 elif [ "$GETDESKTOP" = "PekWM" ]
 then
@@ -1259,11 +1259,11 @@ then
 fi
 
 # deepin
-if [ -f /TARGET/usr/bin/startdde ] && [ -d /usr/share/sparky-desktop-data/deepin/skel ]
-then
-	rm -rf /TARGET/etc/skel
-	mkdir -p /TARGET/etc/skel
-	rsync -a /usr/share/sparky-desktop-data/deepin/skel /TARGET/etc/
+#if [ -f /TARGET/usr/bin/startdde ] && [ -d /usr/share/sparky-desktop-data/deepin/skel ]
+#then
+#	rm -rf /TARGET/etc/skel
+#	mkdir -p /TARGET/etc/skel
+#	rsync -a /usr/share/sparky-desktop-data/deepin/skel /TARGET/etc/
 
 #cat > /TARGET/tmp/desktop-install-dde << FOO
 ##!/bin/bash
@@ -1276,7 +1276,7 @@ then
 #	chmod +x /TARGET/tmp/desktop-install-dde
 #	chroot /TARGET /tmp/desktop-install-dde
 #	rm -f /TARGET/tmp/desktop-install-dde
-fi
+#fi
 
 # enlightenment
 if [ -f /TARGET/usr/bin/enlightenment ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]
@@ -1416,12 +1416,12 @@ then
 fi
 
 # pantheon
-if [ -f /TARGET/usr/bin/pantheon-session ] && [ -d /usr/share/sparky-desktop-data/pantheon/skel ]
-then
-	rm -rf /TARGET/etc/skel
-	mkdir -p /TARGET/etc/skel
-	rsync -a /usr/share/sparky-desktop-data/pantheon/skel /TARGET/etc/
-fi
+#if [ -f /TARGET/usr/bin/pantheon-session ] && [ -d /usr/share/sparky-desktop-data/pantheon/skel ]
+#then
+#	rm -rf /TARGET/etc/skel
+#	mkdir -p /TARGET/etc/skel
+#	rsync -a /usr/share/sparky-desktop-data/pantheon/skel /TARGET/etc/
+#fi
 
 # pekwm
 if [ -f /TARGET/usr/bin/pekwm ] && [ -d /usr/share/sparky-desktop-data/pekwm/skel ]
@@ -1494,15 +1494,15 @@ fi
 echo "NEW DESKTOP=$GETDESKTOP" >> /TARGET/var/log/sparkylinux-installer.log
 echo "NEW WEB BROWSER=$GETWEBBROWSER" >> /TARGET/var/log/sparkylinux-installer.log
 
-if [ "$GETDESKTOP" = "Pantheon" ]
-then
-	if [ -f /TARGET/etc/apt/sources.list.d/pantheon-debian.list ]
-	then
-		echo "PANTHEON REPO=pantheon repo added ok" >> /TARGET/var/log/sparkylinux-installer.log
-	else
-		echo "PANTHEON REPO=pantheon repo added failed" >> /TARGET/var/log/sparkylinux-installer.log
-	fi
-fi
+#if [ "$GETDESKTOP" = "Pantheon" ]
+#then
+#	if [ -f /TARGET/etc/apt/sources.list.d/pantheon-debian.list ]
+#	then
+#		echo "PANTHEON REPO=pantheon repo added ok" >> /TARGET/var/log/sparkylinux-installer.log
+#	else
+#		echo "PANTHEON REPO=pantheon repo added failed" >> /TARGET/var/log/sparkylinux-installer.log
+#	fi
+#fi
 
 if [ "$GETDESKTOP" = "TDE" ]
 then
@@ -1529,9 +1529,6 @@ then
 elif [ -f /TARGET/usr/bin/cinnamon ]
 then
 	echo "NEWDESKTOP=cinnamon installed ok" >> /TARGET/var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/startdde ]
-then
-	echo "NEWDESKTOP=deepin installed ok" >> /TARGET/var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/enlightenment ]
 then
 	echo "NEWDESKTOP=enlightenment installed ok" >> /TARGET/var/log/sparkylinux-installer.log
@@ -1571,9 +1568,6 @@ then
 elif [ -f /TARGET/usr/bin/openbox ]
 then
 	echo "NEWDESKOP=openbox installed ok" >> /TARGET/var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/pantheon-session ]
-then
-	echo "NEWDESKOP=pantheon installed ok" >> /TARGET/var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/pekwm ]
 then
 	echo "NEWDESKOP=pekwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
@@ -1592,3 +1586,12 @@ fi
 
 echo "==============================================================" >> /TARGET/var/log/sparkylinux-installer.log
 ### desktop log end ###
+
+### not in use ###
+#elif [ -f /TARGET/usr/bin/startdde ]
+#then
+#	echo "NEWDESKTOP=deepin installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+#elif [ -f /TARGET/usr/bin/pantheon-session ]
+#then
+#	echo "NEWDESKOP=pantheon installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+########
