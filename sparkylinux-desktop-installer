@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2017/09/06
+# Last update 2017/10/08
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -787,6 +787,7 @@ then
 	apt-get purge --yes --force-yes muon-notifier
 	apt-get purge --yes --force-yes muon-updater
 	apt-get autoremove --yes
+	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
 FOO
 
@@ -896,6 +897,7 @@ then
 	apt-get purge --yes --force-yes pcmanfm
 	apt-get purge --yes --force-yes pasystray
 	apt-get autoremove --yes
+	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
 FOO
 
