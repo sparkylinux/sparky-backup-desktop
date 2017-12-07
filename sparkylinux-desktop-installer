@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2017/10/08
+# Last update 2017/12/07
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -311,6 +311,10 @@ then
 	apt-get purge --yes --force-yes wm-logout
 	apt-get purge --yes --force-yes openbox
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -345,6 +349,10 @@ then
 	apt-get purge --yes --force-yes elinks
 	apt-get purge --yes --force-yes htop
 	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -375,6 +383,10 @@ then
 	apt-get purge --yes --force-yes sparky-gexec
 	apt-get purge --yes --force-yes gexec
 	apt-get purge --yes --force-yes sparky-aptus-upgrade
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -410,6 +422,10 @@ then
 	apt-get purge --yes --force-yes pcmanfm
 	apt-get purge --yes --force-yes sparky-gufw
 	apt-get purge --yes --force-yes system-config-printer
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -451,6 +467,10 @@ then
 	apt-get purge --yes --force-yes xarchiver
 	apt-get purge --yes --force-yes lxtask
 	apt-get purge --yes --force-yes sparky-theme-root
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -534,6 +554,10 @@ then
 	apt-get purge --yes --force-yes pasystray
 	apt-get purge --yes --force-yes lxterminal
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -564,6 +588,10 @@ then
 	apt-get purge --yes --force-yes wm-logout
 	apt-get purge --yes --force-yes openbox
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -604,6 +632,10 @@ then
 	apt-get purge --yes --force-yes pasystray
 	apt-get purge --yes --force-yes lxterminal
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -644,6 +676,10 @@ then
 	apt-get purge --yes --force-yes pasystray
 	apt-get purge --yes --force-yes lxterminal
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 	systemctl -f enable gdm.service
 fi
@@ -676,6 +712,10 @@ then
 	apt-get purge --yes --force-yes sparky-gexec
 	apt-get purge --yes --force-yes gexec
 	apt-get purge --yes --force-yes sparky-aptus-upgrade
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -705,6 +745,10 @@ then
 	apt-get purge --yes --force-yes wm-logout
 	apt-get purge --yes --force-yes openbox
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -733,6 +777,10 @@ then
 	apt-get purge --yes --force-yes tint2
 	apt-get purge --yes --force-yes fbpanel
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -786,6 +834,10 @@ then
 	apt-get purge --yes --force-yes muon-discover
 	apt-get purge --yes --force-yes muon-notifier
 	apt-get purge --yes --force-yes muon-updater
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
@@ -827,6 +879,10 @@ then
 	apt-get purge --yes --force-yes nitrogen
 	apt-get purge --yes --force-yes galculator
 	apt-get purge --yes --force-yes xarchiver
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -857,6 +913,10 @@ then
 	apt-get purge --yes --force-yes wm-logout
 	apt-get purge --yes --force-yes htop
 	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -896,6 +956,10 @@ then
 	apt-get purge --yes --force-yes htop
 	apt-get purge --yes --force-yes pcmanfm
 	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
@@ -941,6 +1005,10 @@ then
 	apt-get purge --yes --force-yes sparky-theme-root
 	apt-get purge --yes --force-yes xarchiver
 	apt-get purge --yes --force-yes xscreensaver
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -974,7 +1042,6 @@ then
 	apt-get purge --yes --force-yes mc
 	apt-get purge --yes --force-yes elinks
 	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes tint2
 	apt-get autoremove --yes
 fi
 FOO
@@ -1047,6 +1114,10 @@ then
 	apt-get purge --yes --force-yes obconf
 	apt-get purge --yes --force-yes openbox
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -1103,6 +1174,10 @@ then
 	apt-get purge --yes --force-yes evince-common
 	apt-get purge --yes --force-yes pavucontrol
 	apt-get purge --yes --force-yes gscreenshot
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -1133,6 +1208,10 @@ then
 	apt-get purge --yes --force-yes pasystray
 	apt-get purge --yes --force-yes openbox
 	apt-get purge --yes --force-yes htop
+	apt-get purge --yes --force-yes thunar
+	apt-get purge --yes --force-yes thunar-archive-plugin
+	apt-get purge --yes --force-yes thunar-media-tags-plugin
+	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
