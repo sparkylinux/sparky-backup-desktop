@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2017/12/07
+# Last update 2018/03/05
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -956,6 +956,7 @@ then
 	apt-get purge --yes --force-yes htop
 	apt-get purge --yes --force-yes pcmanfm
 	apt-get purge --yes --force-yes pasystray
+	apt-get purge --yes --force-yes pavucontrol
 	apt-get purge --yes --force-yes thunar
 	apt-get purge --yes --force-yes thunar-archive-plugin
 	apt-get purge --yes --force-yes thunar-media-tags-plugin
