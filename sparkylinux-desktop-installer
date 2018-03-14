@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/03/12
+# Last update 2018/03/14
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -27,10 +27,10 @@ YESNO="--yesno "
 MSGBOX="--msgbox "
 TITLETEXT="Sparky (Advanced) Installer"
 
-if [ -f /opt/sparky/sparky-xterm ]; then
-. /opt/sparky/sparky-xterm
+if [ -f /usr/bin/sparky-terminal ]; then
+	SPARKYXTERM="sparky-terminal"
 else
-SPARKYXTERM="x-terminal-emulator"
+	SPARKYXTERM="x-terminal-emulator"
 fi
 
 SPARKYVERCHECK5="`cat /etc/issue | grep 5`"
@@ -91,7 +91,7 @@ fi
 # choose your favorite desktop
 if [ "$GUI" = "" ]
 then
-	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"Please select a desktop you would like to install." $HEIGHT $WIDTH $MENUHEIGHT awesome "Dynamic Window Manager" bspwm "Tiling Window Manager" Budgie "Budgie Desktop" CDE "Common Desktop Environment" Cinnamon "GTK+ based Desktop Environment" Enlightenment "Compositing and stacking Window Manager" Fluxbox "Stacking Window Manager" GNOME-FL "Flashback session of the GNOME Desktop Environment" GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" i3 "Dynamic tiling Window Manager" IceWM "Stacking Window Manager" JWM "Stacking Window Manager" KDE "KDE Plasma 5 Desktop Environment" Lumina "Lightweight system interface for any Unix-like OS" LXDE "Lightweight X11 Desktop Environment" LXQt "Lightweight Qt Desktop Environment" MATE "MATE Desktop Environment" Openbox "Stacking Window Manager" PekWM "Lightweight and very configurable window manager" TDE "Trinity Desktop Environment" WMaker "Window Manager for the X Window System" Xfce "Lightweight Desktop Environment" Exit "Quit the desktop installer" 2>/tmp/choice.$$
+	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"Please select a desktop you would like to install." $HEIGHT $WIDTH $MENUHEIGHT awesome "Dynamic Window Manager" bspwm "Tiling Window Manager" Budgie "Budgie Desktop" CDE "Common Desktop Environment" Cinnamon "GTK+ based Desktop Environment" Enlightenment "Compositing and stacking Window Manager" Fluxbox "Stacking Window Manager" GNOME-FL "Flashback session of the GNOME Desktop Environment" GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" i3 "Dynamic tiling Window Manager" IceWM "Stacking Window Manager" JWM "Stacking Window Manager" KDE "KDE Plasma 5 Desktop Environment" Lumina "Lightweight system interface for any Unix-like OS" LXDE "Lightweight X11 Desktop Environment" LXQt "Lightweight Qt Desktop Environment" MATE "MATE Desktop Environment" Openbox "Stacking Window Manager" PekWM "Lightweight and very configurable window manager" TDE "Trinity Desktop Environment" Webmin "Web-based interface for system admins" WMaker "Window Manager for the X Window System" Xfce "Lightweight Desktop Environment" Exit "Quit the desktop installer" 2>/tmp/choice.$$
 
 	if [ "$?" = "0" ]
 	then
@@ -135,9 +135,6 @@ WMaker "Window Manager for the X Window System" \
 Xfce "Lightweight Desktop Environment" \
 Exit "Quit the desktop installer"`
 
-# DDE "Deepin desktop an elegant desktop environment" \
-# Pantheon "Modular Desktop Environment written in Vala and GTK+" \
-
 	if [ "$?" = "0" ]
 	then
 		GETDESKTOP=`echo $GETDESKTOP | cut -d "|" -f 1`
@@ -150,7 +147,6 @@ Exit "Quit the desktop installer"`
 	fi
 
 fi
-
 
 # choose your favorite web browser
 if [ "$GETDESKTOP" != "Exit" ]
@@ -227,10 +223,6 @@ then
 elif [ "$GETWEBBROWSER" = "Firefox-ESR" ]
 then
 	INSTALLWEBBROWSER="firefox-esr"
-
-#elif [ "$GETWEBBROWSER" = "Firefox-Latest" ]
-#then
-#	INSTALLWEBBROWSER="firefox"
 
 elif [ "$GETWEBBROWSER" = "IceCat" ]
 then
@@ -474,46 +466,6 @@ then
 	apt-get autoremove --yes
 fi
 FOO
-
-#elif [ "$GETDESKTOP" = "DDE" ]
-#then
-
-#cat > /TARGET/tmp/desktop-install << FOO
-##!/bin/bash
-#if [ -f /etc/apt/sources.list.d/sparky-dde.list ]
-#then
-#	rm -f /etc/apt/sources.list.d/sparky-dde.list
-#fi
-#echo "deb https://sparkylinux.org/repo/ dde main" > /etc/apt/sources.list.d/sparky-dde.list
-#echo "deb-src https://sparkylinux.org/repo/ dde main" >> /etc/apt/sources.list.d/sparky-dde.list
-#apt-get update
-#if [ "$INSTALLWEBBROWSER" != "" ]
-#then
-#	apt-get install sparky-desktop-deepin $INSTALLWEBBROWSER
-#else
-#	apt-get install sparky-desktop-deepin
-#fi
-#apt-get install -f
-#if [ -f /usr/bin/startdde ]
-#then
-#	apt-get purge --yes --force-yes sparky-desktop-openbox
-#	apt-get purge --yes --force-yes elinks
-#	apt-get purge --yes --force-yes obmenu-generator
-#	apt-get purge --yes --force-yes obconf
-#	apt-get purge --yes --force-yes wm-logout
-#	apt-get purge --yes --force-yes pcmanfm
-#	apt-get purge --yes --force-yes openbox
-#	apt-get purge --yes --force-yes lxterminal
-#	apt-get purge --yes --force-yes lxrandr
-#	apt-get purge --yes --force-yes mc
-#	apt-get purge --yes --force-yes fbpanel
-#	apt-get purge --yes --force-yes gscreenshot
-#	apt-get purge --yes --force-yes nitrogen
-#	apt-get purge --yes --force-yes pasystray
-#	apt-get purge --yes --force-yes htop
-#	apt-get autoremove --yes
-#fi
-#FOO
 
 elif [ "$GETDESKTOP" = "Enlightenment" ]
 then
@@ -1018,17 +970,6 @@ FOO
 elif [ "$GETDESKTOP" = "Openbox" ]
 then
 
-#	if [ -f /TARGET/usr/bin/openbox ]
-#	then
-#		if [ "$GUI" = "" ]
-#		then
-#			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Openbox is already installed!\n\nExiting now..."
-#		else
-#			$DIALOG1 $TITLE"$TITLETEXT" $MSGBOX $TEXT"Openbox is already installed!\n\nExiting now..."
-#		fi
-#		exit 1
-#	else
-
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
 apt-get update
@@ -1182,6 +1123,21 @@ then
 	apt-get purge --yes --force-yes thunar-volman
 	apt-get autoremove --yes
 fi
+FOO
+
+elif [ "$GETDESKTOP" = "Webmin" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install webmin $INSTALLWEBBROWSER
+else
+	apt-get install webmin
+fi
+apt-get install -f
 FOO
 
 elif [ "$GETDESKTOP" = "WMaker" ]
@@ -1340,26 +1296,6 @@ then
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/cinnamon/skel /TARGET/etc/
 fi
-
-# deepin
-#if [ -f /TARGET/usr/bin/startdde ] && [ -d /usr/share/sparky-desktop-data/deepin/skel ]
-#then
-#	rm -rf /TARGET/etc/skel
-#	mkdir -p /TARGET/etc/skel
-#	rsync -a /usr/share/sparky-desktop-data/deepin/skel /TARGET/etc/
-
-#cat > /TARGET/tmp/desktop-install-dde << FOO
-##!/bin/bash
-
-#sed -i -e 's/lightdm/slim/g' /etc/X11/default-display-manager
-#sed -i -e 's/sbin/bin/g' /etc/X11/default-display-manager
-#rm -f /etc/systemd/system/display-manager.service
-#ln -s /lib/systemd/system/slim.service /etc/systemd/system/display-manager.service
-#FOO
-#	chmod +x /TARGET/tmp/desktop-install-dde
-#	chroot /TARGET /tmp/desktop-install-dde
-#	rm -f /TARGET/tmp/desktop-install-dde
-#fi
 
 # enlightenment
 if [ -f /TARGET/usr/bin/enlightenment ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]
@@ -1654,9 +1590,12 @@ then
 elif [ -f /TARGET/usr/bin/pekwm ]
 then
 	echo "NEWDESKOP=pekwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
-elif [ -d /usr/share/doc/tde-core-trinity ]
+elif [ -d /TARGET/usr/share/doc/tde-core-trinity ]
 then
 	echo "NEWDESKOP=trinity installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+elif [ -d /TARGET/usr/share/doc/webmin ]
+then
+	echo "NEWDESKOP=webmin installed ok" >> /TARGET/var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/wmaker ]
 then
 	echo "NEWDESKOP=wmaker installed ok" >> /TARGET/var/log/sparkylinux-installer.log
@@ -1668,13 +1607,3 @@ else
 fi
 
 echo "==============================================================" >> /TARGET/var/log/sparkylinux-installer.log
-### desktop log end ###
-
-### not in use ###
-#elif [ -f /TARGET/usr/bin/startdde ]
-#then
-#	echo "NEWDESKTOP=deepin installed ok" >> /TARGET/var/log/sparkylinux-installer.log
-#elif [ -f /TARGET/usr/bin/pantheon-session ]
-#then
-#	echo "NEWDESKOP=pantheon installed ok" >> /TARGET/var/log/sparkylinux-installer.log
-########
