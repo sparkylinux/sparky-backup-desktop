@@ -16,6 +16,11 @@
 
 if [ "$1" = "uninstall" ]; then
    	rm -f /usr/bin/sparkylinux-desktop-installer
+	rm -rf /usr/share/sparky/sparky-backup-desktop
 else
 	cp sparkylinux-desktop-installer /usr/bin/sparkylinux-desktop-installer
+	if [ ! -d /usr/share/sparky/sparky-backup-desktop ]; then
+		mkdir -p /usr/share/sparky/sparky-backup-desktop
+	fi
+	cp lang/* /usr/share/sparky/sparky-backup-desktop/
 fi

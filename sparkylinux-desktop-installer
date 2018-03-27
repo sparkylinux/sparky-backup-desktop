@@ -4,14 +4,27 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/03/14
+# Last update 2018/03/26
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
 if [ "$testroot" != "root" ]
 then
-	echo " Must be run as root - exiting"
+	echo "Must be run as root... Exiting..."
 	exit 1
+fi
+
+# choose language
+if [ -f /tmp/sparky-advanced-installer ]; then
+	DEFLANG=`cat /tmp/sparky-advanced-installer`
+fi
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-backup-desktop"
+if [ "$DEFLANG" = "Polish" ]; then
+. $DEFLOCDIR/pl
+else
+. $DEFLOCDIR/en
 fi
 
 # set options depending on mode - text or gui
@@ -80,9 +93,9 @@ if [ "$PINGTEST" = "" ]
 then
 	if [ "$GUI" = "" ]
 	then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Internet connection test failed!\nAn additional desktop on-line installation can NOT be done!\n\nExiting now..."
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL1\n$LOCAL2\n\n$LOCAL3"
 	else
-		$DIALOG1 $TITLE"$TITLETEXT" $MSGBOX $TEXT"Internet connection test failed!\nAn additional desktop on-line installation can NOT be done!\n\nExiting now..."
+		$DIALOG1 $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL1\n$LOCAL2\n\n$LOCAL3"
 	fi
 exit 1
 
@@ -91,7 +104,7 @@ fi
 # choose your favorite desktop
 if [ "$GUI" = "" ]
 then
-	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"Please select a desktop you would like to install." $HEIGHT $WIDTH $MENUHEIGHT awesome "Dynamic Window Manager" bspwm "Tiling Window Manager" Budgie "Budgie Desktop" CDE "Common Desktop Environment" Cinnamon "GTK+ based Desktop Environment" Enlightenment "Compositing and stacking Window Manager" Fluxbox "Stacking Window Manager" GNOME-FL "Flashback session of the GNOME Desktop Environment" GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" i3 "Dynamic tiling Window Manager" IceWM "Stacking Window Manager" JWM "Stacking Window Manager" KDE "KDE Plasma 5 Desktop Environment" Lumina "Lightweight system interface for any Unix-like OS" LXDE "Lightweight X11 Desktop Environment" LXQt "Lightweight Qt Desktop Environment" MATE "MATE Desktop Environment" Openbox "Stacking Window Manager" PekWM "Lightweight and very configurable window manager" TDE "Trinity Desktop Environment" Webmin "Web-based interface for system admins" WMaker "Window Manager for the X Window System" Xfce "Lightweight Desktop Environment" Exit "Quit the desktop installer" 2>/tmp/choice.$$
+	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" Lumina "$LOCAL16" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" Openbox "$LOCAL11" PekWM "$LOCAL20" TDE "$LOCAL21" Webmin "$LOCAL22" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
 
 	if [ "$?" = "0" ]
 	then
@@ -104,36 +117,36 @@ then
 
 	if [ "$GETDESKTOP" = "Exit" ]
 	then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Quitting the desktop installer now." $HEIGHT $WIDTH
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL26" $HEIGHT $WIDTH
 		exit 1
 	fi
 
 else
 
-GETDESKTOP=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"Please select a desktop you would like to install" \
-awesome "Dynamic Window Manager" \
-bspwm "Tiling Window Manager" \
-Budgie "Budgie Desktop" \
-CDE "Common Desktop Environment" \
-Cinnamon "GTK+ based Desktop Environment" \
-Enlightenment "Compositing and stacking Window Manager" \
-Fluxbox "Stacking Window Manager" \
-GNOME-FL "Flashback session of the GNOME Desktop Environment" \
-GNOME-SH "GNOME Shell session of the GNOME Desktop Environment" \
-i3 "Dynamic tiling Window Manager" \
-IceWM "Stacking Window Manager" \
-JWM "Stacking Window Manager" \
-KDE "KDE Plasma 5 Desktop Environment" \
-Lumina "Lightweight system interface for any Unix-like OS" \
-LXDE "Lightweight X11 Desktop Environment" \
-LXQt "Lightweight Qt Desktop Environment" \
-MATE "MATE Desktop Environment" \
-Openbox "Stacking Window Manager" \
-PekWM "Lightweight and very configurable window manager" \
-TDE "Trinity Desktop Environment" \
-WMaker "Window Manager for the X Window System" \
-Xfce "Lightweight Desktop Environment" \
-Exit "Quit the desktop installer"`
+GETDESKTOP=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"$LOCAL4" \
+awesome "$LOCAL5" \
+bspwm "$LOCAL6" \
+Budgie "$LOCAL7" \
+CDE "$LOCAL8" \
+Cinnamon "$LOCAL9" \
+Enlightenment "$LOCAL10" \
+Fluxbox "$LOCAL11" \
+GNOME-FL "$LOCAL12" \
+GNOME-SH "$LOCAL13" \
+i3 "$LOCAL14" \
+IceWM "$LOCAL11" \
+JWM "$LOCAL11" \
+KDE "$LOCAL15" \
+Lumina "$LOCAL16" \
+LXDE "$LOCAL17" \
+LXQt "$LOCAL18" \
+MATE "$LOCAL19" \
+Openbox "$LOCAL11" \
+PekWM "$LOCAL20" \
+TDE "$LOCAL21" \
+WMaker "$LOCAL23" \
+Xfce "$LOCAL24" \
+Exit "$LOCAL25"`
 
 	if [ "$?" = "0" ]
 	then
@@ -142,7 +155,7 @@ Exit "Quit the desktop installer"`
 
 	if [ "$GETDESKTOP" = "Exit" ]
 	then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"Quitting the desktop installer now."
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL26"
 		exit 1
 	fi
 
@@ -154,7 +167,7 @@ then
 
 	if [ "$GUI" = "" ]
 	then
-		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"The live system provides Midori (MinimalGUI) and ELinks (MinimalCLI) web browser as default.\n\nIf you would like to install different web browser, simply choose a one from the list." $HEIGHT $WIDTH $MENUHEIGHT Chromium "Google open-source Chromium web browser" Dillo "Small and fast web browser" Dooble "Secure and open source web browser" Epiphany "GNOME web browser" Firefox-ESR "Web browser from Mozilla" IceCat "The GNU version of the Firefox web browser" Konqueror "Web browser and file manager for KDE" Midori "Fast and lightweight graphical web browser" NetSurf "Small and fast multi-platform web browser" Otter "Free and open-source web browser" Palemoon "Firefox-based, efficient and easy to use web browser" QupZilla "Lightweight web browser based on libqtwebkit" SeaMonkey "Free and open-source internet suite" SlimJet "Free web browser based on Chromium project" TOR_Browser "TOR Anonymity Network app and a web browser" Vivaldi "Freeware web browser developed by Vivaldi Technologies" Exit "Do NOT change web browser" 2>/tmp/choice.$$
+		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL27\n\n$LOCAL28" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Dooble "$LOCAL31" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Midori "$LOCAL36" NetSurf "$LOCAL37" Otter "$LOCAL38" Palemoon "$LOCAL39" QupZilla "$LOCAL40" SeaMonkey "$LOCAL41" SlimJet "$LOCAL42" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
 
 		if [ "$?" = "0" ]
 		then
@@ -167,29 +180,29 @@ then
 
 		if [ "$GETWEBBROWSER" = "Exit" ]
 		then
-			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"A web browser will be NOT changed." $HEIGHT $WIDTH
+			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL46" $HEIGHT $WIDTH
 		fi
 
 	else
 	
-GETWEBBROWSER=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"The live system provides Midori (MinimalGUI) and ELinks (MinimalCLI) web browser as default.\n\nIf you would like to install different web browser, simply choose a one from the list." \
-Chromium "Google open-source Chromium web browser" \
-Dillo "Small and fast web browser" \
-Dooble "Secure and open source web browser" \
-Epiphany "GNOME web browser" \
-Firefox-ESR "Web browser from Mozilla" \
-IceCat "The GNU version of the Firefox web browser" \
-Konqueror "Web browser and file manager for KDE" \
-Midori "Fast and lightweight graphical web browser" \
-NetSurf "Small and fast multi-platform web browser" \
-Otter "Free and open-source web browser" \
-Palemoon "Firefox-based, efficient and easy to use web browser" \
-QupZilla "Lightweight web browser based on libqtwebkit" \
-SeaMonkey "Free and open-source internet suite" \
-SlimJet "Free web browser based on Chromium project" \
-TOR_Browser "TOR Anonymity Network app and a web browser" \
-Vivaldi "Freeware web browser developed by Vivaldi Technologies" \
-Exit "Do NOT change web browser"`
+GETWEBBROWSER=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"$LOCAL27\n\n$LOCAL28" \
+Chromium "$LOCAL29" \
+Dillo "$LOCAL30" \
+Dooble "$LOCAL31" \
+Epiphany "$LOCAL32" \
+Firefox-ESR "$LOCAL33" \
+IceCat "$LOCAL34" \
+Konqueror "$LOCAL35" \
+Midori "$LOCAL36" \
+NetSurf "$LOCAL37" \
+Otter "$LOCAL38" \
+Palemoon "$LOCAL39" \
+QupZilla "$LOCAL40" \
+SeaMonkey "$LOCAL41" \
+SlimJet "$LOCAL42" \
+TOR_Browser "$LOCAL43" \
+Vivaldi "$LOCAL44" \
+Exit "$LOCAL45"`
 
 		if [ "$?" = "0" ]
 		then
@@ -198,7 +211,7 @@ Exit "Do NOT change web browser"`
 
 		if [ "$GETWEBBROWSER" = "Exit" ]
 		then
-			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"A web browser will be NOT changed."
+			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL46"
 		fi
 
 	fi
