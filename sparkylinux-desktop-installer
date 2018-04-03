@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/03/26
+# Last update 2018/04/03
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -21,7 +21,11 @@ fi
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-backup-desktop"
-if [ "$DEFLANG" = "Polish" ]; then
+if [ "$DEFLANG" = "Brazilian" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "$DEFLANG" = "German" ]; then
+. $DEFLOCDIR/de
+elif [ "$DEFLANG" = "Polish" ]; then
 . $DEFLOCDIR/pl
 else
 . $DEFLOCDIR/en
@@ -40,10 +44,13 @@ YESNO="--yesno "
 MSGBOX="--msgbox "
 TITLETEXT="Sparky (Advanced) Installer"
 
-if [ -f /usr/bin/sparky-terminal ]; then
-	SPARKYXTERM="sparky-terminal"
+if [ -f /usr/bin/sparky-xterm ];then
+	SPARKYXTERM="/usr/bin/sparky-xterm"
+elif [ -f /usr/bin/sparky-terminal ];then
+	SPARKYXTERM="/usr/bin/sparky-terminal -e"
 else
-	SPARKYXTERM="x-terminal-emulator"
+	echo "sparky-xterm is missing... Exiting..."
+	exit 1
 fi
 
 SPARKYVERCHECK5="`cat /etc/issue | grep 5`"
@@ -1235,7 +1242,7 @@ then
 	chroot /TARGET /tmp/desktop-install
 	sleep 1
 else
-	$SPARKYXTERM -e "chroot /TARGET /tmp/desktop-install"
+	$SPARKYXTERM "chroot /TARGET /tmp/desktop-install"
 	sleep 1
 fi
 
@@ -1262,11 +1269,11 @@ FOO
 
 	if [ "$GUI" = "" ]
 	then
-		echo "Removing Midori...Please wait..."
+		echo "Removing Midori... Please wait..."
 		chroot /TARGET /tmp/remove-webbrowser
 		sleep 1
 	else
-		$SPARKYXTERM -e "chroot /TARGET /tmp/remove-webbrowser"
+		$SPARKYXTERM "chroot /TARGET /tmp/remove-webbrowser"
 		sleep 1
 	fi
 
