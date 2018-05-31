@@ -1,7 +1,7 @@
 # File di localizzazione italiano per Sparky Backup Desktop.
 # Copyright 2018 Carlo Troiani <troianicarlo@ŋmail.com> 2018/04/11
 # Rilasciato sotto licenza GNU GPL v2
-# Ultimo aggiornamento 2018/04/11 by carlo
+# Ultimo aggiornamento 2018/05/31 by pavroo
 LOCAL1="Test della connessione Internet fallito!"
 LOCAL2="L'installazione on-line di un desktop aggiuntivo NON e' possibile!"
 LOCAL3="Sto uscendo adesso..."
@@ -28,7 +28,7 @@ LOCAL23="Window Manager per X Window System"
 LOCAL24="Lightweight Desktop Environment"
 LOCAL25="Esci dal Desktop Installer"
 LOCAL26="Adesso sto uscendo dal Desktop Installer..."
-LOCAL27="Il sistema live fornisce i browser Midori (MinimalGUI) ed ELinks (MinimalCLI) di default."
+LOCAL27="Il sistema live fornisce i browser Otter (MinimalGUI) ed ELinks (MinimalCLI) di default."
 LOCAL28="Se vuoi instrallare un browser differente scegline semplicemente uno dala lista."
 LOCAL29="Browser web open source Chromium"
 LOCAL30="Browser web piccoolo e leggero"

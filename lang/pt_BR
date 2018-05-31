@@ -1,7 +1,7 @@
 # English localization file for Sparky Backup Desktop.
 # Copyright 2018 PaweÅ‚ "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2018/03/26 by pavroo
+# Last update 2018/05/31 by pavroo
 # Translation made by Daniel Campos Ramos 2018/03/27
 LOCAL1="Teste de conexão de Internet falhou!"
 LOCAL2="Instalação de arquivos On-line adicionas de desktop NÃO pode ser feita!"
@@ -29,7 +29,7 @@ LOCAL23="Window Manager para o X Window System"
 LOCAL24="Lightweight Desktop Environment"
 LOCAL25="Sair do instalador de Desktop"
 LOCAL26="Saindo do Instalador de Desktop agora..."
-LOCAL27="O sistema live provê o navegador Midori (MinimalGUI) e o navegador ELinks (MinimalCLI) como padrão."
+LOCAL27="O sistema live provê o navegador Otter (MinimalGUI) e o navegador ELinks (MinimalCLI) como padrão."
 LOCAL28="Se você gostaria de instalar um navegador diferente, simplesmente escolha um da lista."
 LOCAL29="Navegador de código aberto Chromium"
 LOCAL30="Navegador pegueno e rápido"

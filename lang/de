@@ -1,7 +1,7 @@
 # German localization file for Sparky Backup Desktop by Det Bertling.
 # Copyright 2018 PaweÅ‚ "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2018/03/26 by pavroo
+# Last update 2018/05/31 by pavroo
 LOCAL1="Internetverbindung Test fehlgeschlagen!"
 LOCAL2="Online-Installation eines weiteren Desktop ist NICHT möglich!"
 LOCAL3="Beende jetzt..."
@@ -28,7 +28,7 @@ LOCAL23="FensterManager für das X Window System"
 LOCAL24="Leichtgewichtige Desktop-Umgebung"
 LOCAL25="Beende den Desktop Installer"
 LOCAL26="Beende den the Desktop Installer jetzt..."
-LOCAL27="Das Livesytem unterstützt Midori (MinimalGUI) und ELinks (MinimalCLI) Webbrowser als Standard."
+LOCAL27="Das Livesytem unterstützt Otter (MinimalGUI) und ELinks (MinimalCLI) Webbrowser als Standard."
 LOCAL28="Wenn du einen anderen Browser installieren möchtest, wähle einfach einen von der Liste."
 LOCAL29="Quelloffener Chromium Browser"
 LOCAL30="Kleiner und schneller Browser"
