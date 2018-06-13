@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/05/31
+# Last update 2018/06/11
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -178,7 +178,7 @@ then
 
 	if [ "$GUI" = "" ]
 	then
-		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL27\n\n$LOCAL28" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Dooble "$LOCAL31" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Otter "$LOCAL38" Palemoon "$LOCAL39" QupZilla "$LOCAL40" SeaMonkey "$LOCAL41" SlimJet "$LOCAL42" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
+		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL27\n\n$LOCAL28" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Otter "$LOCAL38" Palemoon "$LOCAL39" SeaMonkey "$LOCAL41" SlimJet "$LOCAL42" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
 
 		if [ "$?" = "0" ]
 		then
@@ -199,14 +199,12 @@ then
 GETWEBBROWSER=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"$LOCAL27\n\n$LOCAL28" \
 Chromium "$LOCAL29" \
 Dillo "$LOCAL30" \
-Dooble "$LOCAL31" \
 Epiphany "$LOCAL32" \
 Firefox-ESR "$LOCAL33" \
 IceCat "$LOCAL34" \
 Konqueror "$LOCAL35" \
 Otter "$LOCAL38" \
 Palemoon "$LOCAL39" \
-QupZilla "$LOCAL40" \
 SeaMonkey "$LOCAL41" \
 SlimJet "$LOCAL42" \
 TOR_Browser "$LOCAL43" \
@@ -215,6 +213,8 @@ Exit "$LOCAL45"`
 
 #Midori "$LOCAL36" \
 #NetSurf "$LOCAL37" \
+#QupZilla "$LOCAL40" \
+#Dooble "$LOCAL31" \
 
 		if [ "$?" = "0" ]
 		then
