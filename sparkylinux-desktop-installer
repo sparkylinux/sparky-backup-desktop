@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/06/22
+# Last update 2018/07/23
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -25,6 +25,8 @@ if [ "$DEFLANG" = "Brazilian" ]; then
 . $DEFLOCDIR/pt_BR
 elif [ "$DEFLANG" = "German" ]; then
 . $DEFLOCDIR/de
+elif [ "$DEFLANG" = "Indonesian" ]; then
+. $DEFLOCDIR/id_ID
 elif [ "$DEFLANG" = "Italian" ]; then
 . $DEFLOCDIR/it
 elif [ "$DEFLANG" = "Polish" ]; then
@@ -210,12 +212,6 @@ TOR_Browser "$LOCAL43" \
 Vivaldi "$LOCAL44" \
 Exit "$LOCAL45"`
 
-#SlimJet "$LOCAL42" \
-#Midori "$LOCAL36" \
-#NetSurf "$LOCAL37" \
-#QupZilla "$LOCAL40" \
-#Dooble "$LOCAL31" \
-
 		if [ "$?" = "0" ]
 		then
 			GETWEBBROWSER=`echo $GETWEBBROWSER | cut -d "|" -f 1`
@@ -232,10 +228,6 @@ fi
 if [ "$GETWEBBROWSER" = "Dillo" ]
 then
 	INSTALLWEBBROWSER="dillo"
-
-#elif [ "$GETWEBBROWSER" = "Dooble" ]
-#then
-#	INSTALLWEBBROWSER="dooble"
 
 elif [ "$GETWEBBROWSER" = "Chromium" ]
 then
@@ -257,14 +249,6 @@ elif [ "$GETWEBBROWSER" = "Konqueror" ]
 then
 	INSTALLWEBBROWSER="konqueror"
 
-#elif [ "$GETWEBBROWSER" = "Midori" ]
-#then
-#	INSTALLWEBBROWSER="midori"
-
-#elif [ "$GETWEBBROWSER" = "NetSurf" ]
-#then
-#	INSTALLWEBBROWSER="netsurf"
-
 elif [ "$GETWEBBROWSER" = "Otter" ]
 then
 	INSTALLWEBBROWSER="otter-browser"
@@ -273,17 +257,9 @@ elif [ "$GETWEBBROWSER" = "Palemoon" ]
 then
 	INSTALLWEBBROWSER="palemoon"
 
-#elif [ "$GETWEBBROWSER" = "QupZilla" ]
-#then
-#	INSTALLWEBBROWSER="qupzilla"
-
 elif [ "$GETWEBBROWSER" = "SeaMonkey" ]
 then
 	INSTALLWEBBROWSER="seamonkey"
-
-#elif [ "$GETWEBBROWSER" = "SlimJet" ]
-#then
-#	INSTALLWEBBROWSER="slimjet"
 
 elif [ "$GETWEBBROWSER" = "TOR_Browser" ]
 then
