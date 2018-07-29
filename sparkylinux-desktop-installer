@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/07/26 19:30
+# Last update 2018/07/29 20:36
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -133,6 +133,7 @@ then
 	if [ "$GETDESKTOP" = "Exit" ]
 	then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL26" $HEIGHT $WIDTH
+		echo "NEWDESKTOP=no new desktop installed" >> /var/log/sparkylinux-installer.log
 		exit 1
 	fi
 
@@ -171,6 +172,7 @@ Exit "$LOCAL25"`
 	if [ "$GETDESKTOP" = "Exit" ]
 	then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL26"
+		echo "NEWDESKTOP=no new desktop installed" >> /var/log/sparkylinux-installer.log
 		exit 1
 	fi
 
@@ -1479,26 +1481,26 @@ then
 fi
 
 ### additional desktop log section ###
-echo "Desktop Installer additional log section" >> /TARGET/var/log/sparkylinux-installer.log
-echo "==============================================================" >> /TARGET/var/log/sparkylinux-installer.log
+echo "Desktop Installer additional log section" >> /var/log/sparkylinux-installer.log
+echo "==============================================================" >> /var/log/sparkylinux-installer.log
 
 if [ "$PINGTEST" = "" ]
 then
-	echo "PING TEST=Internet connection not active" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "PING TEST=Internet connection not active" >> /var/log/sparkylinux-installer.log
 else
-	echo "PING TEST=Internet connection OK" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "PING TEST=Internet connection OK" >> /var/log/sparkylinux-installer.log
 fi
 
-echo "NEW DESKTOP=$GETDESKTOP" >> /TARGET/var/log/sparkylinux-installer.log
-echo "NEW WEB BROWSER=$GETWEBBROWSER" >> /TARGET/var/log/sparkylinux-installer.log
+echo "NEW DESKTOP=$GETDESKTOP" >> /var/log/sparkylinux-installer.log
+echo "NEW WEB BROWSER=$GETWEBBROWSER" >> /var/log/sparkylinux-installer.log
 
 #if [ "$GETDESKTOP" = "Pantheon" ]
 #then
 #	if [ -f /TARGET/etc/apt/sources.list.d/pantheon-debian.list ]
 #	then
-#		echo "PANTHEON REPO=pantheon repo added ok" >> /TARGET/var/log/sparkylinux-installer.log
+#		echo "PANTHEON REPO=pantheon repo added ok" >> /var/log/sparkylinux-installer.log
 #	else
-#		echo "PANTHEON REPO=pantheon repo added failed" >> /TARGET/var/log/sparkylinux-installer.log
+#		echo "PANTHEON REPO=pantheon repo added failed" >> /var/log/sparkylinux-installer.log
 #	fi
 #fi
 
@@ -1506,83 +1508,81 @@ if [ "$GETDESKTOP" = "TDE" ]
 then
 	if [ -f /TARGET/etc/apt/sources.list.d/trinity.list ]
 	then
-		echo "TRINITY REPO=trinity repo added ok" >> /TARGET/var/log/sparkylinux-installer.log
+		echo "TRINITY REPO=trinity repo added ok" >> /var/log/sparkylinux-installer.log
 	else
-		echo "TRINITY REPO=trinity repo added failed" >> /TARGET/var/log/sparkylinux-installer.log
+		echo "TRINITY REPO=trinity repo added failed" >> /var/log/sparkylinux-installer.log
 	fi
 fi
 
 if [ -f /TARGET/usr/bin/awesome ]
 then
-	echo "NEWDESKOP=awesome installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=awesome installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/bspwm ]
 then
-	echo "NEWDESKTOP=bspwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=bspwm installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/budgie-deskop ]
 then
-	echo "NEWDESKTOP=budgie installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=budgie installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/dt/bin/dtsession ]
 then
-	echo "NEWDESKTOP=cde installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=cde installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/cinnamon ]
 then
-	echo "NEWDESKTOP=cinnamon installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=cinnamon installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/enlightenment ]
 then
-	echo "NEWDESKTOP=enlightenment installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=enlightenment installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/startfluxbox ] && [ -f /TARGET/opt/sparky/sparky-fluxbox ]
 then
-	echo "NEWDESKTOP=fluxbox installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=fluxbox installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/gnome-flashback ]
 then
-	echo "NEWDESKTOP=gnome flashback installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=gnome flashback installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/share/xsessions/gnome.desktop ]
 then
-	echo "NEWDESKTOP=gnome shell installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKTOP=gnome shell installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/i3 ]
 then
-	echo "NEWDESKOP=i3 installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=i3 installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/icewm ]
 then
-	echo "NEWDESKOP=icewm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=icewm installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/jwm ]
 then
-	echo "NEWDESKOP=jwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=jwm installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/startkde ]
 then
-	echo "NEWDESKOP=kde installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=kde installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/lumina-desktop ]
 then
-	echo "NEWDESKOP=lumina installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=lumina installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/startlxde ]
 then
-	echo "NEWDESKOP=lxde installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=lxde installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/startlxqt ]
 then
-	echo "NEWDESKOP=lxqt installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=lxqt installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/mate-session ]
 then
-	echo "NEWDESKOP=mate installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=mate installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/openbox ]
 then
-	echo "NEWDESKOP=openbox installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=openbox installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/pekwm ]
 then
-	echo "NEWDESKOP=pekwm installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=pekwm installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -d /TARGET/usr/share/doc/tde-core-trinity ]
 then
-	echo "NEWDESKOP=trinity installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=trinity installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -d /TARGET/usr/share/doc/webmin ]
 then
-	echo "NEWDESKOP=webmin installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=webmin installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/wmaker ]
 then
-	echo "NEWDESKOP=wmaker installed ok" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=wmaker installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/bin/startxfce4 ]
 then
-	echo "NEWDESKOP=xfce installed ok" >> /TARGET/var/log/sparkylinux-installer.log
-else
-	echo "NEWDESKTOP=no new desktop installed" >> /TARGET/var/log/sparkylinux-installer.log
+	echo "NEWDESKOP=xfce installed ok" >> /var/log/sparkylinux-installer.log
 fi
 
-echo "==============================================================" >> /TARGET/var/log/sparkylinux-installer.log
+echo "==============================================================" >> /var/log/sparkylinux-installer.log

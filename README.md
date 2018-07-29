@@ -28,7 +28,7 @@ iputils-ping
 rsync
 sed
 sparky-desktop-data
-sparky-backup-core
+sparky-backup-core (>= 20180729)
 sparky-xterm (>= 0.2.0)
 sparky-remsu
 wget
