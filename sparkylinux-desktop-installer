@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/07/29 20:36
+# Last update 2018/07/31 18:07
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -72,8 +72,6 @@ then
 else
 	TDEREPO="sid"
 fi
-
-#CHECKMINICLI="`cat /etc/sparkybackup/sparkybackup.conf | grep minimalcli`"
 
 if [ "$1" = "gui" -o "$2" = "gui" ]
 then
@@ -1243,7 +1241,7 @@ fi
 ### copy home settings for the new user ###
 
 # awesome
-if [ -f /TARGET/usr/bin/awesome ] && [ -d /usr/share/sparky-desktop-data/awesome/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-awesome/copyright ] && [ -d /usr/share/sparky-desktop-data/awesome/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1251,7 +1249,7 @@ then
 fi
 
 # bspwm
-if [ -f /TARGET/usr/bin/bspwm ] && [ -d /usr/share/sparky-desktop-data/bspwm/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-bspwm/copyright ] && [ -d /usr/share/sparky-desktop-data/bspwm/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1259,7 +1257,7 @@ then
 fi
 
 # budgie
-if [ -f /TARGET/usr/bin/budgie-desktop ] && [ -d /usr/share/sparky-desktop-data/budgie/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-budgie/copyright ] && [ -d /usr/share/sparky-desktop-data/budgie/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1267,7 +1265,7 @@ then
 fi
 
 # cinnamon
-if [ -f /TARGET/usr/bin/cinnamon ] && [ -d /usr/share/sparky-desktop-data/cinnamon/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-cinnamon/copyright ] && [ -d /usr/share/sparky-desktop-data/cinnamon/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1275,7 +1273,7 @@ then
 fi
 
 # enlightenment
-if [ -f /TARGET/usr/bin/enlightenment ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-enlightenment/copyright ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1284,7 +1282,7 @@ then
 fi
 
 # fluxbox
-if [ -f /TARGET/usr/bin/startfluxbox ] && [ -d /usr/share/sparky-desktop-data/fluxbox/skel ] && [ -f /TARGET/opt/sparky/sparky-fluxbox ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-fluxbox/copyright ] && [ -d /usr/share/sparky-desktop-data/fluxbox/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1292,7 +1290,7 @@ then
 fi
 
 # gnome-flashback
-if [ -f /TARGET/usr/bin/gnome-flashback ] && [ -d /usr/share/sparky-desktop-data/gnome-fl/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-flashback/copyright ] && [ -d /usr/share/sparky-desktop-data/gnome-fl/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1300,7 +1298,7 @@ then
 fi
 
 # gnome-shell
-if [ -f /TARGET/usr/share/xsessions/gnome.desktop ] && [ -d /usr/share/sparky-desktop-data/gnome-sh/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-shell/copyright ] && [ -d /usr/share/sparky-desktop-data/gnome-sh/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1326,7 +1324,7 @@ FOO
 fi
 
 # i3
-if [ -f /TARGET/usr/bin/i3 ] && [ -d /usr/share/sparky-desktop-data/i3/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-i3/copyright ] && [ -d /usr/share/sparky-desktop-data/i3/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1334,7 +1332,7 @@ then
 fi
 
 # icewm
-if [ -f /TARGET/usr/bin/icewm ] && [ -d /usr/share/sparky-desktop-data/icewm/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-icewm/copyright ] && [ -d /usr/share/sparky-desktop-data/icewm/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1343,7 +1341,7 @@ fi
 
 
 # jwm
-if [ -f /TARGET/usr/bin/jwm ] && [ -d /usr/share/sparky-desktop-data/jwm/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-jwm/copyright ] && [ -d /usr/share/sparky-desktop-data/jwm/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1351,7 +1349,7 @@ then
 fi
 
 # kde
-if [ -f /TARGET/usr/bin/startkde ] && [ -d /usr/share/sparky-desktop-data/kde/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-kde/copyright ] && [ -d /usr/share/sparky-desktop-data/kde/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1372,7 +1370,7 @@ FOO
 fi
 
 # lumina
-if [ -f /TARGET/usr/bin/lumina-desktop ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1380,7 +1378,7 @@ then
 fi
 
 # lxde
-if [ -f /TARGET/usr/bin/startlxde ] && [ -d /usr/share/sparky-desktop-data/lxde/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ] && [ -d /usr/share/sparky-desktop-data/lxde/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1388,7 +1386,7 @@ then
 fi
 
 # lxqt
-if [ -f /TARGET/usr/bin/startlxqt ] && [ -d /usr/share/sparky-desktop-data/lxqt/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-lxqt/copyright ] && [ -d /usr/share/sparky-desktop-data/lxqt/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1396,7 +1394,7 @@ then
 fi
 
 # mate
-if [ -f /TARGET/usr/bin/mate-session ] && [ -d /usr/share/sparky-desktop-data/mate/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-mate/copyright ] && [ -d /usr/share/sparky-desktop-data/mate/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1409,10 +1407,7 @@ then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/openbox/skel /TARGET/etc/
-	#if [ "$CHECKMINICLI" != "" ]
-	#then
-		mv /etc/skel/.config/openbox/menu.xml /etc/skel/.config/openbox/menu.xml.bak0
-	#fi
+	mv /TARGET/etc/skel/.config/openbox/menu.xml /TARGET/etc/skel/.config/openbox/menu.xml.$$
 fi
 
 # pantheon
@@ -1424,7 +1419,7 @@ fi
 #fi
 
 # pekwm
-if [ -f /TARGET/usr/bin/pekwm ] && [ -d /usr/share/sparky-desktop-data/pekwm/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-pekwm/copyright ] && [ -d /usr/share/sparky-desktop-data/pekwm/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1432,7 +1427,7 @@ then
 fi
 
 # trinity
-if [ -f /TARGET/usr/share/doc/tde-core-trinity/copyright ] && [ -d /usr/share/sparky-desktop-data/trinity/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-trinity/copyright ] && [ -d /usr/share/sparky-desktop-data/trinity/skel ]
 then
 	if [ ! -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop ]
 	then
@@ -1465,7 +1460,7 @@ rm -f /TARGET/tmp/desktop-install-trinity
 fi
 
 # wmaker
-if [ -f /TARGET/usr/bin/wmaker ] && [ -d /usr/share/sparky-desktop-data/wmaker/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-wmaker/copyright ] && [ -d /usr/share/sparky-desktop-data/wmaker/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1473,7 +1468,7 @@ then
 fi
 
 # xfce
-if [ -f /TARGET/usr/bin/startxfce4 ] && [ -d /usr/share/sparky-desktop-data/xfce/skel ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-xfce/copyright ] && [ -d /usr/share/sparky-desktop-data/xfce/skel ]
 then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
@@ -1514,73 +1509,73 @@ then
 	fi
 fi
 
-if [ -f /TARGET/usr/bin/awesome ]
+if [ -f /TARGET/usr/share/doc/sparky-desktop-awesome/copyright ]
 then
 	echo "NEWDESKOP=awesome installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/bspwm ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-bspwm/copyright ]
 then
 	echo "NEWDESKTOP=bspwm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/budgie-deskop ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-budgie/copyright ]
 then
 	echo "NEWDESKTOP=budgie installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/dt/bin/dtsession ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-cde/copyright ]
 then
 	echo "NEWDESKTOP=cde installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/cinnamon ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-cinnamon/copyright ]
 then
 	echo "NEWDESKTOP=cinnamon installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/enlightenment ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-enlightenment/copyright ]
 then
 	echo "NEWDESKTOP=enlightenment installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/startfluxbox ] && [ -f /TARGET/opt/sparky/sparky-fluxbox ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-fluxbox/copyright ]
 then
 	echo "NEWDESKTOP=fluxbox installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/gnome-flashback ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-flashback/copyright ]
 then
 	echo "NEWDESKTOP=gnome flashback installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/xsessions/gnome.desktop ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-gnomr-shell/copyright ]
 then
 	echo "NEWDESKTOP=gnome shell installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/i3 ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-i3/copyright ]
 then
 	echo "NEWDESKOP=i3 installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/icewm ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-icewm/copyright ]
 then
 	echo "NEWDESKOP=icewm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/jwm ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-jwm/copyright ]
 then
 	echo "NEWDESKOP=jwm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/startkde ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-kde/copyright ]
 then
 	echo "NEWDESKOP=kde installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/lumina-desktop ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ]
 then
 	echo "NEWDESKOP=lumina installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/startlxde ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ]
 then
 	echo "NEWDESKOP=lxde installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/startlxqt ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-lxqt/copyright ]
 then
 	echo "NEWDESKOP=lxqt installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/mate-session ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-mate/copyright ]
 then
 	echo "NEWDESKOP=mate installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/openbox ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-openbox/copyright ]
 then
 	echo "NEWDESKOP=openbox installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/pekwm ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-pekwm/copyright ]
 then
 	echo "NEWDESKOP=pekwm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -d /TARGET/usr/share/doc/tde-core-trinity ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-trinity/copyright ]
 then
 	echo "NEWDESKOP=trinity installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -d /TARGET/usr/share/doc/webmin ]
 then
 	echo "NEWDESKOP=webmin installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/wmaker ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-wmaker/copyright ]
 then
 	echo "NEWDESKOP=wmaker installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/bin/startxfce4 ]
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-xfce/copyright ]
 then
 	echo "NEWDESKOP=xfce installed ok" >> /var/log/sparkylinux-installer.log
 fi
