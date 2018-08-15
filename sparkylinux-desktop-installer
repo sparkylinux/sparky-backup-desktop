@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/07/31 18:07
+# Last update 2018/08/15
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -494,8 +494,8 @@ then
 	apt-get purge --yes --force-yes fbpanel
 	apt-get purge --yes --force-yes elinks
 	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes network-manager-gnome
-	apt-get purge --yes --force-yes network-manager
+	#apt-get purge --yes --force-yes network-manager-gnome
+	#apt-get purge --yes --force-yes network-manager
 	apt-get purge --yes --force-yes leafpad
 	apt-get purge --yes --force-yes gpicview
 	apt-get purge --yes --force-yes xscreensaver-data
