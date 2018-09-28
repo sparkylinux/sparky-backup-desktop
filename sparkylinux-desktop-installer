@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/08/15
+# Last update 2018/09/28
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -25,6 +25,8 @@ if [ "$DEFLANG" = "Brazilian" ]; then
 . $DEFLOCDIR/pt_BR
 elif [ "$DEFLANG" = "German" ]; then
 . $DEFLOCDIR/de
+elif [ "$DEFLANG" = "French" ]; then
+. $DEFLOCDIR/fr
 elif [ "$DEFLANG" = "Indonesian" ]; then
 . $DEFLOCDIR/id_ID
 elif [ "$DEFLANG" = "Italian" ]; then
