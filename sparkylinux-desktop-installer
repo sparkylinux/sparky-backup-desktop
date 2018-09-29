@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/09/28
+# Last update 2018/09/29
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -298,19 +298,19 @@ fi
 apt-get install -f
 if [ -f /usr/bin/awesome ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -330,24 +330,24 @@ fi
 apt-get install -f
 if [ -f /usr/bin/budgie-desktop ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes elinks
+	apt-get purge --yes htop
+	apt-get purge --yes pasystray
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -367,21 +367,21 @@ fi
 apt-get install -f
 if [ -f /usr/bin/bspwm ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes sparky-gexec
-	apt-get purge --yes --force-yes gexec
-	apt-get purge --yes --force-yes sparky-aptus-upgrade
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes openbox
+	apt-get purge --yes fbpanel
+	apt-get purge --yes htop
+	apt-get purge --yes sparky-gexec
+	apt-get purge --yes gexec
+	apt-get purge --yes sparky-aptus-upgrade
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -401,25 +401,25 @@ fi
 apt-get install -f
 if [ -f /usr/dt/bin/dtsession ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes gexec
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes sparky-gufw
-	apt-get purge --yes --force-yes system-config-printer
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes gexec
+	apt-get purge --yes nitrogen
+	apt-get purge --yes pasystray
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes sparky-gufw
+	apt-get purge --yes system-config-printer
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -439,31 +439,31 @@ fi
 apt-get install -f
 if [ -f /usr/bin/cinnamon ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes pavucontrol
-	apt-get purge --yes --force-yes xscreensaver
-	apt-get purge --yes --force-yes nautilus
-	apt-get purge --yes --force-yes gexec
-	apt-get purge --yes --force-yes xarchiver
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes sparky-theme-root
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes elinks
+	apt-get purge --yes htop
+	apt-get purge --yes pasystray
+	apt-get purge --yes pavucontrol
+	apt-get purge --yes xscreensaver
+	apt-get purge --yes nautilus
+	apt-get purge --yes gexec
+	apt-get purge --yes xarchiver
+	apt-get purge --yes lxtask
+	apt-get purge --yes sparky-theme-root
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -483,33 +483,33 @@ fi
 apt-get install -f
 if [ -f /usr/bin/enlightenment ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes gscreenshot
-	#apt-get purge --yes --force-yes network-manager-gnome
-	#apt-get purge --yes --force-yes network-manager
-	apt-get purge --yes --force-yes leafpad
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes xscreensaver-data
-	apt-get purge --yes --force-yes xscreensaver
-	apt-get purge --yes --force-yes pavucontrol
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes elinks
+	apt-get purge --yes gscreenshot
+	#apt-get purge --yes network-manager-gnome
+	#apt-get purge --yes network-manager
+	apt-get purge --yes leafpad
+	apt-get purge --yes gpicview
+	apt-get purge --yes xscreensaver-data
+	apt-get purge --yes xscreensaver
+	apt-get purge --yes pavucontrol
+	apt-get purge --yes pasystray
+	apt-get purge --yes lxterminal
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -529,20 +529,20 @@ fi
 apt-get install -f
 if [ -f /usr/bin/startfluxbox ] && [ -f /opt/sparky/sparky-fluxbox ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes gpicview
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -562,30 +562,30 @@ fi
 apt-get install -f
 if [ -f /usr/bin/gnome-flashback ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes leafpad
-	apt-get purge --yes --force-yes xscreensaver
-	apt-get purge --yes --force-yes xscreensaver-data
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes lxtask
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes elinks
+	apt-get purge --yes leafpad
+	apt-get purge --yes xscreensaver
+	apt-get purge --yes xscreensaver-data
+	apt-get purge --yes pasystray
+	apt-get purge --yes lxterminal
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -605,30 +605,30 @@ fi
 apt-get install -f
 if [ -f /usr/share/xsessions/gnome.desktop ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes leafpad
-	apt-get purge --yes --force-yes xscreensaver
-	apt-get purge --yes --force-yes xscreensaver-data
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes lxtask
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes elinks
+	apt-get purge --yes leafpad
+	apt-get purge --yes xscreensaver
+	apt-get purge --yes xscreensaver-data
+	apt-get purge --yes pasystray
+	apt-get purge --yes lxterminal
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 	systemctl -f enable gdm.service
 fi
@@ -649,22 +649,22 @@ fi
 apt-get install -f
 if [ -f /usr/bin/i3 ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes sparky-gexec
-	apt-get purge --yes --force-yes gexec
-	apt-get purge --yes --force-yes sparky-aptus-upgrade
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes sparky-gexec
+	apt-get purge --yes gexec
+	apt-get purge --yes sparky-aptus-upgrade
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -684,19 +684,19 @@ fi
 apt-get install -f
 if [ -f /usr/bin/icewm ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -716,18 +716,18 @@ fi
 apt-get install -f
 if [ -f /usr/bin/jwm ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obconf
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -740,50 +740,50 @@ cat > /TARGET/tmp/desktop-install << FOO
 apt-get update
 if [ "$INSTALLWEBBROWSER" != "" ]
 then
-	apt-get install --no-install-recommends sparky-desktop-kde $INSTALLWEBBROWSER
+	apt-get install sparky-desktop-kde $INSTALLWEBBROWSER
 else
-	apt-get install --no-install-recommends sparky-desktop-kde
+	apt-get install sparky-desktop-kde
 fi
 apt-get install -f
 if [ -f /usr/bin/startkde ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes epdfview
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes network-manager-gnome
-	apt-get purge --yes --force-yes leafpad
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes xscreensaver
-	apt-get purge --yes --force-yes xscreensaver-data
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes lightdm
-	apt-get purge --yes --force-yes gdebi
-	apt-get purge --yes --force-yes system-config-printer
-	apt-get purge --yes --force-yes gksu
-	apt-get purge --yes --force-yes xarchiver
-	apt-get purge --yes --force-yes gexec
-	apt-get purge --yes --force-yes muon-common
-	apt-get purge --yes --force-yes muon-discover
-	apt-get purge --yes --force-yes muon-notifier
-	apt-get purge --yes --force-yes muon-updater
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes epdfview
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes lxtask
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes elinks
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes network-manager-gnome
+	apt-get purge --yes leafpad
+	apt-get purge --yes gpicview
+	apt-get purge --yes xscreensaver
+	apt-get purge --yes xscreensaver-data
+	apt-get purge --yes pasystray
+	apt-get purge --yes lxterminal
+	apt-get purge --yes htop
+	apt-get purge --yes lightdm
+	apt-get purge --yes gdebi
+	apt-get purge --yes system-config-printer
+	apt-get purge --yes gksu
+	apt-get purge --yes xarchiver
+	apt-get purge --yes gexec
+	apt-get purge --yes muon-common
+	apt-get purge --yes muon-discover
+	apt-get purge --yes muon-notifier
+	apt-get purge --yes muon-updater
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
@@ -801,33 +801,33 @@ fi
 apt-get update
 if [ "$INSTALLWEBBROWSER" != "" ]
 then
-	apt-get install --no-install-recommends sparky-desktop-lumina $INSTALLWEBBROWSER
+	apt-get install sparky-desktop-lumina $INSTALLWEBBROWSER
 else
-	apt-get install --no-install-recommends sparky-desktop-lumina
+	apt-get install sparky-desktop-lumina
 fi
 apt-get install -f
 if [ -f /usr/bin/lumina-desktop ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes galculator
-	apt-get purge --yes --force-yes xarchiver
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes gpicview
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes lxrandr
+	apt-get purge --yes nitrogen
+	apt-get purge --yes galculator
+	apt-get purge --yes xarchiver
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -847,20 +847,20 @@ fi
 apt-get install -f
 if [ -f /usr/bin/startlxde ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes sparky-theme-root
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes nitrogen
+	apt-get purge --yes sparky-theme-root
+	apt-get purge --yes wm-logout
+	apt-get purge --yes htop
+	apt-get purge --yes pasystray
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -880,31 +880,31 @@ fi
 apt-get install -f
 if [ -f /usr/bin/startlxqt ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes wm-logout 
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes lxappearance
-	apt-get purge --yes --force-yes lxde-common
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes epdfview
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes pavucontrol
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
-	apt-get purge --yes --force-yes leafpad
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes nitrogen
+	apt-get purge --yes wm-logout 
+	apt-get purge --yes gpicview
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes lxappearance
+	apt-get purge --yes lxde-common
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes lxtask
+	apt-get purge --yes lxterminal
+	apt-get purge --yes epdfview
+	apt-get purge --yes htop
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes pasystray
+	apt-get purge --yes pavucontrol
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
+	apt-get purge --yes leafpad
 	apt-get autoremove --yes
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
@@ -925,34 +925,34 @@ fi
 apt-get install -f
 if [ -f /usr/bin/mate-session ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes epdfview
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes leafpad
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes pavucontrol
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes sparky-theme-root
-	apt-get purge --yes --force-yes xarchiver
-	apt-get purge --yes --force-yes xscreensaver
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes epdfview
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes gpicview
+	apt-get purge --yes htop
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes leafpad
+	apt-get purge --yes lxtask
+	apt-get purge --yes lxterminal
+	apt-get purge --yes nitrogen
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes pavucontrol
+	apt-get purge --yes pasystray
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes sparky-theme-root
+	apt-get purge --yes xarchiver
+	apt-get purge --yes xscreensaver
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -972,8 +972,8 @@ fi
 apt-get install -f
 if [ -f /usr/bin/openbox ]
 then
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes htop
+	apt-get purge --yes elinks
+	apt-get purge --yes htop
 	apt-get autoremove --yes
 fi
 FOO
@@ -999,25 +999,25 @@ FOO
 #apt-get install -f
 #if [ -f /usr/bin/pantheon-session ]
 #then
-#	apt-get purge --yes --force-yes sparky-desktop-openbox
-#	apt-get purge --yes --force-yes elinks
-#	apt-get purge --yes --force-yes gpicview
-#	apt-get purge --yes --force-yes htop
-#	apt-get purge --yes --force-yes lxinput
-#	apt-get purge --yes --force-yes lxrandr
-#	apt-get purge --yes --force-yes lxterminal
-#	apt-get purge --yes --force-yes nitrogen
-#	apt-get purge --yes --force-yes mc
-#	apt-get purge --yes --force-yes obmenu-generator
-#	apt-get purge --yes --force-yes wm-logout
-#	apt-get purge --yes --force-yes tint2
-#	apt-get purge --yes --force-yes fbpanel
-#	apt-get purge --yes --force-yes obconf
-#	apt-get purge --yes --force-yes openbox
-#	apt-get purge --yes --force-yes pasystray
-#	apt-get purge --yes --force-yes pcmanfm
-#	apt-get purge --yes --force-yes nautilus
-#	apt-get purge --yes --force-yes brltty
+#	apt-get purge --yes sparky-desktop-openbox
+#	apt-get purge --yes elinks
+#	apt-get purge --yes gpicview
+#	apt-get purge --yes htop
+#	apt-get purge --yes lxinput
+#	apt-get purge --yes lxrandr
+#	apt-get purge --yes lxterminal
+#	apt-get purge --yes nitrogen
+#	apt-get purge --yes mc
+#	apt-get purge --yes obmenu-generator
+#	apt-get purge --yes wm-logout
+#	apt-get purge --yes tint2
+#	apt-get purge --yes fbpanel
+#	apt-get purge --yes obconf
+#	apt-get purge --yes openbox
+#	apt-get purge --yes pasystray
+#	apt-get purge --yes pcmanfm
+#	apt-get purge --yes nautilus
+#	apt-get purge --yes brltty
 #	apt-get autoremove --yes
 #fi
 #FOO
@@ -1037,17 +1037,17 @@ fi
 apt-get install -f
 if [ -f /usr/bin/pekwm ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -1075,38 +1075,38 @@ fi
 apt-get install -f
 if [ -d /usr/share/doc/tde-core-trinity ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes gpicview
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes sparky-gexec
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes network-manager-gnome
-	apt-get purge --yes --force-yes gexec
-	apt-get purge --yes --force-yes leafpad
-	apt-get purge --yes --force-yes xscreensaver
-	apt-get purge --yes --force-yes xscreensaver-data
-	apt-get purge --yes --force-yes xarchiver
-	apt-get purge --yes --force-yes evince
-	apt-get purge --yes --force-yes evince-common
-	apt-get purge --yes --force-yes pavucontrol
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes elinks
+	apt-get purge --yes htop
+	apt-get purge --yes pasystray
+	apt-get purge --yes gpicview
+	apt-get purge --yes lxterminal
+	apt-get purge --yes sparky-gexec
+	apt-get purge --yes lxtask
+	apt-get purge --yes network-manager-gnome
+	apt-get purge --yes gexec
+	apt-get purge --yes leafpad
+	apt-get purge --yes xscreensaver
+	apt-get purge --yes xscreensaver-data
+	apt-get purge --yes xarchiver
+	apt-get purge --yes evince
+	apt-get purge --yes evince-common
+	apt-get purge --yes pavucontrol
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -1141,20 +1141,20 @@ fi
 apt-get install -f
 if [ -f /usr/bin/wmaker ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes thunar
-	apt-get purge --yes --force-yes thunar-archive-plugin
-	apt-get purge --yes --force-yes thunar-media-tags-plugin
-	apt-get purge --yes --force-yes thunar-volman
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes pasystray
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -1174,25 +1174,25 @@ fi
 apt-get install -f
 if [ -f /usr/bin/startxfce4 ]
 then
-	apt-get purge --yes --force-yes sparky-desktop-openbox
-	apt-get purge --yes --force-yes elinks
-	apt-get purge --yes --force-yes gscreenshot
-	apt-get purge --yes --force-yes htop
-	apt-get purge --yes --force-yes lxinput
-	apt-get purge --yes --force-yes lxrandr
-	apt-get purge --yes --force-yes leafpad
-	apt-get purge --yes --force-yes lxtask
-	apt-get purge --yes --force-yes lxterminal
-	apt-get purge --yes --force-yes nitrogen
-	apt-get purge --yes --force-yes obmenu-generator
-	apt-get purge --yes --force-yes wm-logout
-	apt-get purge --yes --force-yes tint2
-	apt-get purge --yes --force-yes fbpanel
-	apt-get purge --yes --force-yes obconf
-	apt-get purge --yes --force-yes openbox
-	apt-get purge --yes --force-yes pasystray
-	apt-get purge --yes --force-yes pcmanfm
-	apt-get purge --yes --force-yes sparky-theme-root
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes htop
+	apt-get purge --yes lxinput
+	apt-get purge --yes lxrandr
+	apt-get purge --yes leafpad
+	apt-get purge --yes lxtask
+	apt-get purge --yes lxterminal
+	apt-get purge --yes nitrogen
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes wm-logout
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes openbox
+	apt-get purge --yes pasystray
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes sparky-theme-root
 	apt-get autoremove --yes
 fi
 FOO
@@ -1219,7 +1219,7 @@ then
 
 cat > /TARGET/tmp/remove-webbrowser << FOO
 #!/bin/bash
-apt-get purge --yes --force-yes otter-browser
+apt-get purge --yes otter-browser
 apt-get autoremove --yes
 FOO
 
