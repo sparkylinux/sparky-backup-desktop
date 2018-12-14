@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2018/11/13
+# Last update 2018/12/14
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -307,10 +307,11 @@ then
 	apt-get purge --yes wm-logout
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
+	apt-get purge --yes pasystray
+	#apt-get purge --yes thunar
+	#apt-get purge --yes thunar-archive-plugin
+	#apt-get purge --yes thunar-media-tags-plugin
+	#apt-get purge --yes thunar-volman
 	apt-get autoremove --yes
 fi
 FOO
@@ -341,10 +342,6 @@ then
 	apt-get purge --yes sparky-gexec
 	apt-get purge --yes gexec
 	apt-get purge --yes sparky-aptus-upgrade
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
 	apt-get purge --yes pasystray
 	apt-get purge --yes xscreensaver
 	apt-get autoremove --yes
@@ -380,6 +377,7 @@ then
 	apt-get purge --yes elinks
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes thunar
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
@@ -415,6 +413,7 @@ then
 	apt-get purge --yes gexec
 	apt-get purge --yes nitrogen
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes pcmanfm
 	apt-get purge --yes sparky-gufw
 	apt-get purge --yes system-config-printer
@@ -455,6 +454,7 @@ then
 	apt-get purge --yes elinks
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes pavucontrol
 	apt-get purge --yes xscreensaver
 	apt-get purge --yes nautilus
@@ -506,6 +506,7 @@ then
 	apt-get purge --yes xscreensaver
 	apt-get purge --yes pavucontrol
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes lxterminal
 	apt-get purge --yes htop
 	apt-get purge --yes thunar
@@ -541,10 +542,7 @@ then
 	apt-get purge --yes wm-logout
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
+	apt-get purge --yes pasystray
 	apt-get autoremove --yes
 fi
 FOO
@@ -582,6 +580,7 @@ then
 	apt-get purge --yes xscreensaver
 	apt-get purge --yes xscreensaver-data
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes lxterminal
 	apt-get purge --yes htop
 	apt-get purge --yes thunar
@@ -625,6 +624,7 @@ then
 	apt-get purge --yes xscreensaver
 	apt-get purge --yes xscreensaver-data
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes lxterminal
 	apt-get purge --yes htop
 	apt-get purge --yes thunar
@@ -663,10 +663,7 @@ then
 	apt-get purge --yes sparky-gexec
 	apt-get purge --yes gexec
 	apt-get purge --yes sparky-aptus-upgrade
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
+	apt-get purge --yes pasystray
 	apt-get autoremove --yes
 fi
 FOO
@@ -695,10 +692,7 @@ then
 	apt-get purge --yes wm-logout
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
+	apt-get purge --yes pasystray
 	apt-get autoremove --yes
 fi
 FOO
@@ -726,10 +720,7 @@ then
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes htop
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
+	apt-get purge --yes pasystray
 	apt-get autoremove --yes
 fi
 FOO
@@ -770,6 +761,7 @@ then
 	apt-get purge --yes xscreensaver
 	apt-get purge --yes xscreensaver-data
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes lxterminal
 	apt-get purge --yes htop
 	apt-get purge --yes lightdm
@@ -826,6 +818,7 @@ then
 	apt-get purge --yes nitrogen
 	apt-get purge --yes galculator
 	apt-get purge --yes xarchiver
+	apt-get purge --yes pasystray
 	apt-get purge --yes thunar
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
@@ -859,6 +852,7 @@ then
 	apt-get purge --yes wm-logout
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes thunar
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
@@ -901,6 +895,7 @@ then
 	apt-get purge --yes htop
 	apt-get purge --yes pcmanfm
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes pavucontrol
 	apt-get purge --yes thunar
 	apt-get purge --yes thunar-archive-plugin
@@ -947,6 +942,7 @@ then
 	apt-get purge --yes openbox
 	apt-get purge --yes pavucontrol
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes pcmanfm
 	apt-get purge --yes sparky-theme-root
 	apt-get purge --yes xarchiver
@@ -976,6 +972,7 @@ if [ -f /usr/bin/openbox ]
 then
 	apt-get purge --yes elinks
 	apt-get purge --yes htop
+	apt-get purge --yes pasystray
 	apt-get autoremove --yes
 fi
 FOO
@@ -1046,10 +1043,8 @@ then
 	apt-get purge --yes obconf
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
+	apt-get purge --yes pasystray
+	apt-get purge --yes pcmanfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -1091,6 +1086,7 @@ then
 	apt-get purge --yes elinks
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes gpicview
 	apt-get purge --yes lxterminal
 	apt-get purge --yes sparky-gexec
@@ -1153,10 +1149,7 @@ then
 	apt-get purge --yes pasystray
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
+	apt-get purge --yes pcmanfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -1193,6 +1186,7 @@ then
 	apt-get purge --yes obconf
 	apt-get purge --yes openbox
 	apt-get purge --yes pasystray
+	apt-get purge --yes pnmixer
 	apt-get purge --yes pcmanfm
 	apt-get purge --yes sparky-theme-root
 	apt-get autoremove --yes
