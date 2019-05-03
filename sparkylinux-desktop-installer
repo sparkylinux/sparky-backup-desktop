@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2019/02/24
+# Last update 2019/05/03
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -119,7 +119,7 @@ fi
 # choose your favorite desktop
 if [ "$GUI" = "" ]
 then
-	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" Openbox "$LOCAL11" PekWM "$LOCAL20" TDE "$LOCAL21" Webmin "$LOCAL22" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
+	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" Lumina "$LOCAL16" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" Openbox "$LOCAL11" PekWM "$LOCAL20" TDE "$LOCAL21" Webmin "$LOCAL22" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
 
 	if [ "$?" = "0" ]
 	then
@@ -153,6 +153,7 @@ i3 "$LOCAL14" \
 IceWM "$LOCAL11" \
 JWM "$LOCAL11" \
 KDE "$LOCAL15" \
+Lumina "$LOCAL16" \
 LXDE "$LOCAL17" \
 LXQt "$LOCAL18" \
 MATE "$LOCAL19" \
@@ -162,7 +163,7 @@ TDE "$LOCAL21" \
 WMaker "$LOCAL23" \
 Xfce "$LOCAL24" \
 Exit "$LOCAL25"`
-#Lumina "$LOCAL16" \
+
 	if [ "$?" = "0" ]
 	then
 		GETDESKTOP=`echo $GETDESKTOP | cut -d "|" -f 1`
@@ -778,49 +779,49 @@ then
 fi
 FOO
 
-#elif [ "$GETDESKTOP" = "Lumina" ]
-#then
+elif [ "$GETDESKTOP" = "Lumina" ]
+then
 
-#cat > /TARGET/tmp/desktop-install << FOO
-##!/bin/bash
-#if [ -f /etc/apt/sources.list.d/lumina.list ] || [ -f /etc/apt/sources.list.d/lumina-testing.list ]
-#then
-#	rm -f /etc/apt/sources.list.d/lumina*
-#fi
-#apt-get update
-#if [ "$INSTALLWEBBROWSER" != "" ]
-#then
-#	apt-get install sparky-desktop-lumina $INSTALLWEBBROWSER
-#else
-#	apt-get install sparky-desktop-lumina
-#fi
-#apt-get install -f
-#if [ -f /usr/bin/lumina-desktop ]
-#then
-#	apt-get purge --yes sparky-desktop-openbox
-#	apt-get purge --yes elinks
-#	apt-get purge --yes gpicview
-#	apt-get purge --yes obmenu-generator
-#	apt-get purge --yes tint2
-#	apt-get purge --yes fbpanel
-#	apt-get purge --yes obconf
-#	apt-get purge --yes wm-logout
-#	apt-get purge --yes pcmanfm
-#	apt-get purge --yes openbox
-#	apt-get purge --yes htop
-#	apt-get purge --yes gscreenshot
-#	apt-get purge --yes lxrandr
-#	apt-get purge --yes nitrogen
-#	apt-get purge --yes galculator
-#	apt-get purge --yes xarchiver
-#	apt-get purge --yes pasystray
-#	apt-get purge --yes thunar
-#	apt-get purge --yes thunar-archive-plugin
-#	apt-get purge --yes thunar-media-tags-plugin
-#	apt-get purge --yes thunar-volman
-#	apt-get autoremove --yes
-#fi
-#FOO
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+if [ -f /etc/apt/sources.list.d/lumina.list ] || [ -f /etc/apt/sources.list.d/lumina-testing.list ]
+then
+	rm -f /etc/apt/sources.list.d/lumina*
+fi
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install sparky-desktop-lumina $INSTALLWEBBROWSER
+else
+	apt-get install sparky-desktop-lumina
+fi
+apt-get install -f
+if [ -f /usr/bin/lumina-desktop ]
+then
+	apt-get purge --yes sparky-desktop-openbox
+	apt-get purge --yes elinks
+	apt-get purge --yes gpicview
+	apt-get purge --yes obmenu-generator
+	apt-get purge --yes tint2
+	apt-get purge --yes fbpanel
+	apt-get purge --yes obconf
+	apt-get purge --yes wm-logout
+	apt-get purge --yes pcmanfm
+	apt-get purge --yes openbox
+	apt-get purge --yes htop
+	apt-get purge --yes gscreenshot
+	apt-get purge --yes lxrandr
+	apt-get purge --yes nitrogen
+	apt-get purge --yes galculator
+	apt-get purge --yes xarchiver
+	apt-get purge --yes pasystray
+	apt-get purge --yes thunar
+	apt-get purge --yes thunar-archive-plugin
+	apt-get purge --yes thunar-media-tags-plugin
+	apt-get purge --yes thunar-volman
+	apt-get autoremove --yes
+fi
+FOO
 
 elif [ "$GETDESKTOP" = "LXDE" ]
 then
@@ -1378,12 +1379,12 @@ FOO
 fi
 
 # lumina
-#if [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]
-#then
-#	rm -rf /TARGET/etc/skel
-#	mkdir -p /TARGET/etc/skel
-#	rsync -a /usr/share/sparky-desktop-data/lumina/skel /TARGET/etc/
-#fi
+if [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]
+then
+	rm -rf /TARGET/etc/skel
+	mkdir -p /TARGET/etc/skel
+	rsync -a /usr/share/sparky-desktop-data/lumina/skel /TARGET/etc/
+fi
 
 # lxde
 if [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ] && [ -d /usr/share/sparky-desktop-data/lxde/skel ]
@@ -1556,9 +1557,9 @@ then
 elif [ -f /TARGET/usr/share/doc/sparky-desktop-kde/copyright ]
 then
 	echo "NEWDESKOP=kde installed ok" >> /var/log/sparkylinux-installer.log
-#elif [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ]
-#then
-#	echo "NEWDESKOP=lumina installed ok" >> /var/log/sparkylinux-installer.log
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ]
+then
+	echo "NEWDESKOP=lumina installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ]
 then
 	echo "NEWDESKOP=lxde installed ok" >> /var/log/sparkylinux-installer.log
