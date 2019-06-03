@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2019/06/02
+# Last update 2019/06/02 23:24
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -63,19 +63,19 @@ else
 	exit 1
 fi
 
-SPARKYVERCHECK5="`cat /etc/issue | grep 5`"
-SPARKYVERCHECK4="`cat /etc/issue | grep 4`"
-DEBIANVERCHECK10="`cat /etc/issue | grep buster`"
-DEBIANVERCHECK9="`cat /etc/issue | grep stretch`"
-if [ "$SPARKYVERCHECK5" != "" ] || [ "$DEBIANVERCHECK10" != "" ]
-then
-	TDEREPO="buster"
-elif [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]
-then
-	TDEREPO="stretch"
-else
-	TDEREPO="sid"
-fi
+#SPARKYVERCHECK5="`cat /etc/issue | grep 5`"
+#SPARKYVERCHECK4="`cat /etc/issue | grep 4`"
+#DEBIANVERCHECK10="`cat /etc/issue | grep buster`"
+#DEBIANVERCHECK9="`cat /etc/issue | grep stretch`"
+#if [ "$SPARKYVERCHECK5" != "" ] || [ "$DEBIANVERCHECK10" != "" ]
+#then
+#	TDEREPO="buster"
+#elif [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]
+#then
+#	TDEREPO="stretch"
+#else
+#	TDEREPO="sid"
+#fi
 
 if [ "$1" = "gui" -o "$2" = "gui" ]
 then
@@ -121,7 +121,7 @@ fi
 # choose your favorite desktop
 if [ "$GUI" = "" ]
 then
-	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" Lumina "$LOCAL16" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" Openbox "$LOCAL11" PekWM "$LOCAL20" TDE "$LOCAL21" Webmin "$LOCAL22" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
+	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" Lumina "$LOCAL16" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" Openbox "$LOCAL11" PekWM "$LOCAL20" Webmin "$LOCAL22" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
 
 	if [ "$?" = "0" ]
 	then
@@ -161,7 +161,6 @@ LXQt "$LOCAL18" \
 MATE "$LOCAL19" \
 Openbox "$LOCAL11" \
 PekWM "$LOCAL20" \
-TDE "$LOCAL21" \
 WMaker "$LOCAL23" \
 Xfce "$LOCAL24" \
 Exit "$LOCAL25"`
@@ -179,6 +178,8 @@ Exit "$LOCAL25"`
 	fi
 
 fi
+# removed TDE from the list due to the public key problem
+#TDE "$LOCAL21" \
 
 # choose your favorite web browser
 if [ "$GETDESKTOP" != "Exit" ]
@@ -1047,67 +1048,67 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "TDE" ]
-then
+#elif [ "$GETDESKTOP" = "TDE" ]
+#then
 
-cat > /TARGET/tmp/desktop-install << FOO
-#!/bin/bash
-if [ -f /etc/apt/sources.list.d/trinity.list ]
-then
-	rm -f /etc/apt/sources.list.d/trinity.list
-fi
-touch /etc/apt/sources.list.d/trinity.list
-echo "deb http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
-echo "deb-src http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
-apt-key adv --keyserver keys.gnupg.net --recv-key A04BE668
-apt-get update
-if [ "$INSTALLWEBBROWSER" != "" ]
-then
-	apt-get install sparky-desktop-trinity $INSTALLWEBBROWSER
-else
-	apt-get install sparky-desktop-trinity
-fi
-apt-get install -f
-if [ -d /usr/share/doc/tde-core-trinity ]
-then
-	apt-get purge --yes sparky-desktop-openbox
-	apt-get purge --yes pcmanfm
-	apt-get purge --yes lxinput
-	apt-get purge --yes lxrandr
-	apt-get purge --yes obmenu-generator
-	apt-get purge --yes wm-logout
-	apt-get purge --yes nitrogen
-	apt-get purge --yes obconf
-	apt-get purge --yes openbox
-	apt-get purge --yes tint2
-	apt-get purge --yes fbpanel
-	apt-get purge --yes elinks
-	apt-get purge --yes htop
-	apt-get purge --yes pasystray
-	apt-get purge --yes pnmixer
-	apt-get purge --yes gpicview
-	apt-get purge --yes lxterminal
-	apt-get purge --yes sparky-gexec
-	apt-get purge --yes lxtask
-	apt-get purge --yes network-manager-gnome
-	apt-get purge --yes gexec
-	apt-get purge --yes leafpad
-	apt-get purge --yes xscreensaver
-	apt-get purge --yes xscreensaver-data
-	apt-get purge --yes xarchiver
-	apt-get purge --yes evince
-	apt-get purge --yes evince-common
-	apt-get purge --yes pavucontrol
-	apt-get purge --yes gscreenshot
-	apt-get purge --yes thunar
-	apt-get purge --yes thunar-archive-plugin
-	apt-get purge --yes thunar-media-tags-plugin
-	apt-get purge --yes thunar-volman
-	apt-get purge --yes tdm-trinity
-	apt-get autoremove --yes
-	dpkg-reconfigure lightdm
-fi
-FOO
+#cat > /TARGET/tmp/desktop-install << FOO
+##!/bin/bash
+#if [ -f /etc/apt/sources.list.d/trinity.list ]
+#then
+#	rm -f /etc/apt/sources.list.d/trinity.list
+#fi
+#touch /etc/apt/sources.list.d/trinity.list
+#echo "deb http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
+#echo "deb-src http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
+#apt-key adv --keyserver keys.gnupg.net --recv-key A04BE668
+#apt-get update
+#if [ "$INSTALLWEBBROWSER" != "" ]
+#then
+#	apt-get install sparky-desktop-trinity $INSTALLWEBBROWSER
+#else
+#	apt-get install sparky-desktop-trinity
+#fi
+#apt-get install -f
+#if [ -d /usr/share/doc/tde-core-trinity ]
+#then
+#	apt-get purge --yes sparky-desktop-openbox
+#	apt-get purge --yes pcmanfm
+#	apt-get purge --yes lxinput
+#	apt-get purge --yes lxrandr
+#	apt-get purge --yes obmenu-generator
+#	apt-get purge --yes wm-logout
+#	apt-get purge --yes nitrogen
+#	apt-get purge --yes obconf
+#	apt-get purge --yes openbox
+#	apt-get purge --yes tint2
+#	apt-get purge --yes fbpanel
+#	apt-get purge --yes elinks
+#	apt-get purge --yes htop
+#	apt-get purge --yes pasystray
+#	apt-get purge --yes pnmixer
+#	apt-get purge --yes gpicview
+#	apt-get purge --yes lxterminal
+#	apt-get purge --yes sparky-gexec
+#	apt-get purge --yes lxtask
+#	apt-get purge --yes network-manager-gnome
+#	apt-get purge --yes gexec
+#	apt-get purge --yes leafpad
+#	apt-get purge --yes xscreensaver
+#	apt-get purge --yes xscreensaver-data
+#	apt-get purge --yes xarchiver
+#	apt-get purge --yes evince
+#	apt-get purge --yes evince-common
+#	apt-get purge --yes pavucontrol
+#	apt-get purge --yes gscreenshot
+#	apt-get purge --yes thunar
+#	apt-get purge --yes thunar-archive-plugin
+#	apt-get purge --yes thunar-media-tags-plugin
+#	apt-get purge --yes thunar-volman
+#	apt-get purge --yes tdm-trinity
+#	apt-get autoremove --yes
+#	dpkg-reconfigure lightdm
+#fi
+#FOO
 
 elif [ "$GETDESKTOP" = "Webmin" ]
 then
@@ -1196,29 +1197,29 @@ FOO
 fi
 
 # configure new repos as of 20181227 before installing a desktop
-cat > /TARGET/tmp/install-repos << FOO
-#!/bin/bash
-apt-get update
-apt-get install sparky-apt --yes
-FOO
+#cat > /TARGET/tmp/install-repos << FOO
+##!/bin/bash
+#apt-get update
+#apt-get install sparky-apt --yes
+#FOO
 
-chmod +x /TARGET/tmp/install-repos
+#chmod +x /TARGET/tmp/install-repos
 chmod +x /TARGET/tmp/desktop-install
 
 if [ "$GUI" = "" ]
 then
-	chroot /TARGET /tmp/install-repos
-	sleep 1
+#	chroot /TARGET /tmp/install-repos
+#	sleep 1
 	chroot /TARGET /tmp/desktop-install
 	sleep 1
 else
-	$SPARKYXTERM "chroot /TARGET /tmp/install-repos"
-	sleep 1
+#	$SPARKYXTERM "chroot /TARGET /tmp/install-repos"
+#	sleep 1
 	$SPARKYXTERM "chroot /TARGET /tmp/desktop-install"
 	sleep 1
 fi
 
-rm -f /TARGET/tmp/install-repos
+#rm -f /TARGET/tmp/install-repos
 rm -f /TARGET/tmp/desktop-install
 
 if [ "$INSTALLWEBBROWSER" != "" ]
@@ -1438,37 +1439,37 @@ then
 fi
 
 # trinity
-if [ -f /TARGET/usr/share/doc/sparky-desktop-trinity/copyright ] && [ -d /usr/share/sparky-desktop-data/trinity/skel ]
-then
-	if [ ! -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop ]
-	then
-		if [ ! -d /TARGET/etc/skel/.trinity/Autostart ]
-		then
-			mkdir -p /TARGET/etc/skel/.trinity/Autostart
-		fi
-		cp /usr/share/sparky-desktop-data/trinity/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop
-	fi
+#if [ -f /TARGET/usr/share/doc/sparky-desktop-trinity/copyright ] && [ -d /usr/share/sparky-desktop-data/trinity/skel ]
+#then
+#	if [ ! -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop ]
+#	then
+#		if [ ! -d /TARGET/etc/skel/.trinity/Autostart ]
+#		then
+#			mkdir -p /TARGET/etc/skel/.trinity/Autostart
+#		fi
+#		cp /usr/share/sparky-desktop-data/trinity/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1.desktop
+#	fi
+#
+#	if [ -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1-jessie.desktop ]
+#	then
+#		rm -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1-jessie.desktop
+#	fi
 
-	if [ -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1-jessie.desktop ]
-	then
-		rm -f /TARGET/etc/skel/.trinity/Autostart/polkit-gnome-authentication-agent-1-jessie.desktop
-	fi
-
-cat > /TARGET/tmp/desktop-install-trinity << FOO
-#!/bin/bash
-sed -i -e 's:/opt/trinity/bin/tdm:/usr/sbin/lightdm:g' /etc/X11/default-display-manager
-if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]
-then
-	rm -f /etc/systemd/system/display-manager.service
-	ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
-fi
-FOO
+#cat > /TARGET/tmp/desktop-install-trinity << FOO
+##!/bin/bash
+#sed -i -e 's:/opt/trinity/bin/tdm:/usr/sbin/lightdm:g' /etc/X11/default-display-manager
+#if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]
+#then
+#	rm -f /etc/systemd/system/display-manager.service
+#	ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+#fi
+#FOO
 	
-chmod +x /TARGET/tmp/desktop-install-trinity
-chroot /TARGET /tmp/desktop-install-trinity
-rm -f /TARGET/tmp/desktop-install-trinity
+#chmod +x /TARGET/tmp/desktop-install-trinity
+#chroot /TARGET /tmp/desktop-install-trinity
+#rm -f /TARGET/tmp/desktop-install-trinity
 
-fi
+#fi
 
 # wmaker
 if [ -f /TARGET/usr/share/doc/sparky-desktop-wmaker/copyright ] && [ -d /usr/share/sparky-desktop-data/wmaker/skel ]
@@ -1510,15 +1511,15 @@ echo "NEW WEB BROWSER=$GETWEBBROWSER" >> /var/log/sparkylinux-installer.log
 #	fi
 #fi
 
-if [ "$GETDESKTOP" = "TDE" ]
-then
-	if [ -f /TARGET/etc/apt/sources.list.d/trinity.list ]
-	then
-		echo "TRINITY REPO=trinity repo added ok" >> /var/log/sparkylinux-installer.log
-	else
-		echo "TRINITY REPO=trinity repo added failed" >> /var/log/sparkylinux-installer.log
-	fi
-fi
+#if [ "$GETDESKTOP" = "TDE" ]
+#then
+#	if [ -f /TARGET/etc/apt/sources.list.d/trinity.list ]
+#	then
+#		echo "TRINITY REPO=trinity repo added ok" >> /var/log/sparkylinux-installer.log
+#	else
+#		echo "TRINITY REPO=trinity repo added failed" >> /var/log/sparkylinux-installer.log
+#	fi
+#fi
 
 if [ -f /TARGET/usr/share/doc/sparky-desktop-awesome/copyright ]
 then
@@ -1577,9 +1578,9 @@ then
 elif [ -f /TARGET/usr/share/doc/sparky-desktop-pekwm/copyright ]
 then
 	echo "NEWDESKOP=pekwm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-trinity/copyright ]
-then
-	echo "NEWDESKOP=trinity installed ok" >> /var/log/sparkylinux-installer.log
+#elif [ -f /TARGET/usr/share/doc/sparky-desktop-trinity/copyright ]
+#then
+#	echo "NEWDESKOP=trinity installed ok" >> /var/log/sparkylinux-installer.log
 elif [ -d /TARGET/usr/share/doc/webmin ]
 then
 	echo "NEWDESKOP=webmin installed ok" >> /var/log/sparkylinux-installer.log
