@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2019/06/02 23:24
+# Last update 2019/07/01
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -901,6 +901,9 @@ then
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes leafpad
+	if [ -f /usr/bin/nm-tray ]; then
+		apt purge --yes network-manager-gnome
+	fi
 	apt-get autoremove --yes
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
