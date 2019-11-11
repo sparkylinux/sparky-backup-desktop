@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2019/08/18
+# Last update 2019/11/11
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -25,6 +25,8 @@ if [ "$DEFLANG" = "Brazilian" ]; then
 . $DEFLOCDIR/pt_BR
 elif [ "$DEFLANG" = "German" ]; then
 . $DEFLOCDIR/de
+elif [ "$DEFLANG" = "Greek" ]; then
+. $DEFLOCDIR/el
 elif [ "$DEFLANG" = "French" ]; then
 . $DEFLOCDIR/fr
 elif [ "$DEFLANG" = "Hungarian" ]; then
@@ -306,6 +308,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -335,6 +339,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes obconf
 	apt-get purge --yes wm-logout
 	apt-get purge --yes openbox
@@ -369,6 +375,8 @@ then
 	apt-get purge --yes lxinput
 	apt-get purge --yes lxrandr
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -405,6 +413,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -446,6 +456,8 @@ then
 	apt-get purge --yes lxinput
 	apt-get purge --yes lxrandr
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -491,6 +503,8 @@ then
 	apt-get purge --yes lxinput
 	apt-get purge --yes lxrandr
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -537,6 +551,8 @@ then
 	apt-get purge --yes elinks
 	apt-get purge --yes gpicview
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -570,6 +586,8 @@ then
 	apt-get purge --yes lxrandr
 	apt-get purge --yes lxtask
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -614,6 +632,8 @@ then
 	apt-get purge --yes lxrandr
 	apt-get purge --yes lxtask
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -632,8 +652,17 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes lightdm
 	apt-get autoremove --yes
 	systemctl -f enable gdm.service
+	CHECKDM=`cat /etc/X11/default-display-manager | grep lightdm`
+	if [ "$CHECKDM" != "" ]; then
+		sed -i -e 's/lightdm/gdm3/g' /etc/X11/default-display-manager
+		if [ -f /usr/lib/systemd/system/gdm3.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
+			rm -f /etc/systemd/system/display-manager.service
+			ln -s /lib/systemd/system/gdm3.service /etc/systemd/system/display-manager.service
+		fi
+	fi
 fi
 FOO
 
@@ -655,6 +684,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -687,6 +718,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -717,6 +750,8 @@ then
 	apt-get purge --yes elinks
 	apt-get purge --yes obconf
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes openbox
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
@@ -748,6 +783,8 @@ then
 	apt-get purge --yes lxrandr
 	apt-get purge --yes lxtask
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -807,6 +844,8 @@ then
 	apt-get purge --yes elinks
 	apt-get purge --yes gpicview
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -846,6 +885,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes nitrogen
@@ -880,6 +921,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes nitrogen
@@ -941,6 +984,8 @@ then
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes obconf
 	apt-get purge --yes openbox
@@ -1012,6 +1057,8 @@ FOO
 #	apt-get purge --yes nitrogen
 #	apt-get purge --yes mc
 #	apt-get purge --yes obmenu-generator
+#	apt-get purge --yes sparky-obmenu
+#	apt-get purge --yes obmenu
 #	apt-get purge --yes wm-logout
 #	apt-get purge --yes tint2
 #	apt-get purge --yes fbpanel
@@ -1043,6 +1090,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes obconf
 	apt-get purge --yes openbox
@@ -1081,6 +1130,8 @@ FOO
 #	apt-get purge --yes lxinput
 #	apt-get purge --yes lxrandr
 #	apt-get purge --yes obmenu-generator
+#	apt-get purge --yes sparky-obmenu
+#	apt-get purge --yes obmenu
 #	apt-get purge --yes wm-logout
 #	apt-get purge --yes nitrogen
 #	apt-get purge --yes obconf
@@ -1148,6 +1199,8 @@ then
 	apt-get purge --yes sparky-desktop-openbox
 	apt-get purge --yes elinks
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -1186,6 +1239,8 @@ then
 	apt-get purge --yes lxterminal
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obmenu-generator
+	apt-get purge --yes sparky-obmenu
+	apt-get purge --yes obmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
