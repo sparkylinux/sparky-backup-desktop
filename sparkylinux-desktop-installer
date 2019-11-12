@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2019/11/11
+# Last update 2019/11/12
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -317,6 +317,7 @@ then
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -351,6 +352,7 @@ then
 	apt-get purge --yes sparky-aptus-upgrade
 	apt-get purge --yes pasystray
 	apt-get purge --yes xscreensaver
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -391,6 +393,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -432,6 +435,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -479,6 +483,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -528,6 +533,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -560,6 +566,7 @@ then
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -606,6 +613,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -653,16 +661,9 @@ then
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes lightdm
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
-	systemctl -f enable gdm.service
-	CHECKDM=`cat /etc/X11/default-display-manager | grep lightdm`
-	if [ "$CHECKDM" != "" ]; then
-		sed -i -e 's/lightdm/gdm3/g' /etc/X11/default-display-manager
-		if [ -f /usr/lib/systemd/system/gdm3.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
-			rm -f /etc/systemd/system/display-manager.service
-			ln -s /lib/systemd/system/gdm3.service /etc/systemd/system/display-manager.service
-		fi
-	fi
+	dpkg-reconfigure gdm3
 fi
 FOO
 
@@ -696,6 +697,7 @@ then
 	apt-get purge --yes gexec
 	apt-get purge --yes sparky-aptus-upgrade
 	apt-get purge --yes pasystray
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -727,6 +729,7 @@ then
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -757,6 +760,7 @@ then
 	apt-get purge --yes fbpanel
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -816,7 +820,9 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
+	dpkg-reconfigure sddm
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
 FOO
@@ -863,6 +869,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -899,6 +906,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -946,6 +954,7 @@ then
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes leafpad
+	apt-get purge --yes sparky-dashboard
 	if [ -f /usr/bin/nm-tray ]; then
 		apt purge --yes network-manager-gnome
 	fi
@@ -1000,6 +1009,7 @@ then
 	apt-get purge --yes thunar-archive-plugin
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -1098,6 +1108,7 @@ then
 	apt-get purge --yes htop
 	apt-get purge --yes pasystray
 	apt-get purge --yes pcmanfm
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -1209,6 +1220,7 @@ then
 	apt-get purge --yes openbox
 	apt-get purge --yes htop
 	apt-get purge --yes pcmanfm
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -1250,6 +1262,7 @@ then
 	apt-get purge --yes pnmixer
 	apt-get purge --yes pcmanfm
 	apt-get purge --yes sparky-theme-root
+	apt-get purge --yes sparky-dashboard
 	apt-get autoremove --yes
 fi
 FOO
@@ -1376,23 +1389,21 @@ then
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel /TARGET/etc/
 
-cat > /TARGET/tmp/desktop-install-gnome << FOO
-#!/bin/bash
+#cat > /TARGET/tmp/desktop-install-gnome << FOO
+##!/bin/bash
 
-#CHECKDM=`cat /etc/X11/default-display-manager | grep gdm`
-#if [ "$CHECKDM" != "" ]
-#then
-sed -i -e 's/gdm3/lightdm/g' /etc/X11/default-display-manager
-#if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]
-#then
-rm -f /etc/systemd/system/display-manager.service
-ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+#CHECKDM=`cat /etc/X11/default-display-manager | grep lightdm`
+#if [ "$CHECKDM" != "" ]; then
+#sed -i -e 's/lightdm/gdm3/g' /etc/X11/default-display-manager
+#if [ -f /usr/lib/systemd/system/gdm3.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
+#	rm -f /etc/systemd/system/display-manager.service
+#	ln -s /lib/systemd/system/gdm3.service /etc/systemd/system/display-manager.service
 #fi
 #fi
-FOO
-	chmod +x /TARGET/tmp/desktop-install-gnome
-	chroot /TARGET /tmp/desktop-install-gnome
-	rm -f /TARGET/tmp/desktop-install-gnome
+#FOO
+#	chmod +x /TARGET/tmp/desktop-install-gnome
+#	chroot /TARGET /tmp/desktop-install-gnome
+#	rm -f /TARGET/tmp/desktop-install-gnome
 fi
 
 # i3
@@ -1428,17 +1439,17 @@ then
 	rsync -a /usr/share/sparky-desktop-data/kde/skel /TARGET/etc/
 	cp /usr/share/sparky-desktop-data/kde/etc/sddm.conf /TARGET/etc/sddm.conf
 
-cat > /TARGET/tmp/desktop-install-kde << FOO
-#!/bin/bash
+#cat > /TARGET/tmp/desktop-install-kde << FOO
+##!/bin/bash
 
-sed -i -e 's/lightdm/sddm/g' /etc/X11/default-display-manager
-sed -i -e 's/sbin/bin/g' /etc/X11/default-display-manager
-rm -f /etc/systemd/system/display-manager.service
-ln -s /lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service
-FOO
-	chmod +x /TARGET/tmp/desktop-install-kde
-	chroot /TARGET /tmp/desktop-install-kde
-	rm -f /TARGET/tmp/desktop-install-kde
+#sed -i -e 's/lightdm/sddm/g' /etc/X11/default-display-manager
+#sed -i -e 's/sbin/bin/g' /etc/X11/default-display-manager
+#rm -f /etc/systemd/system/display-manager.service
+#ln -s /lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service
+#FOO
+#	chmod +x /TARGET/tmp/desktop-install-kde
+#	chroot /TARGET /tmp/desktop-install-kde
+#	rm -f /TARGET/tmp/desktop-install-kde
 fi
 
 # lumina
