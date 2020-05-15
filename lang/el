@@ -1,7 +1,7 @@
-# Greek localization file for Sparky Backup Desktop.
+# Greek localization file for Sparky Backup Desktop by jidan.
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2019/11/05 by jidan
+# Last update 2020/05/15 by pavroo 
 LOCAL1="Ο έλεγχος της σύνδεσης στο διαδίκτυο απέτυχε!"
 LOCAL2="ΔΕΝ μπορεί να γίνει εγκατάσταση από το διαδίκτυο κάποιου περιβάλλοντος εργασίας!"
 LOCAL3="Πραγματοποιείται έξοδος τώρα..."
@@ -28,7 +28,7 @@ LOCAL23="Διαχειριστής Παραθύρων για το σύστημα 
 LOCAL24="Ελαφρύ περιβάλλον εργασίας"
 LOCAL25="Τερματισμός του Εγκαταστάτη Περιβάλλοντος Εργασίας"
 LOCAL26="Ο Εγκαταστάτης Περιβάλλοντος Εργασίας τερματίζεται τώρα..."
-LOCAL27="Το εκκινήσιμο σύστημα παρέχει τον περιηγητή Otter (MinimalGUI) και ELinks (MinimalCLI) σαν προεπιλογή."
+LOCAL27="Το εκκινήσιμο σύστημα παρέχει τον περιηγητή"
 LOCAL28="Αν επιθυμείτε την εγκατάσταση διαφορετικού περιηγητή, απλά επιλέξτε κάποιον από τη λίστα."
 LOCAL29="Περιηγητής ανοιχτού κώδικα Chromium"
 LOCAL30="Ελαφρύς και γρήγορος περιηγητής"
@@ -48,3 +48,4 @@ LOCAL43="Εφαρμογή ανωνυμίας TOR και περιηγητής"
 LOCAL44="Περιηγητής ελεύθερης διανομής από την Vivaldi Technologies"
 LOCAL45="ΜΗΝ αλλάζετε περιηγητή"
 LOCAL46="Ο περιηγητής δεν θα αλλάξει."
+LOCAL47="(MinimalGUI) και ELinks (MinimalCLI) σαν προεπιλογή."

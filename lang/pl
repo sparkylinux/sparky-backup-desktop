@@ -1,7 +1,7 @@
 # Polish localization file for Sparky Backup Desktop.
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2018/05/31 by pavroo
+# Last update 2020/05/15 by pavroo
 LOCAL1="Połączenie z internetem nieudane!"
 LOCAL2="Instalacja on-line innego pulpitu NIE może być przeprowadzona!"
 LOCAL3="Kończenie..."
@@ -28,7 +28,7 @@ LOCAL23="Menadżer Okien dla Systemu X Window"
 LOCAL24="Lekkie Środowisko Graficzne"
 LOCAL25="Opuść Instalator Pulpitów"
 LOCAL26="Wyjście z Instalatora Pulpitów..."
-LOCAL27="System live domyślnie dostarcza przeglądarkę www Otter (MinimalGUI) oraz ELinks (MinimalCLI)."
+LOCAL27="System live domyślnie dostarcza przeglądarkę www"
 LOCAL28="Jeśli chcesz zainstalować inną przeglądarkę www, wybierz ją z listy."
 LOCAL29="Otwarto źródłowa przeglądarka www Chromium"
 LOCAL30="Mała i szybka przeglądarka www"
@@ -48,3 +48,4 @@ LOCAL43="Aplikacja anonimowej sieci TOR i przeglądarka www"
 LOCAL44="Bezpłatna przeglądarka www od Vivaldi Technologies"
 LOCAL45="NIE zmieniaj przeglądarki www"
 LOCAL46="Przeglądarka www NIE będzie zmieniona."
+LOCAL47="(MinimalGUI) oraz ELinks (MinimalCLI)."

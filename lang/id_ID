@@ -1,8 +1,8 @@
 # Indonesian localization file for Sparky Backup Desktop.
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2018/07/23 by pavroo
 # Translated to Indonesian by les kompie
+# Last update 2020/05/15 by pavroo
 LOCAL1="Uji koneksi internet gagal!"
 LOCAL2="Instalasi online desktop tambahan TIDAK BISA dilakukan!"
 LOCAL3="Sekarang keluar..."
@@ -29,7 +29,7 @@ LOCAL23="Window Manager untuk X Window System"
 LOCAL24="Desktop Environment ringan"
 LOCAL25="Keluar dari Penginstal Desktop"
 LOCAL26="Keluar dari Penginstal Desktop sekarang..."
-LOCAL27="Sistem live menyediakan browser web Otter (MinimalGUI) dan ELinks (MinimalCLI) sebagai default."
+LOCAL27="Sistem live menyediakan browser web"
 LOCAL28="Jika anda ingin memasang browser web yang lain, cukup pilih salah satu dari daftar."
 LOCAL29="Browser web Chromium open source"
 LOCAL30="Browser web yang kecil dan kencang"
@@ -49,3 +49,4 @@ LOCAL43="Aplikasi jaringan anonimitas dan browser web TOR"
 LOCAL44="Browser web gratis dari Vivaldi Technologies"
 LOCAL45="JANGAN ubah browser web"
 LOCAL46="Browser web TIDAK akan diubah."
+LOCAL47="(MinimalGUI) dan ELinks (MinimalCLI) sebagai default."

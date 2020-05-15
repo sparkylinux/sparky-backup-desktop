@@ -1,7 +1,7 @@
 # Magyar nyelvi fájl a Sparky biztonsági mentés asztalhoz
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # GNU GPL v2 szerint
-# Utolsó frissítés: 2018/05/32 pavroo által
+#  Last update 2020/05/15 by pavroo
 LOCAL1="Internet kapcsolati teszt hiányzik!"
 LOCAL2="A kiegészítő asztal On-line telepítése NINCS elkészítve!"
 LOCAL3="Kilépés most..."
@@ -28,7 +28,7 @@ LOCAL23="Ablakkezelő az X ablak rendszerhez"
 LOCAL24="Könnyűsúlyú asztali környezet"
 LOCAL25="Az asztal-telepítő befejezése"
 LOCAL26="Az asztal-telepítő befejezése most..."
-LOCAL27="Az élő rendszer az Otter (MinimalGUI) és az ELinks (MinimalCLI) webböngészőt alapértelmezettként biztosítja."
+LOCAL27="Az élő rendszer az"
 LOCAL28="Ha más webböngészőt kíván telepíteni, egyszerűen válasszon egyet a listából!"
 LOCAL29="Nyílt forrás kódú Chromium webböngésző"
 LOCAL30="Kicsi és gyors webböngésző"
@@ -48,3 +48,4 @@ LOCAL43="TOR Anonym hálózati app és webböngésző"
 LOCAL44="'Freeware' webböngésző a Vivaldi Technologies-tól"
 LOCAL45="NE cserélje a webböngészőt"
 LOCAL46="A webböngésző NEM fog megváltozni."
+LOCAL47="(MinimalGUI) és az ELinks (MinimalCLI) webböngészőt alapértelmezettként biztosítja."

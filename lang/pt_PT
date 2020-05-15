@@ -2,7 +2,7 @@
 # Copyright 2018 PaweÅ‚ "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
 # Translation by José Vieira, 2018/04/13
-# Last update 2018/05/31 by pavroo
+# Last update 2020/05/15 by pavroo
 LOCAL1="O teste da ligação à Internet falhou!"
 LOCAL2="NÃO é possível instalar Ambientes de Trabalho adicionais em instalações pela Internet!"
 LOCAL3="Saindo..."
@@ -29,7 +29,7 @@ LOCAL23="Gestor de janelas para o Sistema de janelas X"
 LOCAL24="Ambiente de Trabalho ligeiro"
 LOCAL25="Sair do Instalador de Ambientes de Trabalho"
 LOCAL26="Saindo do Instalador de Ambientes de Trabalho..."
-LOCAL27="O sistema externo usa os navegadores Otter (minimalista/Interface Gráfica) e ELinks (minimalista/Interface de Linha de Comando) como pré-definição."
+LOCAL27="O sistema externo usa os navegadores"
 LOCAL28="Se pretender instalar um navegador diferente, simplesmente escolha um da lista."
 LOCAL29="Navegador de código aberto Chromium"
 LOCAL30="Navegador pegueno e rápido"
@@ -49,3 +49,4 @@ LOCAL43="Aplicação de rede e navegador de anonimidade TOR"
 LOCAL44="Navegador grátis da Vivaldi Technologies"
 LOCAL45="Não mudar o navegador"
 LOCAL46="O navegador não será mudado."
+LOCAL47="(minimalista/Interface Gráfica) e ELinks (minimalista/Interface de Linha de Comando) como pré-definição."
