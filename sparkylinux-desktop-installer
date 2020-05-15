@@ -309,6 +309,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -341,6 +342,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes obconf
 	apt-get purge --yes wm-logout
 	apt-get purge --yes openbox
@@ -378,6 +380,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -417,6 +420,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -461,6 +465,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -509,6 +514,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -558,6 +564,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -594,6 +601,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -641,6 +649,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -686,6 +695,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -721,6 +731,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -754,6 +765,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes openbox
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
@@ -788,6 +800,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes nitrogen
 	apt-get purge --yes obconf
@@ -851,6 +864,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -893,6 +907,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes nitrogen
@@ -930,6 +945,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes nitrogen
@@ -994,6 +1010,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes obconf
 	apt-get purge --yes openbox
@@ -1055,6 +1072,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes obconf
 	apt-get purge --yes openbox
@@ -1101,6 +1119,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
 	apt-get purge --yes obconf
@@ -1142,6 +1161,7 @@ then
 	apt-get purge --yes obmenu-generator
 	apt-get purge --yes sparky-obmenu
 	apt-get purge --yes obmenu
+	apt-get purge --yes jgmenu
 	apt-get purge --yes wm-logout
 	apt-get purge --yes tint2
 	apt-get purge --yes fbpanel
