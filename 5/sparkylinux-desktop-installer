@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2020/05/18
+# Last update 2020/05/18.1
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -1422,8 +1422,6 @@ then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel /TARGET/etc/
-	mkdir -p /TARGET/etc/skel/plank
-	cp /usr/share/sparky-desktop-data/openbox-noir/plank/* /TARGET/etc/skel/plank/
 fi
 
 # pekwm
