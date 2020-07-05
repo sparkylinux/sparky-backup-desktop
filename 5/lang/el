@@ -1,7 +1,7 @@
 # Greek localization file for Sparky Backup Desktop by jidan.
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2020/05/18 by pavroo 
+# Last update 2020/07/05 by pavroo 
 LOCAL1="Ο έλεγχος της σύνδεσης στο διαδίκτυο απέτυχε!"
 LOCAL2="ΔΕΝ μπορεί να γίνει εγκατάσταση από το διαδίκτυο κάποιου περιβάλλοντος εργασίας!"
 LOCAL3="Πραγματοποιείται έξοδος τώρα..."
@@ -50,3 +50,4 @@ LOCAL45="ΜΗΝ αλλάζετε περιηγητή"
 LOCAL46="Ο περιηγητής δεν θα αλλάξει."
 LOCAL47="(MinimalGUI) και ELinks (MinimalCLI) σαν προεπιλογή."
 LOCAL48="Modern and dark variant of Openbox"
+LOCAL49="Please select a web browser you would like to install."

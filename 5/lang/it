@@ -1,7 +1,7 @@
 # File di localizzazione italiano per Sparky Backup Desktop.
 # Copyright 2018 Carlo Troiani <troianicarlo@ŋmail.com> 2018/04/11
 # Rilasciato sotto licenza GNU GPL v2
-# Last update 2020/05/18 by pavroo
+# Last update 2020/07/05 by pavroo
 LOCAL1="Test della connessione Internet fallito!"
 LOCAL2="L'installazione on-line di un desktop aggiuntivo NON e' possibile!"
 LOCAL3="Sto uscendo adesso..."
@@ -50,3 +50,4 @@ LOCAL45="NON cambiare il browser web"
 LOCAL46="Il browser web NON sara' cambiato."
 LOCAL47="(MinimalGUI) ed ELinks (MinimalCLI) di default."
 LOCAL48="Modern and dark variant of Openbox"
+LOCAL49="Seleziona un browser Web che desideri installare"

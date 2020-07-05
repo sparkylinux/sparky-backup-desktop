@@ -1,7 +1,7 @@
 # Polish localization file for Sparky Backup Desktop.
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2020/05/18 by pavroo
+# Last update 2020/07/05 by pavroo
 LOCAL1="Połączenie z internetem nieudane!"
 LOCAL2="Instalacja on-line innego pulpitu NIE może być przeprowadzona!"
 LOCAL3="Kończenie..."
@@ -50,3 +50,4 @@ LOCAL45="NIE zmieniaj przeglądarki www"
 LOCAL46="Przeglądarka www NIE będzie zmieniona."
 LOCAL47="(MinimalGUI) oraz ELinks (MinimalCLI)."
 LOCAL48="Nowoczesny i ciemny wariant Openbox"
+LOCAL49="Wybierz przeglądarkę internetową, którą chcesz zainstalować"

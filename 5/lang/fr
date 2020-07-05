@@ -1,7 +1,7 @@
 ﻿# Fichier de localisation française de Sparky Backup Desktop.
 # Copyright 2018 hiver <hiver@club-internet.fr> 2018/09/27
 # Sous licence GNU GPL v2
-# Last update 2020/05/18 by pavroo
+# Last update 2020/07/05 by pavroo
 LOCAL1="Échec du test de la connexion Internet!"
 LOCAL2="l’installation en ligne de paquets additionnel ne peut être fait!"
 LOCAL3="Sortie à présent..."
@@ -50,3 +50,4 @@ LOCAL45="ne pas changer de navigateur"
 LOCAL46="le navigateur ne sera pas changé."
 LOCAL47="(MinimalGUI) et ELinks (MinimalCLI) par défaut."
 LOCAL48="Modern and dark variant of Openbox"
+LOCAL4="Veuillez sélectionner un navigateur Web que vous souhaitez installer"

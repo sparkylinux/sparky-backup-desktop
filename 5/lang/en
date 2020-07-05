@@ -1,7 +1,7 @@
 # English localization file for Sparky Backup Desktop.
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
-# Last update 2020/05/18 by pavroo
+# Last update 2020/07/05 by pavroo
 LOCAL1="Internet connection test failed!"
 LOCAL2="On-line instalation of an additional desktop can NOT be done!"
 LOCAL3="Exiting now..."
@@ -50,3 +50,4 @@ LOCAL45="Do NOT change web browser"
 LOCAL46="A web browser will be NOT changed."
 LOCAL47="(MinimalGUI) and ELinks (MinimalCLI) web browser as default."
 LOCAL48="Modern and dark variant of Openbox"
+LOCAL49="Please select a web browser you would like to install."

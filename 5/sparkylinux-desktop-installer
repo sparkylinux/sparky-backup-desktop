@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2020/05/18.1
+# Last update 2020/07/05
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -191,7 +191,7 @@ then
 
 	if [ "$GUI" = "" ]
 	then
-		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL27 $WEBNAME $LOCAL47\n\n$LOCAL28" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Otter "$LOCAL38" Palemoon "$LOCAL39" SeaMonkey "$LOCAL41" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
+		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL49" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Otter "$LOCAL38" Palemoon "$LOCAL39" SeaMonkey "$LOCAL41" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
 
 		if [ "$?" = "0" ]
 		then
@@ -209,7 +209,7 @@ then
 
 	else
 	
-GETWEBBROWSER=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"$LOCAL27 $WEBNAME $LOCAL47\n\n$LOCAL28" \
+GETWEBBROWSER=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"$LOCAL49" \
 Chromium "$LOCAL29" \
 Dillo "$LOCAL30" \
 Epiphany "$LOCAL32" \

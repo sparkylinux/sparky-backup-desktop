@@ -2,7 +2,7 @@
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Under the GNU GPL v2
 # Translated to Indonesian by les kompie
-# Last update 2020/05/18 by pavroo
+# Last update 2020/07/05 by pavroo
 LOCAL1="Uji koneksi internet gagal!"
 LOCAL2="Instalasi online desktop tambahan TIDAK BISA dilakukan!"
 LOCAL3="Sekarang keluar..."
@@ -51,3 +51,4 @@ LOCAL45="JANGAN ubah browser web"
 LOCAL46="Browser web TIDAK akan diubah."
 LOCAL47="(MinimalGUI) dan ELinks (MinimalCLI) sebagai default."
 LOCAL48="Modern and dark variant of Openbox"
+LOCAL49="Silakan pilih browser web yang ingin Anda instal"

@@ -1,7 +1,7 @@
 # Файл русской локализации для Sparky Backup Desktop.
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2018/03/26
 # Под лицензией GNU GPL v2
-# Last update 2020/05/18 by pavroo
+# Last update 2020/07/05 by pavroo
 LOCAL1="Тест подключения к интернету не пройден!"
 LOCAL2="Онлайн установка дополнительного рабочего стола НЕ МОЖЕТ быть сделана!"
 LOCAL3="Выйти сейчас..."
@@ -50,3 +50,4 @@ LOCAL45="НЕ изменять веб-браузер"
 LOCAL46="Веб-браузер НЕ будет изменён."
 LOCAL47="(MinimalGUI) и ELinks (MinimalCLI)."
 LOCAL48="Modern and dark variant of Openbox"
+LOCAL49="Пожалуйста, выберите веб-браузер, который вы хотите установить"
