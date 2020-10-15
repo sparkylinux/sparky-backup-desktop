@@ -16,3 +16,33 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Dependencies:
+---------------
+apt
+bash
+coreutils
+dialog
+grep
+iputils-ping
+rsync
+sed
+sparky-desktop-data
+sparky-backup-core (>= 20180729)
+sparky-xterm (>= 0.2.0)
+sparky-remsu
+wget
+
+Suggests:
+-------------
+yad
+
+Install:
+-------------
+su (or sudo) 
+./install.sh
+
+Uninstall:
+-------------
+su (or sudo)
+./install.sh uninstall
