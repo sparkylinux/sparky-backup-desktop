@@ -114,7 +114,7 @@ fi
 # choose your favorite desktop
 if [ "$GUI" = "" ]
 then
-	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" Lumina "$LOCAL16" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" Openbox "$LOCAL11" OpenboxNoir "$LOCAL48" PekWM "$LOCAL20" Webmin "$LOCAL22" UKUI "$LOCAL50" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
+	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" Lumina "$LOCAL16" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" Openbox "$LOCAL11" OpenboxNoir "$LOCAL48" PekWM "$LOCAL20" UKUI "$LOCAL50" Webmin "$LOCAL22" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
 
 	if [ "$?" = "0" ]
 	then
@@ -1128,21 +1128,6 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Webmin" ]
-then
-
-cat > /TARGET/tmp/desktop-install << FOO
-#!/bin/bash
-apt-get update
-if [ "$INSTALLWEBBROWSER" != "" ]
-then
-	apt-get install webmin $INSTALLWEBBROWSER
-else
-	apt-get install webmin
-fi
-apt-get install -f
-FOO
-
 elif [ "$GETDESKTOP" = "UKUI" ]
 then
 
@@ -1194,13 +1179,23 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get autoremove --yes
-	if [ "$TARGETUSER" != "" ]; then
-		if [ -f /usr/bin/gsettings ]; then
-			sudo -u $TARGETUSER dconf-launch gsettings set org.mate.background picture-filename /opt/artwork/sparky-desktop.png
-		fi
-	fi		
+	apt-get autoremove --yes	
 fi
+FOO
+
+elif [ "$GETDESKTOP" = "Webmin" ]
+then
+
+cat > /TARGET/tmp/desktop-install << FOO
+#!/bin/bash
+apt-get update
+if [ "$INSTALLWEBBROWSER" != "" ]
+then
+	apt-get install webmin $INSTALLWEBBROWSER
+else
+	apt-get install webmin
+fi
+apt-get install -f
 FOO
 
 elif [ "$GETDESKTOP" = "WMaker" ]
