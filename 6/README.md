@@ -37,6 +37,10 @@ Suggests:
 -------------
 yad
 
+Recommends:
+-------------
+libglib2.0-bin
+
 Install:
 -------------
 su (or sudo) 

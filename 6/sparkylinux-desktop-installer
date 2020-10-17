@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2020/07/15
+# Last update 2020/07/17
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -1146,6 +1146,7 @@ FOO
 elif [ "$GETDESKTOP" = "UKUI" ]
 then
 
+TARGETUSER=`cat /var/log/sparkylinux-installer.log | grep TARGETUSER= | cut -f2 -d"="`
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
 apt-get update
@@ -1194,6 +1195,11 @@ then
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
 	apt-get autoremove --yes
+	if [ "$TARGETUSER" != "" ]; then
+		if [ -f /usr/bin/gsettings ]; then
+			sudo -u $TARGETUSER dconf-launch gsettings set org.mate.background picture-filename /opt/artwork/sparky-desktop.png
+		fi
+	fi		
 fi
 FOO
 
