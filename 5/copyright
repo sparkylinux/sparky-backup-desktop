@@ -1,6 +1,6 @@
 Upstream Author(s): 
     Files: *
-    Copyright (C) 2016-2020 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
+    Copyright (C) 2016-2021 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
     License: GPL-2
 
 File: de
@@ -11,6 +11,10 @@ File: el
     Copyright (C) 2019 jidan
     License: GPL-2
 
+File: es
+    Copyright (C) 2021 Leonardo Muñoz
+    License: GPL-2
+    
 File: fr
     Copyright (C) 2018 Jean-Albert Caire
     License: GPL-2
