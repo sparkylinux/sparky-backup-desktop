@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2021/04/08 by pavroo
+# Last update 2021/06/12 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -404,7 +404,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -449,7 +449,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -500,7 +500,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -553,7 +553,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -638,7 +638,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -689,7 +689,7 @@ then
 	apt-get purge --yes lightdm
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 	dpkg-reconfigure gdm3
 fi
@@ -857,7 +857,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 	dpkg-reconfigure sddm
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
@@ -909,7 +909,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -948,7 +948,7 @@ then
 	apt-get purge --yes thunar-media-tags-plugin
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -1001,7 +1001,7 @@ then
 	if [ -f /usr/bin/nm-tray ]; then
 		apt purge --yes network-manager-gnome
 	fi
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 	sed -i -e 's/QT_QPA_PLATFORMTHEME=gtk2//g' /etc/environment
 fi
@@ -1056,7 +1056,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -1101,7 +1101,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
@@ -1238,7 +1238,7 @@ then
 	apt-get purge --yes thunar-volman
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes	
 fi
 FOO
@@ -1333,7 +1333,7 @@ then
 	apt-get purge --yes sparky-theme-root
 	apt-get purge --yes sparky-dashboard
 	apt-get purge --yes lxappearance
-	apt-get purge --yes doublecmd-gtk
+	apt-get purge --yes qtfm
 	apt-get autoremove --yes
 fi
 FOO
