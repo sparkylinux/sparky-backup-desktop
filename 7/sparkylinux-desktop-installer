@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2021/10/04 by pavroo
+# Last update 2022/07/05 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -178,16 +178,16 @@ then
 fi
 
 # choose your favorite web browser
-CHECKOTTER="`dpkg-query -l | grep firefox-esr`"
-CHECKEPIPHANY="`dpkg-query -l | grep epiphany-browser`"
+CHECKESR="`dpkg-query -l | grep firefox-esr`"
+CHECKLATEST="`dpkg-query -l | grep firefox-sparky`"
 #CHECKOTTER="`cat /lib/live/mount/medium/live/*package-list.txt | grep otter-browser`"
 #CHECKEPIPHANY="`cat /lib/live/mount/medium/live/*package-list.txt | grep epiphany-browser`"
-if [ "$CHECKOTTER" != "" ]; then
-	WEBNAME="Firefox"
+if [ "$CHECKESR" != "" ]; then
+	WEBNAME="Firefox ESR"
 	WEBPACK="firefox-esr"
-elif [ "$CHECKEPIPHANY" != "" ]; then
-	WEBNAME="Epiphany"
-	WEBPACK="epiphany-browser"
+elif [ "$CHECKLATEST" != "" ]; then
+	WEBNAME="Firefox Latest"
+	WEBPACK="firefox-sparky"
 fi
 
 if [ "$GETDESKTOP" != "Exit" ]
@@ -195,7 +195,7 @@ then
 
 	if [ "$GUI" = "" ]
 	then
-		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL49" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Otter "$LOCAL38" Palemoon "$LOCAL39" SeaMonkey "$LOCAL41" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
+		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL49" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" Firefox-Latest "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Otter "$LOCAL38" Palemoon "$LOCAL39" SeaMonkey "$LOCAL41" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
 
 		if [ "$?" = "0" ]
 		then
@@ -256,6 +256,10 @@ elif [ "$GETWEBBROWSER" = "Firefox-ESR" ]
 then
 	INSTALLWEBBROWSER="firefox-esr"
 
+elif [ "$GETWEBBROWSER" = "Firefox-Latest" ]
+then
+	INSTALLWEBBROWSER="firefox-sparky"
+	
 elif [ "$GETWEBBROWSER" = "IceCat" ]
 then
 	INSTALLWEBBROWSER="icecat"
