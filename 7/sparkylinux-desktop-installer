@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2022/07/05 by pavroo
+# Last update 2023/05/25-1 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -13,38 +13,9 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-# choose language
-if [ -f /tmp/sparky-advanced-installer ]; then
-	DEFLANG=`cat /tmp/sparky-advanced-installer`
-fi
-
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-backup-desktop"
-#if [ "$DEFLANG" = "Brazilian" ]; then
-#. $DEFLOCDIR/pt_BR
-#elif [ "$DEFLANG" = "German" ]; then
-#. $DEFLOCDIR/de
-#elif [ "$DEFLANG" = "Greek" ]; then
-#. $DEFLOCDIR/el
-#elif [ "$DEFLANG" = "French" ]; then
-#. $DEFLOCDIR/fr
-#elif [ "$DEFLANG" = "Hungarian" ]; then
-#. $DEFLOCDIR/hu
-#elif [ "$DEFLANG" = "Indonesian" ]; then
-#. $DEFLOCDIR/id_ID
-#elif [ "$DEFLANG" = "Italian" ]; then
-#. $DEFLOCDIR/it
-#elif [ "$DEFLANG" = "Polish" ]; then
-#. $DEFLOCDIR/pl
-#elif [ "$DEFLANG" = "Portuguese" ]; then
-# .$DEFLOCDIR/pt_PT
-#elif [ "$DEFLANG" = "Russian" ]; then
-#. $DEFLOCDIR/ru
-#elif [ "$DEFLANG" = "Spanish" ]; then
-#. $DEFLOCDIR/es
-#else
 . $DEFLOCDIR/en
-#fi
 
 # text mode only
 DIALOG="`which dialog`"
@@ -59,129 +30,64 @@ YESNO="--yesno "
 MSGBOX="--msgbox "
 TITLETEXT="Sparky (Advanced) Installer"
 
-#if [ -f /usr/bin/sparky-xterm ];then
-#	SPARKYXTERM="/usr/bin/sparky-xterm"
-#elif [ -f /usr/bin/sparky-terminal ];then
-#	SPARKYXTERM="/usr/bin/sparky-terminal -e"
-#else
-#	echo "sparky-xterm is missing... Exiting..."
-#	exit 1
-#fi
-
-#SPARKYVERCHECK6="`cat /etc/os-release | grep Tolo`"
-#SPARKYVERCHECK5="`cat /etc/os-release | grep Nibiru`"
-#SPARKYVERCHECK4="`cat /etc/os-release | grep Tyche`"
-
-#if [ "$1" = "gui" -o "$2" = "gui" ]
-#then
-#	GUI="$DISPLAY"
-#fi
-#
-#if [ "$GUI" != "" ]
-#then
-#
-#	testyad=`which yad`
-#
-#	if [ "$testyad" != "" ]
-#	then
-#		DIALOGMENU="`which yad` --window-icon=/usr/share/icons/sparky/sparkybackupsys/sparky48.png --width=600 --height=400 --fixed --center"
-#		DIALOG1="`which yad` --window-icon=/usr/share/icons/sparky/sparkybackupsys/sparky48.png --fixed --center"
-#		TITLE="--always-print-result --dialog-sep --image=/usr/share/icons/sparky/sparkybackupsys/sparky48.png --title="
-#		TEXT="--text="
-#		ENTRY="--entry "
-#		ENTRYTEXT="--entry-text "
-#		MENU="--list --column=Pick --column=Info"
-#		YESNO=" --button=Yes:0 --button=No:1 "
-#		MSGBOX=" --button=Ok:0 "
-#		TITLETEXT="Sparky (Advanced) Installer"
-#	fi
-#
-#fi
-
 # checking connection
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
 
-if [ "$PINGTEST" = "" ]
-then
-	#if [ "$GUI" = "" ]
-	#then
+if [ "$PINGTEST" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL1\n$LOCAL2\n\n$LOCAL3"
-	#else
-	#	$DIALOG1 $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL1\n$LOCAL2\n\n$LOCAL3"
-	#fi
-exit 1
-
+	exit 1
+else
+	mainmenu
 fi
 
+mainmenu () {
 # choose your favorite desktop
-if [ "$GUI" = "" ]
-then
-	$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT awesome "$LOCAL5" bspwm "$LOCAL6" Budgie "$LOCAL7" CDE "$LOCAL8" Cinnamon "$LOCAL9" Enlightenment "$LOCAL10" Fluxbox "$LOCAL11" GNOME-FL "$LOCAL12" GNOME-SH "$LOCAL13" i3 "$LOCAL14" IceWM "$LOCAL11" JWM "$LOCAL11" KDE "$LOCAL15" Lumina "$LOCAL16" LXDE "$LOCAL17" LXQt "$LOCAL18" MATE "$LOCAL19" NsCDE "Not so $LOCAL8" Openbox "$LOCAL11" OpenboxNoir "$LOCAL48" PekWM "$LOCAL20" Sway "$LOCAL51" UKUI "$LOCAL50" Webmin "$LOCAL22" WMaker "$LOCAL23" Xfce "$LOCAL24" Exit "$LOCAL25" 2>/tmp/choice.$$
+$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL4" $HEIGHT $WIDTH $MENUHEIGHT \
+awesome "$LOCAL5" \
+bspwm "$LOCAL6" \
+budgie "$LOCAL7" \
+cde "$LOCAL8" \
+cinnamon "$LOCAL9" \
+enlightenment "$LOCAL10" \
+fluxbox "$LOCAL11" \
+gnome-flashback "$LOCAL12" \
+gnome-shell "$LOCAL13" \
+i3 "$LOCAL14" \
+icewm "$LOCAL11" \
+jwm "$LOCAL11" \
+kde "$LOCAL15" \
+lumina "$LOCAL16" \
+lxde "$LOCAL17" \
+lxqt "$LOCAL18" \
+mate "$LOCAL19" \
+nscde "Not so $LOCAL8" \
+openbox "$LOCAL11" \
+openbox-noir "$LOCAL48" \
+pekwm "$LOCAL20" \
+sway "$LOCAL51" \
+ukui "$LOCAL50" \
+webmin "$LOCAL22" \
+wmaker "$LOCAL23" \
+xfce "$LOCAL24" \
+Exit "$LOCAL25" 2>/tmp/choice.$$
 
-	if [ "$?" = "0" ]
-	then
-		GETDESKTOP=`cat /tmp/choice.$$`
-	else
-		GETDESKTOP="Exit"
-	fi
+if [ "$?" = "0" ]; then
+	GETDESKTOP=`cat /tmp/choice.$$`
+else
+	GETDESKTOP="Exit"
+fi
 
-	rm /tmp/choice.$$
+rm /tmp/choice.$$
 
-	if [ "$GETDESKTOP" = "Exit" ]
-	then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL26" $HEIGHT $WIDTH
-		echo "NEWDESKTOP=no new desktop installed" >> /var/log/sparkylinux-installer.log
-		exit 1
-	fi
-
-#else
-#
-#GETDESKTOP=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"$LOCAL4" \
-#awesome "$LOCAL5" \
-#bspwm "$LOCAL6" \
-#Budgie "$LOCAL7" \
-#CDE "$LOCAL8" \
-#Cinnamon "$LOCAL9" \
-#Enlightenment "$LOCAL10" \
-#Fluxbox "$LOCAL11" \
-#GNOME-FL "$LOCAL12" \
-#GNOME-SH "$LOCAL13" \
-#i3 "$LOCAL14" \
-#IceWM "$LOCAL11" \
-#JWM "$LOCAL11" \
-#KDE "$LOCAL15" \
-#Lumina "$LOCAL16" \
-#LXDE "$LOCAL17" \
-#LXQt "$LOCAL18" \
-#MATE "$LOCAL19" \
-#NsCDE "Not so $LOCAL8" \
-#Openbox "$LOCAL11" \
-#OpenboxNoir "$LOCAL48" \
-#PekWM "$LOCAL20" \
-#UKUI "$LOCAL50" \
-#WMaker "$LOCAL23" \
-#Xfce "$LOCAL24" \
-#Exit "$LOCAL25"`
-#
-#	if [ "$?" = "0" ]
-#	then
-#		GETDESKTOP=`echo $GETDESKTOP | cut -d "|" -f 1`
-#	fi
-#
-#	if [ "$GETDESKTOP" = "Exit" ]
-#	then
-#		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL26"
-#		echo "NEWDESKTOP=no new desktop installed" >> /var/log/sparkylinux-installer.log
-#		exit 1
-#	fi
-#
+if [ "$GETDESKTOP" = "Exit" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL26" $HEIGHT $WIDTH
+	echo "NEWDESKTOP=no new desktop installed" >> /var/log/sparkylinux-installer.log
+	exit 1
 fi
 
 # choose your favorite web browser
 CHECKESR="`dpkg-query -l | grep firefox-esr`"
 CHECKLATEST="`dpkg-query -l | grep firefox-sparky`"
-#CHECKOTTER="`cat /lib/live/mount/medium/live/*package-list.txt | grep otter-browser`"
-#CHECKEPIPHANY="`cat /lib/live/mount/medium/live/*package-list.txt | grep epiphany-browser`"
 if [ "$CHECKESR" != "" ]; then
 	WEBNAME="Firefox ESR"
 	WEBPACK="firefox-esr"
@@ -190,116 +96,95 @@ elif [ "$CHECKLATEST" != "" ]; then
 	WEBPACK="firefox-sparky"
 fi
 
-if [ "$GETDESKTOP" != "Exit" ]
-then
+if [ "$GETDESKTOP" != "Exit" ]; then
+$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL49" $HEIGHT $WIDTH $MENUHEIGHT \
+Chromium "$LOCAL29" \
+Dillo "$LOCAL30" \
+Epiphany "$LOCAL32" \
+Firefox-ESR "$LOCAL33" \
+Firefox-Latest "$LOCAL33" \
+IceCat "$LOCAL34" \
+Konqueror "$LOCAL35" \
+Otter "$LOCAL38" \
+Palemoon "$LOCAL39" \
+SeaMonkey "$LOCAL41" \
+TOR_Browser "$LOCAL43" \
+Vivaldi "$LOCAL44" \
+Exit "$LOCAL45" 2>/tmp/choice.$$
 
-	if [ "$GUI" = "" ]
-	then
-		$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$LOCAL49" $HEIGHT $WIDTH $MENUHEIGHT Chromium "$LOCAL29" Dillo "$LOCAL30" Epiphany "$LOCAL32" Firefox-ESR "$LOCAL33" Firefox-Latest "$LOCAL33" IceCat "$LOCAL34" Konqueror "$LOCAL35" Otter "$LOCAL38" Palemoon "$LOCAL39" SeaMonkey "$LOCAL41" TOR_Browser "$LOCAL43" Vivaldi "$LOCAL44" Exit "$LOCAL45" 2>/tmp/choice.$$
-
-		if [ "$?" = "0" ]
-		then
-			GETWEBBROWSER=`cat /tmp/choice.$$`
-		else
-			GETWEBBROWSER="Exit"
-		fi
-
-		rm /tmp/choice.$$
-
-		if [ "$GETWEBBROWSER" = "Exit" ]
-		then
-			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL46" $HEIGHT $WIDTH
-		fi
-
-#	else
-#	
-#GETWEBBROWSER=`$DIALOGMENU $TITLE"$TITLETEXT" $MSGBOX $MENU $TEXT"$LOCAL49" \
-#Chromium "$LOCAL29" \
-#Dillo "$LOCAL30" \
-#Epiphany "$LOCAL32" \
-#Firefox-ESR "$LOCAL33" \
-#IceCat "$LOCAL34" \
-#Konqueror "$LOCAL35" \
-#Otter "$LOCAL38" \
-#Palemoon "$LOCAL39" \
-#SeaMonkey "$LOCAL41" \
-#TOR_Browser "$LOCAL43" \
-#Vivaldi "$LOCAL44" \
-#Exit "$LOCAL45"`
-#
-#		if [ "$?" = "0" ]
-#		then
-#			GETWEBBROWSER=`echo $GETWEBBROWSER | cut -d "|" -f 1`
-#		fi
-#
-#		if [ "$GETWEBBROWSER" = "Exit" ]
-#		then
-#			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL46"
-#		fi
-#
+	if [ "$?" = "0" ]; 		then
+		GETWEBBROWSER=`cat /tmp/choice.$$`
+	else
+		GETWEBBROWSER="Exit"
 	fi
+
+	rm /tmp/choice.$$
+
+	if [ "$GETWEBBROWSER" = "Exit" ]; then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL46" $HEIGHT $WIDTH
+	fi
+
 fi
 
-if [ "$GETWEBBROWSER" = "Dillo" ]
-then
+if [ "$GETWEBBROWSER" = "Dillo" ]; then
 	INSTALLWEBBROWSER="dillo"
-
-elif [ "$GETWEBBROWSER" = "Chromium" ]
-then
+elif [ "$GETWEBBROWSER" = "Chromium" ]; then
 	INSTALLWEBBROWSER="chromium"
-
-elif [ "$GETWEBBROWSER" = "Epiphany" ]
-then
+elif [ "$GETWEBBROWSER" = "Epiphany" ]; then
 	INSTALLWEBBROWSER="epiphany-browser"
-
-elif [ "$GETWEBBROWSER" = "Firefox-ESR" ]
-then
+elif [ "$GETWEBBROWSER" = "Firefox-ESR" ]; then
 	INSTALLWEBBROWSER="firefox-esr"
-
-elif [ "$GETWEBBROWSER" = "Firefox-Latest" ]
-then
+elif [ "$GETWEBBROWSER" = "Firefox-Latest" ]; then
 	INSTALLWEBBROWSER="firefox-sparky"
-	
-elif [ "$GETWEBBROWSER" = "IceCat" ]
-then
+elif [ "$GETWEBBROWSER" = "IceCat" ]; then
 	INSTALLWEBBROWSER="icecat"
-
-elif [ "$GETWEBBROWSER" = "Konqueror" ]
-then
+elif [ "$GETWEBBROWSER" = "Konqueror" ]; then
 	INSTALLWEBBROWSER="konqueror"
-
-elif [ "$GETWEBBROWSER" = "Otter" ]
-then
+elif [ "$GETWEBBROWSER" = "Otter" ]; then
 	INSTALLWEBBROWSER="otter-browser"
-
-elif [ "$GETWEBBROWSER" = "Palemoon" ]
-then
+elif [ "$GETWEBBROWSER" = "Palemoon" ]; then
 	INSTALLWEBBROWSER="palemoon"
-
-elif [ "$GETWEBBROWSER" = "SeaMonkey" ]
-then
+elif [ "$GETWEBBROWSER" = "SeaMonkey" ]; then
 	INSTALLWEBBROWSER="seamonkey"
-
-elif [ "$GETWEBBROWSER" = "TOR_Browser" ]
-then
+elif [ "$GETWEBBROWSER" = "TOR_Browser" ]; then
 	INSTALLWEBBROWSER="tor-browser"
-
-elif [ "$GETWEBBROWSER" = "Vivaldi" ]
-then
+elif [ "$GETWEBBROWSER" = "Vivaldi" ]; then
 	INSTALLWEBBROWSER="vivaldi-stable"
-
-elif [ "$GETWEBBROWSER" = "Exit" ]
-then
+elif [ "$GETWEBBROWSER" = "Exit" ]; then
 	INSTALLWEBBROWSER=""
-
 else
-	INSTALLWEBBROWSER=""
+	INSTALLWEBBROWSER="firefox-esr"
+fi
+onemenu
+}
 
+onemenu () {
+# confirm desktop and web browser installation
+$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"Are you shure you want to install $GETDESKTOP desktop and $INSTALLWEBBROWSER web browser?" $HEIGHT $WIDTH $MENUHEIGHT \
+YES "Yes, install choosen applications" \
+NO "No, I want to change my settings" \
+Exit "$LOCAL25" 2>/tmp/choice.$$
+
+if [ "$?" = "0" ]; then
+	CHECKDESKTOP=`cat /tmp/choice.$$`
+else
+	CHECKDESKTOP="Exit"
 fi
 
+rm /tmp/choice.$$
+
+if [ "$CHECKDESKTOP" = "YES" ]; then
+	installdesktopmenu
+elif [ "$CHECKDESKTOP" = "NO" ]; then
+	mainmenu
+else
+	exit 0
+fi
+}
+
+installdesktopmenu () {
 # install your desktop
-if [ "$GETDESKTOP" = "awesome" ]
-then
+if [ "$GETDESKTOP" = "awesome" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -332,8 +217,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "bspwm" ]
-then
+elif [ "$GETDESKTOP" = "bspwm" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -369,8 +253,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Budgie" ]
-then
+elif [ "$GETDESKTOP" = "budgie" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -414,8 +297,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "CDE" ]
-then
+elif [ "$GETDESKTOP" = "cde" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -460,8 +342,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Cinnamon" ]
-then
+elif [ "$GETDESKTOP" = "cinnamon" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -512,8 +393,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Enlightenment" ]
-then
+elif [ "$GETDESKTOP" = "enlightenment" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -566,8 +446,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Fluxbox" ]
-then
+elif [ "$GETDESKTOP" = "fluxbox" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -601,8 +480,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "GNOME-FL" ]
-then
+elif [ "$GETDESKTOP" = "gnome-flashback" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -652,8 +530,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "GNOME-SH" ]
-then
+elif [ "$GETDESKTOP" = "gnome-shell" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -705,8 +582,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "i3" ]
-then
+elif [ "$GETDESKTOP" = "i3" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -742,8 +618,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "IceWM" ]
-then
+elif [ "$GETDESKTOP" = "icewm" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -776,8 +651,7 @@ then
 fi
 FOO
 	
-elif [ "$GETDESKTOP" = "JWM" ]
-then
+elif [ "$GETDESKTOP" = "jwm" ]; then
 	
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -809,8 +683,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "KDE" ]
-then
+elif [ "$GETDESKTOP" = "kde" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -875,8 +748,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Lumina" ]
-then
+elif [ "$GETDESKTOP" = "lumina" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -926,8 +798,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "LXDE" ]
-then
+elif [ "$GETDESKTOP" = "lxde" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -965,8 +836,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "LXQt" ]
-then
+elif [ "$GETDESKTOP" = "lxqt" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1020,8 +890,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "MATE" ]
-then
+elif [ "$GETDESKTOP" = "mate" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1075,8 +944,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "NsCDE" ]
-then
+elif [ "$GETDESKTOP" = "nscde" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1121,8 +989,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Openbox" ]
-then
+elif [ "$GETDESKTOP" = "openbox" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1143,8 +1010,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "OpenboxNoir" ]
-then
+elif [ "$GETDESKTOP" = "openbox-noir" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1169,8 +1035,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "PekWM" ]
-then
+elif [ "$GETDESKTOP" = "pekwm" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1203,8 +1068,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Sway" ]
-then
+elif [ "$GETDESKTOP" = "sway" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1240,8 +1104,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "UKUI" ]
-then
+elif [ "$GETDESKTOP" = "ukui" ]; then
 
 TARGETUSER=`cat /var/log/sparkylinux-installer.log | grep TARGETUSER= | cut -f2 -d"="`
 cat > /TARGET/tmp/desktop-install << FOO
@@ -1297,8 +1160,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Webmin" ]
-then
+elif [ "$GETDESKTOP" = "webmin" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1312,8 +1174,7 @@ fi
 apt-get install -f
 FOO
 
-elif [ "$GETDESKTOP" = "WMaker" ]
-then
+elif [ "$GETDESKTOP" = "wmaker" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1347,8 +1208,7 @@ then
 fi
 FOO
 
-elif [ "$GETDESKTOP" = "Xfce" ]
-then
+elif [ "$GETDESKTOP" = "xfce" ]; then
 
 cat > /TARGET/tmp/desktop-install << FOO
 #!/bin/bash
@@ -1396,22 +1256,13 @@ FOO
 fi
 
 chmod +x /TARGET/tmp/desktop-install
-
-if [ "$GUI" = "" ]
-then
-	chroot /TARGET /tmp/desktop-install
-	sleep 1
-else
-	$SPARKYXTERM "chroot /TARGET /tmp/desktop-install"
-	sleep 1
-fi
+chroot /TARGET /tmp/desktop-install
+sleep 1
 
 rm -f /TARGET/tmp/desktop-install
 
-if [ "$INSTALLWEBBROWSER" != "" ]
-then
-	if [ "$INSTALLWEBBROWSER" != "$WEBPACK" ]
-	then
+if [ "$INSTALLWEBBROWSER" != "" ]; then
+	if [ "$INSTALLWEBBROWSER" != "$WEBPACK" ]; 	then
 
 cat > /TARGET/tmp/remove-webbrowser << FOO
 #!/bin/bash
@@ -1421,58 +1272,77 @@ FOO
 
 	chmod +x /TARGET/tmp/remove-webbrowser
 
-	if [ "$GUI" = "" ]
-	then
-		echo "Removing $WEBNAME Browser... Please wait..."
-		chroot /TARGET /tmp/remove-webbrowser
-		sleep 1
-	else
-		$SPARKYXTERM "chroot /TARGET /tmp/remove-webbrowser"
-		sleep 1
-	fi
+	echo "Removing $WEBNAME Browser... Please wait..."
+	chroot /TARGET /tmp/remove-webbrowser
+	sleep 1
 
 	rm -f /TARGET/tmp/remove-webbrowser
 
 	fi
 fi
 
+twomenu
+}
+
+twomenu () {
+# check is desktop and web browser installed
+if [ -f /TARGET/usr/share/doc/sparky-desktop-$GETDESKTOP/copyright ]; then
+	setdesktopmenu
+else
+$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$GETDESKTOP desktop and $INSTALLWEBBROWSER web browser failed.\nDo you want to try again with different settings?" $HEIGHT $WIDTH $MENUHEIGHT \
+YES "Yes, try again" \
+NO "No, just quit" \
+Exit "$LOCAL25" 2>/tmp/choice.$$
+
+	if [ "$?" = "0" ]; then
+		CHECKDESKTOP=`cat /tmp/choice.$$`
+	else
+		CHECKDESKTOP="Exit"
+	fi
+
+	rm /tmp/choice.$$
+
+	if [ "$CHECKDESKTOP" = "YES" ]; then
+		mainmenu
+	else
+		exit 0
+	fi
+fi
+}
+
+setdesktopmenu () {
 ### copy home settings for the new user ###
 
 # awesome
-if [ -f /TARGET/usr/share/doc/sparky-desktop-awesome/copyright ] && [ -d /usr/share/sparky-desktop-data/awesome/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-awesome/copyright ] && [ -d /usr/share/sparky-desktop-data/awesome/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/awesome/skel /TARGET/etc/
 fi
 
 # bspwm
-if [ -f /TARGET/usr/share/doc/sparky-desktop-bspwm/copyright ] && [ -d /usr/share/sparky-desktop-data/bspwm/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-bspwm/copyright ] && [ -d /usr/share/sparky-desktop-data/bspwm/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/bspwm/skel /TARGET/etc/
 fi
 
 # budgie
-if [ -f /TARGET/usr/share/doc/sparky-desktop-budgie/copyright ] && [ -d /usr/share/sparky-desktop-data/budgie/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-budgie/copyright ] && [ -d /usr/share/sparky-desktop-data/budgie/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/budgie/skel /TARGET/etc/
 fi
 
 # cinnamon
-if [ -f /TARGET/usr/share/doc/sparky-desktop-cinnamon/copyright ] && [ -d /usr/share/sparky-desktop-data/cinnamon/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-cinnamon/copyright ] && [ -d /usr/share/sparky-desktop-data/cinnamon/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/cinnamon/skel /TARGET/etc/
 fi
 
 # enlightenment
-if [ -f /TARGET/usr/share/doc/sparky-desktop-enlightenment/copyright ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-enlightenment/copyright ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/enlightenment/skel /TARGET/etc/
@@ -1480,24 +1350,21 @@ then
 fi
 
 # fluxbox
-if [ -f /TARGET/usr/share/doc/sparky-desktop-fluxbox/copyright ] && [ -d /usr/share/sparky-desktop-data/fluxbox/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-fluxbox/copyright ] && [ -d /usr/share/sparky-desktop-data/fluxbox/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/fluxbox/skel /TARGET/etc/
 fi
 
 # gnome-flashback
-if [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-flashback/copyright ] && [ -d /usr/share/sparky-desktop-data/gnome-fl/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-flashback/copyright ] && [ -d /usr/share/sparky-desktop-data/gnome-fl/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/gnome-fl/skel /TARGET/etc/
 fi
 
 # gnome-shell
-if [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-shell/copyright ] && [ -d /usr/share/sparky-desktop-data/gnome-sh/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-shell/copyright ] && [ -d /usr/share/sparky-desktop-data/gnome-sh/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel /TARGET/etc/
@@ -1520,16 +1387,14 @@ then
 fi
 
 # i3
-if [ -f /TARGET/usr/share/doc/sparky-desktop-i3/copyright ] && [ -d /usr/share/sparky-desktop-data/i3/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-i3/copyright ] && [ -d /usr/share/sparky-desktop-data/i3/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/i3/skel /TARGET/etc/
 fi
 
 # icewm
-if [ -f /TARGET/usr/share/doc/sparky-desktop-icewm/copyright ] && [ -d /usr/share/sparky-desktop-data/icewm/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-icewm/copyright ] && [ -d /usr/share/sparky-desktop-data/icewm/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/icewm/skel /TARGET/etc/
@@ -1537,16 +1402,14 @@ fi
 
 
 # jwm
-if [ -f /TARGET/usr/share/doc/sparky-desktop-jwm/copyright ] && [ -d /usr/share/sparky-desktop-data/jwm/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-jwm/copyright ] && [ -d /usr/share/sparky-desktop-data/jwm/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/jwm/skel /TARGET/etc/
 fi
 
 # kde
-if [ -f /TARGET/usr/share/doc/sparky-desktop-kde/copyright ] && [ -d /usr/share/sparky-desktop-data/kde/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-kde/copyright ] && [ -d /usr/share/sparky-desktop-data/kde/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/kde/skel /TARGET/etc/
@@ -1566,40 +1429,35 @@ then
 fi
 
 # lumina
-if [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/lumina/skel /TARGET/etc/
 fi
 
 # lxde
-if [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ] && [ -d /usr/share/sparky-desktop-data/lxde/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ] && [ -d /usr/share/sparky-desktop-data/lxde/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/lxde/skel /TARGET/etc/
 fi
 
 # lxqt
-if [ -f /TARGET/usr/share/doc/sparky-desktop-lxqt/copyright ] && [ -d /usr/share/sparky-desktop-data/lxqt/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-lxqt/copyright ] && [ -d /usr/share/sparky-desktop-data/lxqt/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/lxqt/skel /TARGET/etc/
 fi
 
 # mate
-if [ -f /TARGET/usr/share/doc/sparky-desktop-mate/copyright ] && [ -d /usr/share/sparky-desktop-data/mate/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-mate/copyright ] && [ -d /usr/share/sparky-desktop-data/mate/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/mate/skel /TARGET/etc/
 fi
 
 # openbox
-if [ -f /TARGET/usr/share/doc/sparky-desktop-openbox/copyright ] && [ -d /usr/share/sparky-desktop-data/openbox/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-openbox/copyright ] && [ -d /usr/share/sparky-desktop-data/openbox/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/openbox/skel /TARGET/etc/
@@ -1607,40 +1465,35 @@ then
 fi
 
 # openbox-noir
-if [ -f /TARGET/usr/share/doc/sparky-desktop-openbox-noir/copyright ] && [ -d /usr/share/sparky-desktop-data/openbox-noir/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-openbox-noir/copyright ] && [ -d /usr/share/sparky-desktop-data/openbox-noir/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel /TARGET/etc/
 fi
 
 # pekwm
-if [ -f /TARGET/usr/share/doc/sparky-desktop-pekwm/copyright ] && [ -d /usr/share/sparky-desktop-data/pekwm/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-pekwm/copyright ] && [ -d /usr/share/sparky-desktop-data/pekwm/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/pekwm/skel /TARGET/etc/
 fi
 
 # sway
-if [ -f /TARGET/usr/share/doc/sparky-desktop-sway/copyright ] && [ -d /usr/share/sparky-desktop-data/sway/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-sway/copyright ] && [ -d /usr/share/sparky-desktop-data/sway/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/sway/skel /TARGET/etc/
 fi
 
 # wmaker
-if [ -f /TARGET/usr/share/doc/sparky-desktop-wmaker/copyright ] && [ -d /usr/share/sparky-desktop-data/wmaker/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-wmaker/copyright ] && [ -d /usr/share/sparky-desktop-data/wmaker/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/wmaker/skel /TARGET/etc/
 fi
 
 # xfce
-if [ -f /TARGET/usr/share/doc/sparky-desktop-xfce/copyright ] && [ -d /usr/share/sparky-desktop-data/xfce/skel ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-xfce/copyright ] && [ -d /usr/share/sparky-desktop-data/xfce/skel ]; then
 	rm -rf /TARGET/etc/skel
 	mkdir -p /TARGET/etc/skel
 	rsync -a /usr/share/sparky-desktop-data/xfce/skel /TARGET/etc/
@@ -1650,8 +1503,7 @@ fi
 echo "Desktop Installer additional log section" >> /var/log/sparkylinux-installer.log
 echo "==============================================================" >> /var/log/sparkylinux-installer.log
 
-if [ "$PINGTEST" = "" ]
-then
+if [ "$PINGTEST" = "" ]; then
 	echo "PING TEST=Internet connection not active" >> /var/log/sparkylinux-installer.log
 else
 	echo "PING TEST=Internet connection OK" >> /var/log/sparkylinux-installer.log
@@ -1660,86 +1512,63 @@ fi
 echo "NEW DESKTOP=$GETDESKTOP" >> /var/log/sparkylinux-installer.log
 echo "NEW WEB BROWSER=$GETWEBBROWSER" >> /var/log/sparkylinux-installer.log
 
-if [ -f /TARGET/usr/share/doc/sparky-desktop-awesome/copyright ]
-then
+if [ -f /TARGET/usr/share/doc/sparky-desktop-awesome/copyright ]; then
 	echo "NEWDESKTOP=awesome installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-bspwm/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-bspwm/copyright ]; then
 	echo "NEWDESKTOP=bspwm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-budgie/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-budgie/copyright ]; then
 	echo "NEWDESKTOP=budgie installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-cde/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-cde/copyright ]; then
 	echo "NEWDESKTOP=cde installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-cinnamon/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-cinnamon/copyright ]; then
 	echo "NEWDESKTOP=cinnamon installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-enlightenment/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-enlightenment/copyright ]; then
 	echo "NEWDESKTOP=enlightenment installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-fluxbox/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-fluxbox/copyright ]; then
 	echo "NEWDESKTOP=fluxbox installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-flashback/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-gnome-flashback/copyright ]; then
 	echo "NEWDESKTOP=gnome flashback installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-gnomr-shell/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-gnomr-shell/copyright ]; then
 	echo "NEWDESKTOP=gnome shell installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-i3/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-i3/copyright ]; then
 	echo "NEWDESKTOP=i3 installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-icewm/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-icewm/copyright ]; then
 	echo "NEWDESKTOP=icewm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-jwm/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-jwm/copyright ]; then
 	echo "NEWDESKTOP=jwm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-kde/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-kde/copyright ]; then
 	echo "NEWDESKTOP=kde installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-lumina/copyright ]; then
 	echo "NEWDESKTOP=lumina installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-lxde/copyright ]; then
 	echo "NEWDESKTOP=lxde installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-lxqt/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-lxqt/copyright ]; then
 	echo "NEWDESKTOP=lxqt installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-mate/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-mate/copyright ]; then
 	echo "NEWDESKTOP=mate installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-nscde/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-nscde/copyright ]; then
 	echo "NEWDESKTOP=nscde installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-openbox/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-openbox/copyright ]; then
 	echo "NEWDESKTOP=openbox installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-openbox-noir/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-openbox-noir/copyright ]; then
 	echo "NEWDESKTOP=openbox-noir installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-pekwm/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-pekwm/copyright ]; then
 	echo "NEWDESKTOP=pekwm installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-sway/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-sway/copyright ]; then
 	echo "NEWDESKTOP=sway installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-ukui/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-ukui/copyright ]; then
 	echo "NEWDESKTOP=ukui installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -d /TARGET/usr/share/doc/webmin ]
-then
+elif [ -d /TARGET/usr/share/doc/webmin ]; then
 	echo "NEWDESKTOP=webmin installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-wmaker/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-wmaker/copyright ]; then
 	echo "NEWDESKTOP=wmaker installed ok" >> /var/log/sparkylinux-installer.log
-elif [ -f /TARGET/usr/share/doc/sparky-desktop-xfce/copyright ]
-then
+elif [ -f /TARGET/usr/share/doc/sparky-desktop-xfce/copyright ]; then
 	echo "NEWDESKTOP=xfce installed ok" >> /var/log/sparkylinux-installer.log
 else
 	echo "NEWDESKTOP=no desktop installed" >> /var/log/sparkylinux-installer.log
 fi
+}
 
 echo "==============================================================" >> /var/log/sparkylinux-installer.log
+
+mainmenu
