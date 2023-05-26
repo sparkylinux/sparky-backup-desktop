@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2023/05/25-1 by pavroo
+# Last update 2023/05/26 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -1289,7 +1289,7 @@ twomenu () {
 if [ -f /TARGET/usr/share/doc/sparky-desktop-$GETDESKTOP/copyright ]; then
 	setdesktopmenu
 else
-$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$GETDESKTOP desktop and $INSTALLWEBBROWSER web browser failed.\nDo you want to try again with different settings?" $HEIGHT $WIDTH $MENUHEIGHT \
+$DIALOG $TITLE"$TITLETEXT" $MENU $TEXT"$GETDESKTOP desktop and $INSTALLWEBBROWSER web browser installation failed.\nDo you want to try again with different settings?" $HEIGHT $WIDTH $MENUHEIGHT \
 YES "Yes, try again" \
 NO "No, just quit" \
 Exit "$LOCAL25" 2>/tmp/choice.$$

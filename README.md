@@ -2,7 +2,7 @@ Sparky Backup Desktop
 
 This provides an installation script of varoius desktops, for the Sparky Advanced Installer.
 
-Copyright (C) 2016-2022 Paweł Pijanowski
+Copyright (C) 2016-2023 Paweł Pijanowski
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
