@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2023/05/26 by pavroo
+# Last update 2024/03/29 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -112,7 +112,7 @@ TOR_Browser "$LOCAL43" \
 Vivaldi "$LOCAL44" \
 Exit "$LOCAL45" 2>/tmp/choice.$$
 
-	if [ "$?" = "0" ]; 		then
+	if [ "$?" = "0" ]; then
 		GETWEBBROWSER=`cat /tmp/choice.$$`
 	else
 		GETWEBBROWSER="Exit"
@@ -843,9 +843,9 @@ cat > /TARGET/tmp/desktop-install << FOO
 apt-get update
 if [ "$INSTALLWEBBROWSER" != "" ]
 then
-	apt-get install sparky-desktop-lxqt $INSTALLWEBBROWSER
+	apt-get install --no-install-recommends sparky-desktop-lxqt $INSTALLWEBBROWSER
 else
-	apt-get install sparky-desktop-lxqt
+	apt-get install --no-install-recommends sparky-desktop-lxqt
 fi
 apt-get install -f
 if [ -f /usr/bin/startlxqt ]
