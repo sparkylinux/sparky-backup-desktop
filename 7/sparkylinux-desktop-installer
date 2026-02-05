@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2025/04/08 by pavroo
+# Last update 2026/01/30 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -87,13 +87,13 @@ fi
 
 # choose your favorite web browser
 CHECKESR="`dpkg-query -l | grep firefox-esr`"
-CHECKLATEST="`dpkg-query -l | grep firefox-sparky`"
+CHECKLATEST="`dpkg-query -l | grep firefox-latest`"
 if [ "$CHECKESR" != "" ]; then
 	WEBNAME="Firefox ESR"
 	WEBPACK="firefox-esr"
 elif [ "$CHECKLATEST" != "" ]; then
 	WEBNAME="Firefox Latest"
-	WEBPACK="firefox-sparky"
+	WEBPACK="firefox-latest"
 fi
 
 if [ "$GETDESKTOP" != "Exit" ]; then
@@ -135,7 +135,7 @@ elif [ "$GETWEBBROWSER" = "Epiphany" ]; then
 elif [ "$GETWEBBROWSER" = "Firefox-ESR" ]; then
 	INSTALLWEBBROWSER="firefox-esr"
 elif [ "$GETWEBBROWSER" = "Firefox-Latest" ]; then
-	INSTALLWEBBROWSER="firefox-sparky"
+	INSTALLWEBBROWSER="firefox-latest"
 elif [ "$GETWEBBROWSER" = "IceCat" ]; then
 	INSTALLWEBBROWSER="icecat"
 elif [ "$GETWEBBROWSER" = "Konqueror" ]; then
