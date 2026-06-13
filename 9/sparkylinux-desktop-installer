@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2026/01/30 by pavroo
+# Last update 2026/06/13 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -58,7 +58,6 @@ icewm "$LOCAL11" \
 jwm "$LOCAL11" \
 kde "$LOCAL15" \
 labwc "$LOCAL62" \
-lumina "$LOCAL16" \
 lxde "$LOCAL17" \
 lxqt "$LOCAL18" \
 mate "$LOCAL19" \
