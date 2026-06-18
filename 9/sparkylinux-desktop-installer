@@ -4,7 +4,7 @@
 # desktop on the top of SparkyLinux installation
 # Copyright pavroo <pavroo@onet.eu> 2016/02/16
 # Under the GNU GPL2 License
-# Last update 2026/06/13 by pavroo
+# Last update 2026/06/18 by pavroo
 
 # checking to make sure the script is running with root privileges
 testroot="`whoami`"
@@ -61,7 +61,6 @@ labwc "$LOCAL62" \
 lxde "$LOCAL17" \
 lxqt "$LOCAL18" \
 mate "$LOCAL19" \
-mlvwm "$LOCAL52" \
 nscde "Not so $LOCAL8" \
 openbox "$LOCAL11" \
 openbox-noir "$LOCAL48" \
